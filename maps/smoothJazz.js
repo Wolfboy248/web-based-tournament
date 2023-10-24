@@ -1,4 +1,4 @@
-fetch("pGun.json")
+fetch("smoothJazz.json")
 .then(Response => Response.json())
 .then(data => {
   console.log(data.wr)

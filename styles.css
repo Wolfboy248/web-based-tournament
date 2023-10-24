@@ -10,10 +10,24 @@ a {
     width: 90%;
 }
 
+h1 {
+    color: white;
+    font-family: barlow-bold;
+    font-size: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 8%;
+    top: 2%;
+}
+
 .Portal-Gun-Div {
     width: 400px;
     height: 300px;
     background-color: rgb(52, 52, 52);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 13%;
+    top: 25%;
 }
 
 .Portal-Gun-Img {
@@ -32,6 +46,16 @@ a {
     position: relative;
     top: 7%;
     left: 5%;
+}
+
+.Smooth-Jazz-Div {
+    width: 400px;
+    height: 300px;
+    background-color: rgb(52, 52, 52);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 36%;
+    top: 25%;
 }
 
 @font-face {

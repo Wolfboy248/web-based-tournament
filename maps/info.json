@@ -1,6 +1,15 @@
 {
     "player1": "SlimeDiamond",
     "player2": "portaltwo",
+
     "round1P1PB": "22.63",
-    "round1P2PB": "24.13"
+    "round1P2PB": "24.13",
+
+    "round2P1PB": "1:01.28",
+    "round2P2PB": "1:00.75",
+
+    "round3P1PB": "35.43",
+    "round3P2PB": "34.64",
+
+    "name": "FFO Tournament 2024"
 }

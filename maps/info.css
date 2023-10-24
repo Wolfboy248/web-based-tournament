@@ -1,0 +1,173 @@
+body {
+    margin: 0px;
+}
+
+.info-div {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 40px;
+    height: 95%;
+    width: 480px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 86%;
+    top: 50%;
+    border-style: solid;
+    border-width: 4px;
+    border-color: white;
+}
+
+h1 {
+    color: white;
+    font-family: product-bold;
+    font-size: 70px;
+    text-align: center;
+    transform: translateY(-50%);
+}
+
+h2 {
+    color: rgb(244, 244, 244);
+    font-family: product;
+    font-size: 28px;
+    text-align: center;
+    letter-spacing: 2px;
+    transform: translateY(-270%);
+}
+
+/* separators */
+.separator1 {
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    transform: translateY(-100px);
+}
+
+.separator2 {
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    transform: translateY(45px);
+}
+
+.separator3 {
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    transform: translateY(110px);
+}
+
+.separator4 {
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    transform: translateY(260px);
+}
+
+.separator5 {
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    transform: translateY(420px);
+}
+
+/* data */
+/* players */
+.players-div {
+    color: white;
+    font-family: product-bold;
+    font-size: 30px;
+    transform: translateY(-110px);
+    margin: 10px;
+}
+
+.players-title {
+    text-align: center;
+    font-size: 35px;
+}
+
+/* wr */
+.wr-div {
+    font-family: product-bold;
+    font-size: 30px;
+    color: white;
+    width: 100%;
+    margin-left: -10px;
+    transform: translateY(-90px);
+}
+
+/* rounds */
+/* round 1 */
+.round1-div {
+    font-family: product-bold;
+    font-size: 30px;
+    color: white;
+    margin: 10px;
+    transform: translateY(-100px);
+    display: block;
+}
+
+/* round 2 */
+.round2-div {
+    font-family: product-bold;
+    font-size: 30px;
+    color: white;
+    margin: 10px;
+    transform: translateY(-140px);
+    display: block;
+}
+
+/* round 3 */
+.round3-div {
+    font-family: product-bold;
+    font-size: 30px;
+    color: white;
+    margin: 10px;
+    transform: translateY(-180px);
+    display: block;
+}
+
+/* logo */
+.logo-div {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 95%;
+    left: 54%;
+    width: 90%;
+}
+
+.logo-img {
+    width: 60px;
+    border-radius: 50px;
+}
+
+.logo-text {
+    font-family: product-bold;
+    color: white;
+    font-size: 30px;
+    transform: translate(5%, 28%);
+    position: absolute;
+}
+
+@font-face {
+    font-family: barlow;
+    src: url(/fonts/barlow/Barlow-Medium.ttf);
+}
+
+@font-face {
+    font-family: barlow-bold;
+    src: url(/fonts/barlow/Barlow-Bold.ttf);
+}
+
+@font-face {
+    font-family: barlow-thin;
+    src: url(/fonts/barlow/Barlow-Regular.ttf);
+}
+
+@font-face {
+    font-family: product;
+    src: url(/fonts/product/Product\ Sans\ Regular.ttf);
+}
+
+@font-face {
+    font-family: product-bold;
+    src: url(/fonts/product/Product\ Sans\ Bold.ttf);
+}
