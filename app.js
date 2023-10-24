@@ -179,13 +179,9 @@ function getPlayerScores(player = "", chamber = "") {
         })
         .catch(error => console.error('Error:', error));
 }
-players = {
-    1: "FifthWit",
-    2: "AlexAdvDev",
-}
 
 
-const player1Data = getPlayerScores(players[1], spMaps.maps[randMap].chamberID)
+
 
 function convertToTime(time) {
     const minutes = Math.floor(time / 6000);
@@ -195,6 +191,6 @@ function convertToTime(time) {
     return `${minutes}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
 }
 
-console.log(convertToTime(3323))
+
 
 
