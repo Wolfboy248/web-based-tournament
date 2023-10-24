@@ -1,0 +1,45 @@
+body {
+    background-color: rgb(36, 36, 36);
+}
+
+a {
+    text-decoration: none;
+}
+
+.Chapter1 {
+    width: 90%;
+}
+
+.Portal-Gun-Div {
+    width: 400px;
+    height: 300px;
+    background-color: rgb(52, 52, 52);
+}
+
+.Portal-Gun-Img {
+    width: 95%;
+    transform: translate(-50%, -50%);
+    position: relative;
+    top: 39%;
+    left: 50%;
+}
+
+.Portal-Gun-Text {
+    color: white;
+    font-size: 40px;
+    font-family: barlow-bold;
+    transform: translate(-50%, -50%);
+    position: relative;
+    top: 7%;
+    left: 5%;
+}
+
+@font-face {
+    font-family: barlow;
+    src: url(fonts/barlow/Barlow-Medium.ttf);
+}
+
+@font-face {
+    font-family: barlow-bold;
+    src: url(fonts/barlow/Barlow-Bold.ttf);
+}
