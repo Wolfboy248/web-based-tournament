@@ -110,21 +110,23 @@ h1 {
 #playeronediv {
     width: 290px;
     height: 170px;
-    background-color: gray;
+
     position: absolute;
     top: 85px;
     left: 25%;
     transform: translate(-50%, -50%);
+    padding: 10px;
 }
 
 #playertwodiv {
     width: 290px;
     height: 170px;
-    background-color: gray;
+
     position: absolute;
     top: 85px;
     left: 75%;
     transform: translate(-50%, -50%);
+    padding: 10px;
 }
 
 h2 {
