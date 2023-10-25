@@ -154,7 +154,10 @@ let interval = setInterval(() => {
         clearInterval(interval);
         text.textContent = spMaps.maps[finalrandMap].splitname;
         img.style.backgroundImage = `url(https://board.portal2.sr/images/chambers_full/${spMaps.maps[finalrandMap].chamberID}.jpg)`;
-
+        img.onload = function() {
+            const scores = document.getElementById('scores')
+            scores.classList.add('slide-animation')
+        }
     }
 }, 20);
 

@@ -75,6 +75,25 @@
 
 
 
+@keyframes slide {
+    0% {
+        top: 50%;
+    }
+
+    75% {
+        top: 50%;
+    }
+
+    100% {
+        top: calc(50% -180px);
+    }
+}
+
+.slide-animation {
+    
+    animation: slide 1s forwards;
+}
+
 
 h1 {
     font-family: sans-serif;
@@ -87,12 +106,14 @@ h1 {
     background-color: rgb(255, 255, 255);
 
     position: absolute;
-    top: 27%;
+    top: calc(50% + 190px);
     left: 50%;
     transform: translate(-50%, -50%);
     border: 8px solid rgb(212, 212, 212);
     border-radius: 20px;
-    z-index: 100;
+    z-index: 1;
+
+    animation: slide 3s forwards;
 }
 
 #middleLine {
@@ -104,7 +125,7 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 100;
+    z-index: 1;
 }
 
 #playeronediv {
