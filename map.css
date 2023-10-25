@@ -78,4 +78,56 @@
 
 h1 {
     font-family: sans-serif;
+    font-size: 26px;
+}
+
+#scores {
+    width: 600px;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+
+    position: absolute;
+    top: 27%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid rgb(212, 212, 212);
+    border-radius: 20px;
+    z-index: 100;
+}
+
+#middleLine {
+    width: 2px;
+    border-radius: 5px;
+    height: 170px;
+    background-color: rgb(213, 213, 213);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+
+#playeronediv {
+    width: 290px;
+    height: 170px;
+    background-color: gray;
+    position: absolute;
+    top: 85px;
+    left: 25%;
+    transform: translate(-50%, -50%);
+}
+
+#playertwodiv {
+    width: 290px;
+    height: 170px;
+    background-color: gray;
+    position: absolute;
+    top: 85px;
+    left: 75%;
+    transform: translate(-50%, -50%);
+}
+
+h2 {
+    font-family: sans-serif;
+    font-size: 18px;
 }
