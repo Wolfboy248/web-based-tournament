@@ -141,45 +141,48 @@ const text = document.getElementById('MapText');
 text.style.fontFamily = 'sans-serif';
 
 let randMap;
+let finalrandMap = Math.round(Math.random() * 60)
+console.log(finalrandMap)
+
 let i = 0;
 let interval = setInterval(() => {
-    if (i < 59) {
+    if (i < 58) {
         randMap = Math.round(Math.random() * 60);
         text.textContent = spMaps.maps[randMap].splitname;
         i++;
     } else {
         clearInterval(interval);
-        randMap = Math.round(Math.random() * 60);
-        text.textContent = spMaps.maps[randMap].splitname;
-        img.style.backgroundImage = `url(https://board.portal2.sr/images/chambers_full/${spMaps.maps[randMap].chamberID}.jpg)`;
+        text.textContent = spMaps.maps[finalrandMap].splitname;
+        img.style.backgroundImage = `url(https://board.portal2.sr/images/chambers_full/${spMaps.maps[finalrandMap].chamberID}.jpg)`;
 
     }
 }, 20);
 
 //GET PLAYER SCORES
-function getPlayerScores(player = "", chamber = "") {
+async function getPlayerScores(player = "", chamber = "") {
+    try {
+        const response = await fetch(`https://board.portal2.sr/profile/${player}/json`);
+        const data = await response.json();
 
-    fetch(`https://board.portal2.sr/profile/${player}/json`)
-        .then(response => response.json())
-        .then(data => {
-            // Use the 'data' here
-            console.log(data);
-            const filtered = data.times.SP.chambers.chamber
-            let final;
-            for (let i = 7; i < 16; i++) {
-                const filtered2 = filtered[i];
-                if (filtered2 && filtered2[chamber] !== undefined) {
-
-                    final = filtered2[chamber]
-                }
+        // Use the 'data' here
+        console.log(data);
+        const filtered = data.times.SP.chambers.chamber;
+        let final;
+        for (let i = 7; i < 16; i++) {
+            const filtered2 = filtered[i];
+            if (filtered2 && filtered2[chamber] !== undefined) {
+                final = filtered2[chamber];
             }
+        }
 
-            console.log(final)
+        console.log(final);
 
-        })
-        .catch(error => console.error('Error:', error));
+        // Return 'final' or any other data if needed
+        return final;
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
-
 
 
 
@@ -191,6 +194,21 @@ function convertToTime(time) {
     return `${minutes}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
 }
 
+const players = {
+    1: "FifthWit",
+    2: "AlexAdvDev"
+}
 
+console.log(spMaps.maps[finalrandMap].chamberID)
+getPlayerScores(players[1], spMaps.maps[finalrandMap].chamberID)
+    .then(response => {
+        console.log(convertToTime(response.score))
+        document.getElementById('playertime1').textContent = `${players[1]}'s PB: ${convertToTime(response.score)}`
+        document.getElementById('playerdate1').textContent = `Last PBed on ${response.date}`
+    })
 
-
+getPlayerScores(players[2], spMaps.maps[finalrandMap].chamberID)
+    .then(response => {
+        console.log(convertToTime(response.score))
+        document.getElementById('playertime2').textContent = `${players[2]}'s PB: ${convertToTime(response.score)}`
+    })
