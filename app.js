@@ -154,7 +154,10 @@ let interval = setInterval(() => {
         clearInterval(interval);
         text.textContent = spMaps.maps[finalrandMap].splitname;
         img.style.backgroundImage = `url(https://board.portal2.sr/images/chambers_full/${spMaps.maps[finalrandMap].chamberID}.jpg)`;
-
+        img.onload = function() {
+            const scores = document.getElementById('scores')
+            scores.classList.add('slide-animation')
+        }
     }
 }, 20);
 
@@ -205,6 +208,7 @@ getPlayerScores(players[1], spMaps.maps[finalrandMap].chamberID)
         console.log(convertToTime(response.score))
         document.getElementById('playertime1').textContent = `${players[1]}'s PB: ${convertToTime(response.score)}`
         document.getElementById('playerdate1').textContent = `Last PBed on ${response.date}`
+        document.getElementById('playerrank1').textContent = `Rank: ${response.scoreRank}`
     })
 
 getPlayerScores(players[2], spMaps.maps[finalrandMap].chamberID)
@@ -212,4 +216,5 @@ getPlayerScores(players[2], spMaps.maps[finalrandMap].chamberID)
         console.log(convertToTime(response.score))
         document.getElementById('playertime2').textContent = `${players[2]}'s PB: ${convertToTime(response.score)}`
         document.getElementById('playerdate2').textContent = `Last PBed on ${response.date}`
+        document.getElementById('playerrank2').textContent = `Rank: ${response.scoreRank}`
     })
