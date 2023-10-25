@@ -211,4 +211,5 @@ getPlayerScores(players[2], spMaps.maps[finalrandMap].chamberID)
     .then(response => {
         console.log(convertToTime(response.score))
         document.getElementById('playertime2').textContent = `${players[2]}'s PB: ${convertToTime(response.score)}`
+        document.getElementById('playerdate2').textContent = `Last PBed on ${response.date}`
     })
