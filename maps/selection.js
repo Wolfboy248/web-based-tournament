@@ -31,8 +31,8 @@ document.querySelector("#intro3").addEventListener("click", () => {
       });
 
     // fetching correct times
-    grabTime("SlimeDiamond", "sp_a1_intro3", "#P1pb");
-    grabTime2("AlexAdvDev", "sp_a1_intro3", "#P2pb");
+    grabTime("SlimeDiamond", currentMap, "#P1pb");
+    grabTime2("AlexAdvDev", currentMap, "#P2pb");
 });
 
 document.querySelector("#intro4").addEventListener("click", () => {
@@ -56,6 +56,6 @@ document.querySelector("#intro4").addEventListener("click", () => {
         document.querySelector("#wrTime").innerText = data.wr;
       });
     // fetching correct times
-    grabTime("SlimeDiamond", "sp_a1_intro4", "#P1pb");
-    grabTime2("AlexAdvDev", "sp_a1_intro4", "#P2pb");
+    grabTime("SlimeDiamond", currentMap, "#P1pb");
+    grabTime2("AlexAdvDev", currentMap, "#P2pb");
 });
