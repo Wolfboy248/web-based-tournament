@@ -22,7 +22,7 @@ async function grabTime(player, map) {
     time = maps[maplist[map][2]].score / 100;
   } else {
     console.log("No time");
-    s = "Doesn't have a time";
+    s = "No time";
     return s;
   }
   s = time;
@@ -91,7 +91,7 @@ async function main() {
     "/" +
     info.current_map +
     ".jpg";
-  console.log(bgImage);
+  console.log(bgImage); 
   bg.style.backgroundImage = "url(" + bgImage + ")";
 
   document.querySelector("#player1").innerText = info.player1;
