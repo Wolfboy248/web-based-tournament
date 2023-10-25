@@ -1,15 +1,17 @@
 {
-    "player1": "SlimeDiamond",
-    "player2": "AlexAdvDev",
+  "player1": "SlimeDiamond",
+  "player2": "Alexz",
 
-    "round1P1PB": "22.63",
-    "round1P2PB": "24.13",
+  "round1P1PB": "22.63",
+  "round1P2PB": "24.13",
 
-    "round2P1PB": "1:01.28",
-    "round2P2PB": "1:00.75",
+  "round2P1PB": "1:01.28",
+  "round2P2PB": "1:00.75",
 
-    "round3P1PB": "35.43",
-    "round3P2PB": "34.64",
+  "round3P1PB": "35.43",
+  "round3P2PB": "34.64",
 
-    "name": "FFO Tournament 2024"
+  "name": "FFO Tournament 2024",
+
+  "current_map": "sp_a1_intro3"
 }

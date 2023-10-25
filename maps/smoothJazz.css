@@ -1,7 +1,0 @@
-.bg {
-    background-image: url(images/ch1/Map_sp_a1_intro4.jpg);
-    height: 100%;
-    background-position: center;
-    background-size: cover;
-    transition: all 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-}
