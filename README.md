@@ -11,7 +11,7 @@
 
 - Automatic PB uploads with [Ghost Server](https://github.com/p2sr/GhostServer)
 
-- Convenient dashboard to manage who is playing in a match, more ability to manage gwhen a new round is decided
+- Convenient dashboard to manage who is playing in a match, more ability to manage when a new round is decided
 
 **Contributers**
 
