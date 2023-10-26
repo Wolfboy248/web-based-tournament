@@ -2,14 +2,14 @@
     background-color: gray;
     width: 600px;
     height: 210px;
-    background-size: 800px;
+    background-size: 805px;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    border-radius: 20px;
+    border-radius: 14px;
 
     position: absolute;
     top: 50%;
@@ -85,7 +85,7 @@
     }
 
     100% {
-        top: calc(50% -180px);
+        top: calc(50% -176px);
     }
 }
 
@@ -102,7 +102,7 @@ h1 {
 
 #scores {
     width: 600px;
-    height: 200px;
+    height: 192px;
     background-color: rgb(255, 255, 255);
 
     position: absolute;
@@ -110,7 +110,9 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%);
     border: 8px solid rgb(212, 212, 212);
-    border-radius: 20px;
+    border-top: none;
+
+    border-radius: 0px 0px 20px 20px;
     z-index: 1;
 
     animation: slide 3s forwards;
