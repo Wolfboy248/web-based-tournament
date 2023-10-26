@@ -15,12 +15,12 @@ info_path = os.path.join(os.path.dirname(__file__), '../maps/info.json')
 info = {
     'player1': p1,
     'player2': p2,
-    'round1P1PB': '0.00',
-    'round1P2PB': '0.00',
-    'round2P1PB': '0.00',
-    'round2P2PB': '0.00',
-    'round3P1PB': '0.00',
-    'round3P2PB': '0.00',
+    'round1P1PB': '9999',
+    'round1P2PB': '9999',
+    'round2P1PB': '9999',
+    'round2P2PB': '9999',
+    'round3P1PB': '9999',
+    'round3P2PB': '9999',
     'name': 'FFO Tournament 2024',
     'current_map': currentMap
 }
@@ -59,10 +59,10 @@ async def shell(reader: telnetlib3.TelnetReader, writer: telnetlib3.TelnetWriter
                     if playerMap != currentMap:
                         continue
 
-                    if name == p1 and fTime > unformatTime(info[f'round{str(currentRound)}P1PB']):
+                    if name == p1 and fTime < unformatTime(info[f'round{str(currentRound)}P1PB']):
                         print(f'New pb for {name}: ${time}')
                         info[f'round{str(currentRound)}P1PB'] = time
-                    elif name == p2 and fTime > unformatTime(info[f'round{str(currentRound)}P2PB']):
+                    elif name == p2 and fTime < unformatTime(info[f'round{str(currentRound)}P2PB']):
                         print(f'New pb for {name}: {time}')
                         info[f'round{str(currentRound)}P2PB'] = time
 
