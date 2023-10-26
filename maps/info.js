@@ -202,21 +202,55 @@ async function main() {
 
 // switching from loading screen thing to players screen thing
 var toggled = false;
-function toggle() {
+async function toggle() {
   if (!toggled) {
     toggled = true;
+    const infoJSON = await fetch("info.json");
+    const info = await infoJSON.json();
+    Object.keys(info).forEach((element) => {
+      if (info[element] == 9999) {
+        info[element] = "N/A";
+      }
+    });
 
     showPlayers();
-
-    return;
-  }
-
-  if (toggled) {
+  } else if (toggled) {
     toggled = false;
 
-    showLoading();
+    const infoJSON = await fetch("info.json");
+    const info = await infoJSON.json();
+    Object.keys(info).forEach((element) => {
+      if (info[element] == 9999) {
+        info[element] = "N/A";
+      }
+    });
+    document.querySelector("#r1P1PB").innerText = info.round1P1PB;
+    document.querySelector("#r1P2PB").innerText = info.round1P2PB;
 
-    return;
+    document.querySelector("#r2P1PB").innerText = info.round2P1PB;
+    document.querySelector("#r2P2PB").innerText = info.round2P2PB;
+
+    document.querySelector("#r3P1PB").innerText = info.round3P1PB;
+    document.querySelector("#r3P2PB").innerText = info.round3P2PB;
+
+    // round pbs in player thingy playing thingy lmao
+    document.querySelector("#playing1Time").innerText = info.round1P1PB;
+    document.querySelector("#playing2Time").innerText = info.round1P2PB;
+    showLoading();
+  }
+
+  while (toggled) {
+    await new Promise((r) => setTimeout(r, 5000));
+    console.log("refresh");
+    const infoJSON = await fetch("info.json");
+    const info = await infoJSON.json();
+    Object.keys(info).forEach((element) => {
+      if (info[element] == 9999) {
+        info[element] = "N/A";
+      }
+    });
+    document.querySelector("#playing1Time").innerText = info.round1P1PB;
+    document.querySelector("#playing2Time").innerText = info.round1P2PB;
   }
 }
 
