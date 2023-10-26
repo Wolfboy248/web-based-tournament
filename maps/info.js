@@ -103,6 +103,8 @@ async function main() {
   document.querySelector("#player2R2").innerText = info.player2;
   document.querySelector("#player1R3").innerText = info.player1;
   document.querySelector("#player2R3").innerText = info.player2;
+  document.querySelector("#playing1Name").innerText = info.player1;
+  document.querySelector("#playing2Name").innerText = info.player2;
 
   // actual pbs
   // document.querySelector("#pbsP1").innerText = info.player1; // more old stuff

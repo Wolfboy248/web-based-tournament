@@ -211,6 +211,68 @@ h2 {
   position: absolute;
 }
 
+.playing-div {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+}
+
+.playing1-div {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 950px;
+  height: 100px;
+  position: absolute;
+  top: 200px;
+}
+
+.playing1-name {
+  font-family: product-bold;
+  color: white;
+  font-size: 88px;
+  margin-left: 15px;
+}
+
+.playing1-time {
+  font-family: product-bold;
+  color: white;
+  font-size: 88px;
+  margin-right: 15px;
+  display: block;
+  transform: translateY(-100%);
+  text-align: right;
+}
+
+.playing2-div {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 950px;
+  height: 100px;
+  position: absolute;
+  top: 200px;
+  left: 50.5%;
+}
+
+.playing2-name {
+  font-family: product-bold;
+  color: white;
+  font-size: 88px;
+  margin-right: 15px;
+  text-align: right;
+  display: block;
+}
+
+.playing2-time {
+  font-family: product-bold;
+  color: white;
+  font-size: 88px;
+  margin-left: 15px;
+  display: block;
+  transform: translateY(-100%);
+}
+
 @font-face {
   font-family: barlow;
   src: url(/fonts/barlow/Barlow-Medium.ttf);
