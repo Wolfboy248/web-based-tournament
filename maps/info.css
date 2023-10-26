@@ -8,7 +8,7 @@ body {
   height: 100%;
   background-position: center;
   background-size: cover;
-  transition: all 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .title {
@@ -219,14 +219,23 @@ h2 {
   width: 100%;
   height: 100%;
   z-index: -100;
+  opacity: 1;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .playing1-div {
-  background-color: rgba(0, 0, 0, 0.5);
   width: 950px;
   height: 100px;
   position: absolute;
   top: 200px;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.playing1-BG {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 0%;
+  height: 100%;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .playing1-name {
@@ -234,6 +243,10 @@ h2 {
   color: white;
   font-size: 88px;
   margin-left: 15px;
+  display: block;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .playing1-time {
@@ -242,12 +255,13 @@ h2 {
   font-size: 88px;
   margin-right: 15px;
   display: block;
-  transform: translateY(-100%);
+  transform: translateY(-150%);
   text-align: right;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .playing2-div {
-  background-color: rgba(0, 0, 0, 0.5);
   width: 950px;
   height: 100px;
   position: absolute;
@@ -255,13 +269,24 @@ h2 {
   left: 50.5%;
 }
 
+.playing2-BG {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  transform: translateX(110%);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
 .playing2-name {
   font-family: product-bold;
   color: white;
   font-size: 88px;
   margin-right: 15px;
-  text-align: right;
   display: block;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  text-align: right;
 }
 
 .playing2-time {
@@ -270,7 +295,9 @@ h2 {
   font-size: 88px;
   margin-left: 15px;
   display: block;
-  transform: translateY(-100%);
+  transform: translateY(-150%);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 @font-face {

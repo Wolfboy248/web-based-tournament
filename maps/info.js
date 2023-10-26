@@ -120,6 +120,10 @@ async function main() {
   document.querySelector("#r3P1PB").innerText = info.round3P1PB;
   document.querySelector("#r3P2PB").innerText = info.round3P2PB;
 
+  // round pbs in player thingy playing thingy lmao
+  document.querySelector("#playing1Time").innerText = info.round1P1PB;
+  document.querySelector("#playing2Time").innerText = info.round1P2PB;
+
   // name of the thing
   document.querySelector("#logoText").innerText = info.name;
   window.addEventListener("keydown", (event) => {
@@ -139,6 +143,10 @@ async function main() {
 
       // enable shit
       document.querySelector("#r1Div").style.opacity = "1";
+
+      // switching player round pbs in the thingythingthing
+      document.querySelector("#playing1Time").innerText = info.round1P1PB;
+      document.querySelector("#playing2Time").innerText = info.round1P2PB;
     }
 
     if (event.key === "2") {
@@ -153,6 +161,10 @@ async function main() {
       document.querySelector("#r1Div").style.opacity = "1";
       document.querySelector("#sep4").style.opacity = "1";
       document.querySelector("#r2Div").style.opacity = "1";
+
+      // switching player round pbs in the thingythingthing
+      document.querySelector("#playing1Time").innerText = info.round2P1PB;
+      document.querySelector("#playing2Time").innerText = info.round2P2PB;
     }
 
     if (event.key === "3") {
@@ -169,6 +181,10 @@ async function main() {
       document.querySelector("#r3Div").style.opacity = "1";
       document.querySelector("#sep4").style.opacity = "1";
       document.querySelector("#sep5").style.opacity = "1";
+
+      // switching player round pbs in the thingythingthing
+      document.querySelector("#playing1Time").innerText = info.round3P1PB;
+      document.querySelector("#playing2Time").innerText = info.round3P2PB;
     }
 
     if (event.key === " ") {
@@ -182,15 +198,17 @@ var toggled = false;
 function toggle() {
   if (!toggled) {
     toggled = true;
-    document.querySelector("#infoDiv").style.left = "115%";
-    document.querySelector("#bg").style.opacity = "0";
+
+    showPlayers();
+
     return;
   }
 
   if (toggled) {
     toggled = false;
-    document.querySelector("#infoDiv").style.left = "86%";
-    document.querySelector("#bg").style.opacity = "1";
+
+    showLoading();
+
     return;
   }
 }
