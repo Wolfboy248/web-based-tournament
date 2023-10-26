@@ -72,17 +72,6 @@ async function main() {
     " - " +
     maplist.sp[maplist[info.current_map][1] - 1];
 
-  //original pbs and wr
-  document.querySelector("#P1pb").innerText = await grabTime(
-    info.player1,
-    info.current_map
-  );
-  document.querySelector("#P2pb").innerText = await grabTime(
-    info.player2,
-    info.current_map
-  );
-  document.querySelector("#wrTime").innerText = await grabWr(info.current_map);
-
   //background
   const bg = document.querySelector("#bg");
   const bgImage =
@@ -91,7 +80,7 @@ async function main() {
     "/" +
     info.current_map +
     ".jpg";
-  console.log(bgImage); 
+  console.log(bgImage);
   bg.style.backgroundImage = "url(" + bgImage + ")";
 
   // document.querySelector("#playerNames").innerText = info.player1 + " & " + info.player2; // old thing
@@ -111,6 +100,13 @@ async function main() {
   // document.querySelector("#pbsP2").innerText = info.player2;
 
   // round pbs
+
+  Object.keys(info).forEach((element) => {
+    if (info[element] == 9999) {
+      info[element] = "N/A";
+    }
+  });
+
   document.querySelector("#r1P1PB").innerText = info.round1P1PB;
   document.querySelector("#r1P2PB").innerText = info.round1P2PB;
 
@@ -126,6 +122,17 @@ async function main() {
 
   // name of the thing
   document.querySelector("#logoText").innerText = info.name;
+
+  //original pbs and wr
+  document.querySelector("#P1pb").innerText = await grabTime(
+    info.player1,
+    info.current_map
+  );
+  document.querySelector("#P2pb").innerText = await grabTime(
+    info.player2,
+    info.current_map
+  );
+  document.querySelector("#wrTime").innerText = await grabWr(info.current_map);
   window.addEventListener("keydown", (event) => {
     console.log(event);
     if (event.key === "ArrowLeft") {
