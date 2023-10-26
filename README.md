@@ -18,3 +18,5 @@
 Archer - Help with grabbing data from board.portal2.sr
 
 FifthWit - added automatic tournament scores from board.portal2.sr
+
+Alexz - made the system for getting run times from portal 2
