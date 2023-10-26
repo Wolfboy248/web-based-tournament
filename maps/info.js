@@ -121,6 +121,7 @@ async function main() {
   // name of the thing
   document.querySelector("#logoText").innerText = info.name;
   window.addEventListener("keydown", (event) => {
+    console.log(event);
     if (event.key === "ArrowLeft") {
       event.preventDefault();
       console.log("YIPPEEEEEE!!!");
@@ -167,7 +168,29 @@ async function main() {
       document.querySelector("#sep4").style.opacity = "1";
       document.querySelector("#sep5").style.opacity = "1";
     }
+
+    if (event.key === " ") {
+      toggle();
+    }
   });
+}
+
+// switching from loading screen thing to players screen thing
+var toggled = false;
+function toggle() {
+  if (!toggled) {
+    toggled = true;
+    document.querySelector("#infoDiv").style.left = "115%";
+    document.querySelector("#bg").style.opacity = "0";
+    return;
+  }
+
+  if (toggled) {
+    toggled = false;
+    document.querySelector("#infoDiv").style.left = "86%";
+    document.querySelector("#bg").style.opacity = "1";
+    return;
+  }
 }
 
 main();

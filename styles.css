@@ -14,48 +14,20 @@ h1 {
     color: white;
     font-family: barlow-bold;
     font-size: 50px;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    left: 8%;
-    top: 2%;
 }
 
-.Portal-Gun-Div {
-    width: 400px;
-    height: 300px;
-    background-color: rgb(52, 52, 52);
+.text {
     transform: translate(-50%, -50%);
     position: absolute;
-    left: 13%;
-    top: 25%;
-}
-
-.Portal-Gun-Img {
-    width: 95%;
-    transform: translate(-50%, -50%);
-    position: relative;
-    top: 39%;
+    top: 50%;
     left: 50%;
+    width: 100%;
+    text-align: center;
 }
 
-.Portal-Gun-Text {
-    color: white;
-    font-size: 40px;
+.start-button {
     font-family: barlow-bold;
-    transform: translate(-50%, -50%);
-    position: relative;
-    top: 7%;
-    left: 5%;
-}
-
-.Smooth-Jazz-Div {
-    width: 400px;
-    height: 300px;
-    background-color: rgb(52, 52, 52);
-    transform: translate(-50%, -50%);
-    position: absolute;
-    left: 36%;
-    top: 25%;
+    font-size: 50px;
 }
 
 @font-face {
