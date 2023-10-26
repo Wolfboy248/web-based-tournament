@@ -72,6 +72,57 @@ async function main() {
     " - " +
     maplist.sp[maplist[info.current_map][1] - 1];
 
+  //background
+  const bg = document.querySelector("#bg");
+  const bgImage =
+    "./images/ch" +
+    maplist[info.current_map][1] +
+    "/" +
+    info.current_map +
+    ".jpg";
+  console.log(bgImage);
+  bg.style.backgroundImage = "url(" + bgImage + ")";
+
+  // document.querySelector("#playerNames").innerText = info.player1 + " & " + info.player2; // old thing
+  document.querySelector("#player1").innerText = info.player1;
+  document.querySelector("#player2").innerText = info.player2;
+  document.querySelector("#player1R1").innerText = info.player1;
+  document.querySelector("#player2R1").innerText = info.player2;
+  document.querySelector("#player1R2").innerText = info.player1;
+  document.querySelector("#player2R2").innerText = info.player2;
+  document.querySelector("#player1R3").innerText = info.player1;
+  document.querySelector("#player2R3").innerText = info.player2;
+  document.querySelector("#playing1Name").innerText = info.player1;
+  document.querySelector("#playing2Name").innerText = info.player2;
+
+  // actual pbs
+  // document.querySelector("#pbsP1").innerText = info.player1; // more old stuff
+  // document.querySelector("#pbsP2").innerText = info.player2;
+
+  // round pbs
+
+  Object.keys(info).forEach((element) => {
+    if (info[element] == 9999) {
+      info[element] = "N/A";
+    }
+  });
+
+  document.querySelector("#r1P1PB").innerText = info.round1P1PB;
+  document.querySelector("#r1P2PB").innerText = info.round1P2PB;
+
+  document.querySelector("#r2P1PB").innerText = info.round2P1PB;
+  document.querySelector("#r2P2PB").innerText = info.round2P2PB;
+
+  document.querySelector("#r3P1PB").innerText = info.round3P1PB;
+  document.querySelector("#r3P2PB").innerText = info.round3P2PB;
+
+  // round pbs in player thingy playing thingy lmao
+  document.querySelector("#playing1Time").innerText = info.round1P1PB;
+  document.querySelector("#playing2Time").innerText = info.round1P2PB;
+
+  // name of the thing
+  document.querySelector("#logoText").innerText = info.name;
+
   //original pbs and wr
   document.querySelector("#P1pb").innerText = await grabTime(
     info.player1,
@@ -82,44 +133,8 @@ async function main() {
     info.current_map
   );
   document.querySelector("#wrTime").innerText = await grabWr(info.current_map);
-
-  //background
-  const bg = document.querySelector("#bg");
-  const bgImage =
-    "./images/ch" +
-    maplist[info.current_map][1] +
-    "/" +
-    info.current_map +
-    ".jpg";
-  console.log(bgImage); 
-  bg.style.backgroundImage = "url(" + bgImage + ")";
-
-  document.querySelector("#player1").innerText = info.player1;
-  document.querySelector("#player2").innerText = info.player2;
-  document.querySelector("#player1R1").innerText = info.player1;
-  document.querySelector("#player2R1").innerText = info.player2;
-  document.querySelector("#player1R2").innerText = info.player1;
-  document.querySelector("#player2R2").innerText = info.player2;
-  document.querySelector("#player1R3").innerText = info.player1;
-  document.querySelector("#player2R3").innerText = info.player2;
-
-  // actual pbs
-  document.querySelector("#pbsP1").innerText = info.player1;
-  document.querySelector("#pbsP2").innerText = info.player2;
-
-  // round pbs
-  document.querySelector("#r1P1PB").innerText = info.round1P1PB;
-  document.querySelector("#r1P2PB").innerText = info.round1P2PB;
-
-  document.querySelector("#r2P1PB").innerText = info.round2P1PB;
-  document.querySelector("#r2P2PB").innerText = info.round2P2PB;
-
-  document.querySelector("#r3P1PB").innerText = info.round3P1PB;
-  document.querySelector("#r3P2PB").innerText = info.round3P2PB;
-
-  // name of the thing
-  document.querySelector("#logoText").innerText = info.name;
   window.addEventListener("keydown", (event) => {
+    console.log(event);
     if (event.key === "ArrowLeft") {
       event.preventDefault();
       console.log("YIPPEEEEEE!!!");
@@ -135,6 +150,10 @@ async function main() {
 
       // enable shit
       document.querySelector("#r1Div").style.opacity = "1";
+
+      // switching player round pbs in the thingythingthing
+      document.querySelector("#playing1Time").innerText = info.round1P1PB;
+      document.querySelector("#playing2Time").innerText = info.round1P2PB;
     }
 
     if (event.key === "2") {
@@ -149,6 +168,10 @@ async function main() {
       document.querySelector("#r1Div").style.opacity = "1";
       document.querySelector("#sep4").style.opacity = "1";
       document.querySelector("#r2Div").style.opacity = "1";
+
+      // switching player round pbs in the thingythingthing
+      document.querySelector("#playing1Time").innerText = info.round2P1PB;
+      document.querySelector("#playing2Time").innerText = info.round2P2PB;
     }
 
     if (event.key === "3") {
@@ -165,8 +188,70 @@ async function main() {
       document.querySelector("#r3Div").style.opacity = "1";
       document.querySelector("#sep4").style.opacity = "1";
       document.querySelector("#sep5").style.opacity = "1";
+
+      // switching player round pbs in the thingythingthing
+      document.querySelector("#playing1Time").innerText = info.round3P1PB;
+      document.querySelector("#playing2Time").innerText = info.round3P2PB;
+    }
+
+    if (event.key === " ") {
+      toggle();
     }
   });
+}
+
+// switching from loading screen thing to players screen thing
+var toggled = false;
+async function toggle() {
+  if (!toggled) {
+    toggled = true;
+    const infoJSON = await fetch("info.json");
+    const info = await infoJSON.json();
+    Object.keys(info).forEach((element) => {
+      if (info[element] == 9999) {
+        info[element] = "N/A";
+      }
+    });
+
+    showPlayers();
+  } else if (toggled) {
+    toggled = false;
+
+    const infoJSON = await fetch("info.json");
+    const info = await infoJSON.json();
+    Object.keys(info).forEach((element) => {
+      if (info[element] == 9999) {
+        info[element] = "N/A";
+      }
+    });
+    document.querySelector("#r1P1PB").innerText = info.round1P1PB;
+    document.querySelector("#r1P2PB").innerText = info.round1P2PB;
+
+    document.querySelector("#r2P1PB").innerText = info.round2P1PB;
+    document.querySelector("#r2P2PB").innerText = info.round2P2PB;
+
+    document.querySelector("#r3P1PB").innerText = info.round3P1PB;
+    document.querySelector("#r3P2PB").innerText = info.round3P2PB;
+
+    // round pbs in player thingy playing thingy lmao
+    document.querySelector("#playing1Time").innerText = info.round1P1PB;
+    document.querySelector("#playing2Time").innerText = info.round1P2PB;
+    showLoading();
+  }
+
+  while (toggled) {
+    await new Promise((r) => setTimeout(r, 5000));
+    console.log("refresh");
+    const infoJSON = await fetch("info.json");
+    const info = await infoJSON.json();
+    Object.keys(info).forEach((element) => {
+      if (info[element] == 9999) {
+        info[element] = "N/A";
+      }
+    });
+    document.querySelector("#playing1Time").innerText = info.round1P1PB;
+    document.querySelector("#playing2Time").innerText = info.round1P2PB;
+  }
 }
 
 main();

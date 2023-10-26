@@ -13,8 +13,12 @@
 
 - Convenient dashboard to manage who is playing in a match, more ability to manage when a new round is decided
 
+- Adding support for vetoes
+
 **Contributers**
 
 Archer - Help with grabbing data from board.portal2.sr
 
 FifthWit - added automatic tournament scores from board.portal2.sr
+
+Alexz - made the system for getting run times from portal 2
