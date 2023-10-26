@@ -1,4 +1,4 @@
-import telnetlib3, asyncio, sys, json, time
+import telnetlib3, asyncio, sys, json, time, os
 
 if len(sys.argv) < 5:
     print('Usage: [port] [map name] [player one] [player two]')
@@ -10,6 +10,7 @@ print('  when this script runs the times in the json are wiped!')
 
 port, currentMap, p1, p2 = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
 currentRound = 1
+info_path = os.path.join(os.path.dirname(__file__), '../maps/info.json')
 
 info = {
     'player1': p1,
@@ -20,9 +21,11 @@ info = {
     'round2P2PB': '0.00',
     'round3P1PB': '0.00',
     'round3P2PB': '0.00',
+    'name': 'FFO Tournament 2024',
+    'current_map': currentMap
 }
 
-with open('info.json', 'w') as outfile:
+with open(info_path, 'w') as outfile:
     outfile.write(json.dumps(info, indent=4))
 
 def unformatTime(text: str):
@@ -63,7 +66,7 @@ async def shell(reader: telnetlib3.TelnetReader, writer: telnetlib3.TelnetWriter
                         print(f'New pb for {name}: {time}')
                         info[f'round{str(currentRound)}P2PB'] = time
 
-                    with open('info.json', 'w') as outfile:
+                    with open(info_path, 'w') as outfile:
                         outfile.write(json.dumps(info, indent=4))
                 elif line.startswith('advance round'):
                     if currentRound == 3:
