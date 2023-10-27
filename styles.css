@@ -66,6 +66,25 @@ h1 {
     box-shadow: 0px 0px 100px 12px rgba(0, 0, 0, 0.2);
 }
 
+.playerform {
+    width: 300px;
+    background-color: rgb(92, 92, 92);
+    height: 400px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 0px 100px 2px rgba(0, 0, 0, 0.2);
+
+    border: 5px solid blueviolet;
+}
+
+.formwrapper {
+    width: 305px;
+    height: 405px;
+    background-color: #00DBDE;
+    background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+
+}
+
 .start-button:hover {
     cursor: pointer;
 }
@@ -82,11 +101,7 @@ h1 {
     transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-.Player1-form {
-    width: 300px;
-    background-color: rgb(56, 56, 56);
-    height: 400px;
-}
+
 
 #form1 {
     transform: translate(-50%, -50%);
@@ -104,6 +119,9 @@ h1 {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     font-family: product;
+    text-align: center;
+    border: 0;
+    box-shadow: 0 0 20px 4px rgba(0, 0, 0, 0.365)
 }
 
 .submit-btn {
@@ -127,11 +145,6 @@ h1 {
     transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-.Player2-form {
-    width: 300px;
-    background-color: rgb(56, 56, 56);
-    height: 400px;
-}
 
 #form2 {
     transform: translate(-50%, -50%);
