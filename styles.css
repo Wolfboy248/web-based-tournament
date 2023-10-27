@@ -23,11 +23,81 @@ h1 {
     left: 50%;
     width: 100%;
     text-align: center;
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .start-button {
     font-family: barlow-bold;
     font-size: 50px;
+}
+
+#P1Form {
+    transform: translate(-50%, -250%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.Player1-form {
+    width: 300px;
+    background-color: rgb(56, 56, 56);
+    height: 400px;
+}
+
+#form1 {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 43%;
+    color: white;
+    font-family: product;
+    font-size: 20px;
+}
+
+.label {
+    height: 30px;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-family: product;
+}
+
+.submit-btn {
+    transform: translate(-50%, 50%);
+    position: absolute;
+    left: 50%;
+    font-family: product-bold;
+    font-size: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 10px;
+    width: 150px;
+    border-color: white;
+}
+
+#P2Form {
+    transform: translate(-50%, -250%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.Player2-form {
+    width: 300px;
+    background-color: rgb(56, 56, 56);
+    height: 400px;
+}
+
+#form2 {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 43%;
+    color: white;
+    font-family: product;
+    font-size: 20px;
 }
 
 @font-face {
@@ -39,3 +109,14 @@ h1 {
     font-family: barlow-bold;
     src: url(fonts/barlow/Barlow-Bold.ttf);
 }
+
+@font-face {
+    font-family: product;
+    src: url(fonts/d-din/D-DIN.otf);
+  }
+  
+  @font-face {
+    font-family: product-bold;
+    src: url(fonts/d-din/D-DIN-Bold.otf);
+  }
+  

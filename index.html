@@ -7,9 +7,43 @@
     <link rel="stylesheet" href="styles.css">
 </head>
     <body>
-        <div class="text">
-            <h1>Hi! This is the brand spanking new Friendly Fire ON Tournament UI!</h1>
-            <a href="maps/maps.html"><button class="start-button">Start</button></a>
+        <div class="Player1-form" id="P1Form">
+            <form id="form1" action="form_handler.php" target="_blank" method="post">
+                <label for="P1map1INP">Map 1</label>
+                <input class="label" id="P1map1INP" type="text" name="P1map1"><br>
+                <label for="P1map2INP">Map 2</label>
+                <input class="label" id="P1map2INP" type="text" name="P1map2"><br>
+                <label for="P1map3INP">Map 3</label>
+                <input class="label" id="P1map2INP" type="text" name="P1map3"><br>
+                <label for="P1map4INP">Map 4</label>
+                <input class="label" id="P1map4INP" type="text" name="P1map4"><br>
+                <label for="P1map5INP">Map 5</label>
+                <input class="label" id="P1map5INP" type="text" name="P1map5"><br>
+                <input class="submit-btn" type="submit" value="Submit">
+            </form>
+        </div>
+        
+        <div class="Player2-form" id="P2Form">
+            <form id="form2" action="form_handler2.php" target="_blank" method="post">
+                <label for="P1map1INP">Map 1</label>
+                <input class="label" id="P1map1INP" type="text" name="P1map1"><br>
+                <label for="P1map2INP">Map 2</label>
+                <input class="label" id="P1map2INP" type="text" name="P1map2"><br>
+                <label for="P1map3INP">Map 3</label>
+                <input class="label" id="P1map2INP" type="text" name="P1map3"><br>
+                <label for="P1map4INP">Map 4</label>
+                <input class="label" id="P1map4INP" type="text" name="P1map4"><br>
+                <label for="P1map5INP">Map 5</label>
+                <input class="label" id="P1map5INP" type="text" name="P1map5"><br>
+                <input class="submit-btn" type="submit" value="Submit">
+            </form>
+        </div>
+        
+
+        <div id="mainContainer" class="text">
+            <h1>Welcome to the FFO Tournament! <br>Who are you?</h1>
+            <button id="btnP1" class="start-button">Player 1</button>
+            <button id="btnP2" class="start-button">Player 1</button>
         </div>
     </body>
 

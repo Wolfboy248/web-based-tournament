@@ -300,6 +300,32 @@ h2 {
   transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
+.veto-div {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 20%;
+  left: 12%;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 440px;
+  height: 400px;
+  color: white;
+  font-family: product-bold;
+  font-size: 30px;
+  border-radius: 20px;
+}
+
+.veto-title {
+  font-size: 40px;
+  text-align: center;
+  transform: translateY(-30px);
+}
+
+.veto-map {
+  display: block;
+  margin-left: 10px;
+  transform: translateY(-65px);
+}
+
 @font-face {
   font-family: barlow;
   src: url(/fonts/barlow/Barlow-Medium.ttf);

@@ -252,6 +252,27 @@ async function toggle() {
     document.querySelector("#playing1Time").innerText = info.round1P1PB;
     document.querySelector("#playing2Time").innerText = info.round1P2PB;
   }
+};
+
+async function vetoedMaps() {
+  const infoJSON = await fetch("vetoesP1.json");
+  const p1veto = await infoJSON.json();
+
+  document.querySelector("#map1").innerText = p1veto.P1Map1;
+  document.querySelector("#map2").innerText = p1veto.P1Map2;
+  document.querySelector("#map3").innerText = p1veto.P1Map3;
+  document.querySelector("#map4").innerText = p1veto.P1Map4;
+  document.querySelector("#map5").innerText = p1veto.P1Map5;
+
+  const info2JSON = await fetch("vetoesP2.json");
+  const p2veto = await info2JSON.json();
+
+  document.querySelector("#map6").innerText = p2veto.P2Map1;
+  document.querySelector("#map7").innerText = p2veto.P2Map2;
+  document.querySelector("#map8").innerText = p2veto.P2Map3;
+  document.querySelector("#map9").innerText = p2veto.P2Map4;
+  document.querySelector("#map10").innerText = p2veto.P2Map5;
 }
 
 main();
+vetoedMaps();
