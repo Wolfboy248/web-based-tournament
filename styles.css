@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap');
+
 html { 
     background: url(https://github.com/FifthWit/p2-autorenderle/blob/master/images/bg.jpg?raw=true) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -26,13 +28,48 @@ h1 {
     top: 50%;
     left: 50%;
     width: 100%;
+
+    
     text-align: center;
     transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
+.submit-btn:hover {
+    cursor: pointer;
+}
+
 .start-button {
-    font-family: barlow-bold;
+    width: 350px;
+    font-family: "Rubik", sans-serif;
     font-size: 50px;
+    border-radius: 3px;
+    border: 0px;
+    margin: 3px;
+    background-color: rgb(34, 34, 34);
+    color: white;
+}
+
+.buttongrad {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 360px;
+    padding: 1rem;
+    position: relative;
+    background: linear-gradient(45deg, rgba(255,0,0,1) 0%, rgba(128,0,128,1) 100%);
+    padding: 3px;
+    border-radius: 3px;
+    margin: 10px;
+}
+
+.start-button:hover {
+    cursor: pointer;
+}
+
+.entry-text {
+    padding: 20px;
 }
 
 #P1Form {
