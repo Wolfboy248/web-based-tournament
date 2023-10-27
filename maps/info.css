@@ -343,10 +343,10 @@ h2 {
 
 @font-face {
   font-family: product;
-  src: url(/fonts/d-din/D-DIN.otf);
+  src: url(D-DIN.otf);
 }
 
 @font-face {
   font-family: product-bold;
-  src: url(/fonts/d-din/D-DIN-Bold.otf);
+  src: url(D-DIN-Bold.otf);
 }
