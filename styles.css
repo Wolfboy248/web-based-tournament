@@ -1,6 +1,10 @@
-body {
-    background-color: rgb(36, 36, 36);
-}
+html { 
+    background: url(https://github.com/FifthWit/p2-autorenderle/blob/master/images/bg.jpg?raw=true) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 
 a {
     text-decoration: none;
