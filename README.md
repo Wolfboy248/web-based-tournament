@@ -22,3 +22,5 @@ Archer - Help with grabbing data from board.portal2.sr
 FifthWit - added automatic tournament scores from board.portal2.sr
 
 Alexz - made the system for getting run times from portal 2
+
+AMJ - created [P2Data repo](https://github.com/ThisAMJ/thisamj.github.io/blob/main/lib/P2Data.js)
