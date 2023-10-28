@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="submitted.css">
+    <title>lmao</title>
+</head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <image src="images/ffo icon.png" class="icon">
+                <h1>Thank you for submitting!</h1>
+                <h1>Your submitted vetoed maps are:</h1>
+                <p id="p2map1"></p>
+                <p id="p2map2"></p>
+                <p id="p2map3"></p>
+                <p id="p2map4"></p>
+                <p id="p2map5"></p>
+            </div>
+        </div>
+
+        <script>
+            async function loadVetoes() {
+                try {
+                    const response = await fetch('maps/vetoesP2.json');
+                    const data = await response.json();
+                    console.log(data);
+                    for (let i = 0; i<5; i++) {
+                        document.getElementById(`p2map${i+1}`).textContent = data[`P2Map${i+1}`]
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+
+
+
+
+            loadVetoes();
+
+
+        </script>
+        
+
+    </body>
+</html>

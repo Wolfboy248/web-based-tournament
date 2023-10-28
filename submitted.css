@@ -21,8 +21,9 @@ h1 {
     font-size: 30px;
 }
 
-br {
-    font-family: sans-serif;  
+p {
+    font-family: sans-serif; 
+    font-size: 16px;
 }
 
 .wrapper {
@@ -35,13 +36,13 @@ br {
     height: 530px;
     border-radius: 5px;
 
-    background: linear-gradient(45deg, rgba(255,181,106,1) 0%, rgba(255,62,144,1) 100%);
+    background: linear-gradient(45deg, rgba(255,181,106,1) 0%, rgba(255,62,144,1) 33%, rgba(255,181,106,1) 66%, rgba(255,62,144,1) 100%);
     
-    background-position: 0% 0%;
+    background-position: bottom left;
 
-    background-size: 200%;
+    background-size: 400%;
 
-    animation: slide 1s forwards;
+    animation: slide 3s forwards;
 }
 
 @keyframes slide {
