@@ -15,7 +15,7 @@
 
 - Adding support for vetoes
 
-**Contributers**
+**Contributors**
 
 Archer - Help with grabbing data from board.portal2.sr
 
