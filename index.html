@@ -11,10 +11,10 @@
             <form id="form1" action="form_handler.php" target="_blank" method="get">
                 <label for="P1map1INP" class="map-text">Map 1</label><input class="label" id="P1map1INP" type="text" name="P1map1" placeholder="input veto"><br>
                 <label for="P1map2INP" class="map-text">Map 2</label><input class="label" id="P1map2INP" type="text" name="P1map2" placeholder="input veto"><br>
-                <label for="P1map3INP" class="map-text">Map 3</label><input class="label" id="P1map2INP" type="text" name="P1map3" placeholder="input veto"><br>
+                <label for="P1map3INP" class="map-text">Map 3</label><input class="label" id="P1map3INP" type="text" name="P1map3" placeholder="input veto"><br>
                 <label for="P1map4INP" class="map-text">Map 4</label><input class="label" id="P1map4INP" type="text" name="P1map4" placeholder="input veto"><br>
                 <label for="P1map5INP" class="map-text">Map 5</label><input class="label" id="P1map5INP" type="text" name="P1map5" placeholder="input veto"><br>
-                <input class="submit-btn" type="submit" value="Submit">
+                <input class="submit-btn" type="button" onclick="player1submit()" value="Submit">
             </form>
         </div>
         
@@ -23,10 +23,10 @@
             <form id="form2" action="form_handler2.php" target="_blank" method="get">
                 <label for="P1map1INP" class="map-text">Map 1</label><input class="label" id="P1map1INP" type="text" name="P1map1" placeholder="input veto"><br>
                 <label for="P1map2INP" class="map-text">Map 2</label><input class="label" id="P1map2INP" type="text" name="P1map2" placeholder="input veto"><br>
-                <label for="P1map3INP" class="map-text">Map 3</label><input class="label" id="P1map2INP" type="text" name="P1map3" placeholder="input veto"><br>
+                <label for="P1map3INP" class="map-text">Map 3</label><input class="label" id="P1map3INP" type="text" name="P1map3" placeholder="input veto"><br>
                 <label for="P1map4INP" class="map-text">Map 4</label><input class="label" id="P1map4INP" type="text" name="P1map4" placeholder="input veto"><br>
                 <label for="P1map5INP" class="map-text">Map 5</label><input class="label" id="P1map5INP" type="text" name="P1map5" placeholder="input veto"><br>
-                <input class="submit-btn" type="submit" value="Submit">
+                <input class="submit-btn" type="button" onclick="player2submit()" value="Submit">
             </form>
         </div>
         
@@ -42,5 +42,7 @@
         </div>
     </body>
 
+
+    <script src="p2data.js"></script>
     <script defer src="main.js"></script>
 </html>
