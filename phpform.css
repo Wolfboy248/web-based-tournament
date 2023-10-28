@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
+html { 
+    background: url(https://github.com/FifthWit/p2-autorenderle/blob/master/images/bg.jpg?raw=true) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+body {
+    text-align: center;
+}
+
+h1 {
+    font-family: "Rubik", sans-serif;
+}
+
+.p1map-element {
+    font-family: sans-serif;
+    font-size: 30px;
+}
+
+br {
+    font-family: sans-serif;  
+}
+
+.wrapper {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+
+    width: 360px;
+    height: 530px;
+    border-radius: 5px;
+
+    background: linear-gradient(45deg, rgba(255,181,106,1) 0%, rgba(255,62,144,1) 100%);
+    
+    background-position: 0% 0%;
+
+    background-size: 200%;
+
+    animation: slide 1s forwards;
+}
+
+@keyframes slide {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 100% -100%;
+    }
+  }
+
+.container {
+    background-color: rgb(92, 92, 92);
+    width: 325px;
+    height: 495px;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+}
+
+.icon {
+  width: 75px;
+  aspect-ratio: 1/1;
+  border-radius: 50px;
+}

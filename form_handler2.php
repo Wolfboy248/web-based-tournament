@@ -8,6 +8,7 @@
     <body>
         <div class="wrapper">
             <div class="container">
+            <image src="images/ffo icon.png" class="icon">
                 <h1>Thank you for submitting!</h1>
                 <h1>Your submitted vetoed maps are:</h1> <br>
                 <?php echo '<span class="p1map-element">' . $_GET["P2map1"] . '</span>'; ?><br>
