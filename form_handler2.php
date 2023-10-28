@@ -2,16 +2,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="phpform.css">
     <title>lmao</title>
 </head>
     <body>
-
-        Thank you for submitting!<br>
-        Your submitted vetoed maps are: <br> <?php echo $_GET["P2map1"]; ?><br>
-        <?php echo $_GET["P2map2"]; ?><br>
-        <?php echo $_GET["P2map3"]; ?><br>
-        <?php echo $_GET["P2map4"]; ?><br>
-        <?php echo $_GET["P2map5"]; ?><br>
+        <div class="wrapper">
+            <div class="container">
+                <h1>Thank you for submitting!</h1>
+                <h1>Your submitted vetoed maps are:</h1> <br>
+                <?php echo '<span class="p1map-element">' . $_GET["P2map1"] . '</span>'; ?><br>
+                <?php echo '<span class="p1map-element">' . $_GET["P2map2"] . '</span>'; ?><br>
+                <?php echo '<span class="p1map-element">' . $_GET["P2map3"] . '</span>'; ?><br>
+                <?php echo '<span class="p1map-element">' . $_GET["P2map4"] . '</span>'; ?><br>
+                <?php echo '<span class="p1map-element">' . $_GET["P2map5"] . '</span>'; ?><br>
+            </div>
+        </div>
         <?php 
         
         $path = 'maps/vetoesP2.json';
@@ -31,6 +36,5 @@
         fclose($fp);
 
         ?>
-        
     </body>
 </html>
