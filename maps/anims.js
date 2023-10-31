@@ -31,6 +31,9 @@ function showPlayers() {
     document.querySelector("#playing2Div").style.transitionDelay = "0.5s";
     document.querySelector("#playing2Name").style.transitionDelay = "1.3s";
     document.querySelector("#playing2Time").style.transitionDelay = "1.2s";
+
+    // randomizer
+    document.querySelector("#randomizer").style.left = "-20%";
 }
 
 function showLoading() {
@@ -52,4 +55,8 @@ function showLoading() {
     document.querySelector("#playing2Time").style.transform = "translateY(-150%)";
     document.querySelector("#playing2Name").style.opacity = "0";
     document.querySelector("#playing2Time").style.opacity = "0";
+}
+
+function showRandomizer() {
+    document.querySelector("#randomizer").style.left = "12%";
 }

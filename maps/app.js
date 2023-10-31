@@ -145,24 +145,31 @@ let finalrandMap = Math.round(Math.random() * 60)
 console.log(finalrandMap)
 
 let i = 0;
-let interval = setInterval(() => {
-    if (i < 58) {
-        randMap = Math.round(Math.random() * 60);
-        text.textContent = spMaps.maps[randMap].splitname;
-        img.style.backgroundImage = `url(https://board.portal2.sr/images/chambers_full/${spMaps.maps[randMap].chamberID}.jpg)`;
-        i++;
-    } else {
-        clearInterval(interval);
-        text.textContent = spMaps.maps[finalrandMap].splitname;
-        img.style.backgroundImage = `url(https://board.portal2.sr/images/chambers_full/${spMaps.maps[finalrandMap].chamberID}.jpg)`;
-        img.onload = function() {
-            const scores = document.getElementById('scores')
-            scores.classList.add('slide-animation')
-        }
+
+
+// do the thing on the key press
+window.addEventListener("keypress", (event) => {
+    if (event.key === "r") {
+        let interval = setInterval(() => {
+            if (i < 58) {
+                randMap = Math.round(Math.random() * 60);
+                text.textContent = spMaps.maps[randMap].splitname;
+                img.style.backgroundImage = `url(https://board.portal2.sr/images/chambers_full/${spMaps.maps[randMap].chamberID}.jpg)`;
+                i++;
+            } else {
+                clearInterval(interval);
+                text.textContent = spMaps.maps[finalrandMap].splitname;
+                img.style.backgroundImage = `url(https://board.portal2.sr/images/chambers_full/${spMaps.maps[finalrandMap].chamberID}.jpg)`;
+                img.onload = function() {
+                    const scores = document.getElementById('scores')
+                    scores.classList.add('slide-animation')
+                }
+            }
+        }, 20);
+
+        showRandomizer();
     }
-}, 20);
-
-
+})
 
 //GET PLAYER SCORES
 async function getPlayerScores(player = "", chamber = "") {
