@@ -21,7 +21,9 @@ client.on('interactionCreate', (interaction) => {
     if (!interaction.isChatInputCommand()) return;
 
     if (interaction.commandName === 'ping') {
-        interaction.reply('pong');
+        interaction.reply(`Pong! Server responded in ${client.ws.ping}ms`);
+
+        console.log(`${client.ws.ping}ms`)
     };
 
     if (interaction.commandName === 'p1veto') {
