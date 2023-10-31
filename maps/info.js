@@ -254,25 +254,28 @@ async function toggle() {
   }
 };
 
-async function vetoedMaps() {
-  const infoJSON = await fetch("vetoesP1.json");
+async function P1vetoedMaps() {
+  const infoJSON = await fetch("/Discord_bot/src/p1vetoes.json");
   const p1veto = await infoJSON.json();
 
-  document.querySelector("#map1").innerText = p1veto.P1Map1;
-  document.querySelector("#map2").innerText = p1veto.P1Map2;
-  document.querySelector("#map3").innerText = p1veto.P1Map3;
-  document.querySelector("#map4").innerText = p1veto.P1Map4;
-  document.querySelector("#map5").innerText = p1veto.P1Map5;
+  document.querySelector("#map1").innerText = p1veto.map1;
+  document.querySelector("#map2").innerText = p1veto.map2;
+  document.querySelector("#map3").innerText = p1veto.map3;
+  document.querySelector("#map4").innerText = p1veto.map4;
+  document.querySelector("#map5").innerText = p1veto.map5;
+}
 
-  const info2JSON = await fetch("vetoesP2.json");
+async function P2vetoedMaps() {
+  const info2JSON = await fetch("/Discord_bot/src/p2vetoes.json");
   const p2veto = await info2JSON.json();
 
-  document.querySelector("#map6").innerText = p2veto.P2Map1;
-  document.querySelector("#map7").innerText = p2veto.P2Map2;
-  document.querySelector("#map8").innerText = p2veto.P2Map3;
-  document.querySelector("#map9").innerText = p2veto.P2Map4;
-  document.querySelector("#map10").innerText = p2veto.P2Map5;
+  document.querySelector("#map6").innerText = p2veto.map1;
+  document.querySelector("#map7").innerText = p2veto.map2;
+  document.querySelector("#map8").innerText = p2veto.map3;
+  document.querySelector("#map9").innerText = p2veto.map4;
+  document.querySelector("#map10").innerText = p2veto.map5;
 }
 
 main();
-vetoedMaps();
+P1vetoedMaps();
+P2vetoedMaps();
