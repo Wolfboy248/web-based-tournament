@@ -1,8 +1,6 @@
-const { Client, IntentsBitField, messageLink } = require('discord.js');
+const { Client, IntentsBitField, messageLink, EmbedBuilder, Embed } = require('discord.js');
 const { token } = require('./config.json');
 const fs = require('fs');
-
-
 
 const client = new Client({
     intents: [
@@ -39,7 +37,7 @@ client.on('interactionCreate', (interaction) => {
         console.log(p1map4.value);
         console.log(p1map5.value);
 
-        interaction.reply('Thank you for submitting your vetoed maps!');
+        
 
         // player 1 map data
         let p1MapData = {
@@ -61,6 +59,21 @@ client.on('interactionCreate', (interaction) => {
                 console.log('////// Player 1 has submitted their vetoed maps! //////');
             }
         })
+
+        // returning the values in an embed
+        const p1Embed = new EmbedBuilder()
+        .setColor(0x00FF00)
+        .setTitle('Thank you for submitting your vetoed maps!')
+        .setAuthor({ name: 'Player 1 vetoes' })
+        .addFields(
+            { name: 'First map', value: p1map1.value },
+            { name: 'Second map', value: p1map2.value },
+            { name: 'Third map', value: p1map3.value },
+            { name: 'Fourth map', value: p1map4.value },
+            { name: 'Fifth map', value: p1map5.value },
+        )
+
+        interaction.reply({ embeds: [p1Embed] });
     };
 
     if (interaction.commandName === 'p2veto') {
@@ -75,8 +88,6 @@ client.on('interactionCreate', (interaction) => {
         console.log(p2map3.value);
         console.log(p2map4.value);
         console.log(p2map5.value);
-
-        interaction.reply('Thank you for submitting your vetoed maps!');
 
         // player 1 map data
         let p2MapData = {
@@ -98,6 +109,21 @@ client.on('interactionCreate', (interaction) => {
                 console.log('////// Player 2 has submitted their vetoed maps! //////');
             }
         })
+
+        // returning the values in an embed
+        const p2Embed = new EmbedBuilder()
+        .setColor(0x00FF00)
+        .setTitle('Thank you for submitting your vetoed maps!')
+        .setAuthor({ name: 'Player 2 vetoes' })
+        .addFields(
+            { name: 'First map', value: p2map1.value },
+            { name: 'Second map', value: p2map2.value },
+            { name: 'Third map', value: p2map3.value },
+            { name: 'Fourth map', value: p2map4.value },
+            { name: 'Fifth map', value: p2map5.value },
+        )
+
+        interaction.reply({ embeds: [p2Embed] });
     };
 });
 
