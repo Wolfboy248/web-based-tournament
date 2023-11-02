@@ -1,6 +1,7 @@
 const { Client, IntentsBitField, messageLink, EmbedBuilder, Embed } = require('discord.js');
 const { token } = require('./config.json');
 const fs = require('fs');
+const { channel } = require('diagnostics_channel');
 
 const client = new Client({
     intents: [
@@ -73,6 +74,7 @@ client.on('interactionCreate', (interaction) => {
             { name: 'Fourth map', value: p1map4.value },
             { name: 'Fifth map', value: p1map5.value },
         )
+        .setImage('https://i.imgur.com/VcVncbd.jpg')
 
         interaction.reply({ embeds: [p1Embed] });
     };
@@ -123,9 +125,30 @@ client.on('interactionCreate', (interaction) => {
             { name: 'Fourth map', value: p2map4.value },
             { name: 'Fifth map', value: p2map5.value },
         )
+        .setImage('https://i.imgur.com/j3niOwu.gif')
 
         interaction.reply({ embeds: [p2Embed] });
     };
+
+    if (interaction.commandName === 'testinghaha') {
+        const testEmbed = new EmbedBuilder()
+        .setColor(0xFF00FF)
+        .setTitle('Portal Gun')
+        .setAuthor({ name: 'Chapter 1' })
+        .setImage('https://i.imgur.com/8iMNzgU.jpg')
+
+        const test2Embed = new EmbedBuilder()
+        .setColor(0xFF00FF)
+        .setTitle('Smooth Jazz')
+        .setAuthor({ name: 'Chapter 1' })
+        .setImage('https://i.imgur.com/8iMNzgU.jpg')
+
+        interaction.reply('.')
+
+        interaction.channel.send({ embeds: [testEmbed] });
+        interaction.channel.send({ embeds: [test2Embed] });
+        interaction.react
+    }
 });
 
 client.login(token);

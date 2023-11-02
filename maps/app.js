@@ -138,7 +138,9 @@ let spMaps = new P2Data();
 const img = document.getElementById('imgContainer');
 const text = document.getElementById('MapText');
 
-text.style.fontFamily = 'sans-serif';
+text.style.fontFamily = 'D-DIN-Bold.oft';
+text.style.fontSize = "30px";
+text.style.transform = "translateY(0px)";
 
 let randMap;
 let finalrandMap = Math.round(Math.random() * 60)
@@ -163,7 +165,10 @@ window.addEventListener("keypress", (event) => {
                 img.onload = function() {
                     const scores = document.getElementById('scores')
                     scores.classList.add('slide-animation')
+                    
+                    
                 }
+                console.log(spMaps.maps[finalrandMap].splitname);
             }
         }, 20);
 

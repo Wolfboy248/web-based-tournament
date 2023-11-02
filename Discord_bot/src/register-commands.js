@@ -80,6 +80,11 @@ const commands = [
             }
         ]
     },
+
+    {
+        name: 'testinghaha',
+        description: 'this is a test',
+    },
 ];
 
 const rest = new REST({ version: '10' }).setToken(token);
