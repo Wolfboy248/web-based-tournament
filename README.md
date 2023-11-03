@@ -6,14 +6,13 @@
 - Automatic score fetching for the two players competeting 
 - Random map generation
 - Hopefully decent visuals compatible with [OBS  Studio](https://github.com/obsproject/obs-studio)
+- Automatic PB uploads with [Ghost Server](https://github.com/p2sr/GhostServer)
+- Support for vetoes
 
 ## Goals
 
-- Automatic PB uploads with [Ghost Server](https://github.com/p2sr/GhostServer)
-
-- Convenient dashboard to manage who is playing in a match, more ability to manage when a new round is decided
-
-- Adding support for vetoes
+- Automatically switch maps when a random map is picked
+- Add some more visual styling to make it look in general better
 
 **Contributors**
 
