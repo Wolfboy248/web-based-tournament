@@ -20,6 +20,10 @@ const client = new Client({
   partials: [Partials.Reaction],
 });
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 let maps = [];
 Object.keys(maplist).forEach((key) => {
   maps.push(key);
@@ -74,16 +78,6 @@ client.on("messageReactionRemove", (react, user) => {
   }
 });
 
-client.on("messageCreate", async (msg) => {
-  if (msg.author.bot && msg.content === "DONE SENDING VETOS") {
-    const vetorole = await p1.member.guild.roles.fetch(vetosId);
-    p1.member.roles.add(vetorole);
-    p2.member.roles.add(vetorole);
-    canVeto = true;
-    msg.delete();
-  }
-});
-
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
   if (interaction.commandName === "vetos") {
@@ -103,8 +97,17 @@ client.on("interactionCreate", async (interaction) => {
       msgs.push(msg);
       msgsId.push(msg.id);
       await msg.react("❌");
+      if (msgs.length == maps.length) {
+        const vetorole = await p1.member.guild.roles.fetch(vetosId);
+        p1.member.roles.add(vetorole);
+        p2.member.roles.add(vetorole);
+        canVeto = true;
+        const ping = await chn.send({
+          content: `Submit your Vetos!\n<@${p1.user.id}><@${p2.user.id}>`,
+        });
+        msgs.push(ping);
+      }
     });
-    await chn.send("DONE SENDING VETOS");
     //console.log(p1.member.guild.roles);
   } else if (interaction.commandName === "end_vetos") {
     canVeto = false;
