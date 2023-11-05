@@ -6,7 +6,8 @@ const {
   Client,
   GatewayIntentBits,
   Partials,
-  ChannelFlags,
+  EmbedBuilder,
+  Embed,
 } = require("discord.js");
 
 const client = new Client({
@@ -50,18 +51,20 @@ client.on("messageReactionAdd", (react, user) => {
     react.message.reactions.resolve(react).users.remove(user);
     return;
   }
+  const url = react.message.embeds[0].image.url;
+  const mapname = url.substring(87, url.length - 4);
   if (user.id === p1.value) {
     if (p1vetos.length == veto) {
       react.message.reactions.resolve(react).users.remove(user);
       return;
     }
-    p1vetos.push(react.message.content);
+    p1vetos.push(mapname);
   } else if (user.id === p2.value) {
     if (p2vetos.length == veto) {
       react.message.reactions.resolve(react).users.remove(user);
       return;
     }
-    p2vetos.push(react.message.content);
+    p2vetos.push(mapname);
   } else {
     react.message.reactions.resolve(react).users.remove(user);
   }
@@ -71,10 +74,12 @@ client.on("messageReactionRemove", (react, user) => {
   if (user.bot) return;
   if (!msgsId.includes(react.message.id)) return;
   if (react.emoji.name != "❌") return;
-  if (user.id === p1.value && p1vetos.includes(react.message.content)) {
-    p1vetos.splice(p1vetos.indexOf(react.message.content), 1);
-  } else if (user.id === p2.value && p2vetos.includes(react.message.content)) {
-    p2vetos.splice(p2vetos.indexOf(react.message.content), 1);
+  const url = react.message.embeds[0].image.url;
+  const mapname = url.substring(87, url.length - 4);
+  if (user.id === p1.value && p1vetos.includes(mapname)) {
+    p1vetos.splice(p1vetos.indexOf(mapname), 1);
+  } else if (user.id === p2.value && p2vetos.includes(mapname)) {
+    p2vetos.splice(p2vetos.indexOf(mapname), 1);
   }
 });
 
@@ -90,10 +95,22 @@ client.on("interactionCreate", async (interaction) => {
     msgs = [];
     msgsId = [];
     const chn = interaction.channel;
+    let doPing = true;
     await maps.forEach(async (map) => {
-      const msg = await chn.send({
-        content: map,
-      });
+      const embed = new EmbedBuilder()
+        .setColor(0xff00ff)
+        .setTitle(maplist[map][0])
+        .setImage(
+          `https://raw.githubusercontent.com/Wolfboy248/web-based-tournament/main/maps/images/ch${maplist[map][1]}/${map}.jpg`
+        )
+        .setAuthor({
+          name: `Chapter ${maplist[map][1]} - ${
+            maplist.sp[maplist[map][1] - 1]
+          }`,
+        });
+      //.setAuthor({ name: maplist.sp[maplist[map][1]] });
+      const msg = await chn.send({ embeds: [embed] });
+
       msgs.push(msg);
       msgsId.push(msg.id);
       await msg.react("❌");
@@ -102,10 +119,13 @@ client.on("interactionCreate", async (interaction) => {
         p1.member.roles.add(vetorole);
         p2.member.roles.add(vetorole);
         canVeto = true;
-        const ping = await chn.send({
-          content: `Submit your Vetos!\n<@${p1.user.id}><@${p2.user.id}>`,
-        });
-        msgs.push(ping);
+        if (doPing) {
+          const ping = await chn.send({
+            content: `Submit your Vetos!\n<@${p1.user.id}><@${p2.user.id}>`,
+          });
+          msgs.push(ping);
+          doPing = false;
+        }
       }
     });
     //console.log(p1.member.guild.roles);
@@ -115,7 +135,7 @@ client.on("interactionCreate", async (interaction) => {
       p1vetos: p1vetos,
       p2vetos: p2vetos,
     };
-    fs.writeFileSync("./maps/vetos.json", JSON.stringify(vetos));
+    fs.writeFileSync("../maps/vetos.json", JSON.stringify(vetos));
     interaction.reply({
       content: "Submitting vetos have ended",
       ephemeral: true,
