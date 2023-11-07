@@ -328,6 +328,15 @@ h2 {
   transform: translateY(-65px);
 }
 
+.playing-obs-anim {
+  opacity: 1;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-color: black;
+  transition: all 2s;
+}
+
 @font-face {
   font-family: barlow;
   src: url(/fonts/barlow/Barlow-Medium.ttf);
