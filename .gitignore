@@ -1,6 +1,5 @@
 Discord_bot/src/config.json
-Discord_bot/src/node_modules
-Archers-bot/src/node_modules
+node_modules/
 .env
 
 # Logs
