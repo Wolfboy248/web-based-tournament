@@ -37,6 +37,7 @@ function showPlayers() {
 
   // obs animations
   document.querySelector("#obs-anim").style.opacity = "0";
+  document.querySelector("#obs-anim").style.transitionDelay = "0.8s";
 }
 
 function showLoading() {
