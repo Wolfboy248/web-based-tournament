@@ -1,7 +1,7 @@
 #imgContainer {
     background-color: rgba(0, 0, 0, 0);
-    width: 430px;
-    height: 210px;
+    width: 425px;
+    height: 205px;
     background-size: 805px;
     background-position: center;
     background-repeat: no-repeat;
@@ -10,6 +10,7 @@
     align-items: center;
 
     border-radius: 14px;
+    border-width: 30px;
 
     position: absolute;
     top: 50%;
@@ -22,7 +23,7 @@
     position: absolute;
     transform: translate(-50%, -50%);
     left: -20%;
-    top: 48.5%;
+    top: 50%;
     display: inline-block;
     transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
@@ -36,9 +37,11 @@
     top: 50%;
     left: 50%;
     border-radius: 20px;
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     z-index: -1;
+    backdrop-filter: blur(8px);
+    filter: blur(0.5px);
 }
 
 #borderbox:before {
@@ -80,7 +83,7 @@
 }
 
 .slide-animation {
-    
+
     animation: slide 1s forwards;
 }
 
@@ -90,3 +93,7 @@ h1 {
     font-size: 26px;
 }
 
+#MapText {
+    mix-blend-mode:hard-light;
+    text-shadow: 3px 3px 10px black;
+}
