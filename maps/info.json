@@ -1,31 +1,12 @@
 {
-<<<<<<< Updated upstream
-  "player1": "Wolfboy248",
-  "player2": "BLAZEICN",
-
-  "round1P1PB": "22.34",
-  "round1P2PB": "22.63",
-
-  "round2P1PB": "1:01.75",
-  "round2P2PB": "56.38",
-
-  "round3P1PB": "35.75",
-  "round3P2PB": "45.27",
-
+  "player1": "Archer",
+  "player2": "Wolfboy248",
+  "round1P1PB": "9999",
+  "round1P2PB": "9999",
+  "round2P1PB": "9999",
+  "round2P2PB": "9999",
+  "round3P1PB": "9999",
+  "round3P2PB": "9999",
   "name": "FFO Tournament 2024",
-
-  "current_map": "sp_a2_bridge_the_gap"
+  "current_map": "sp_a3_crazy_box"
 }
-=======
-    "player1": "Archer",
-    "player2": "Wolfboy248",
-    "round1P1PB": "9999",
-    "round1P2PB": "9999",
-    "round2P1PB": "9999",
-    "round2P2PB": "9999",
-    "round3P1PB": "9999",
-    "round3P2PB": "9999",
-    "name": "FFO Tournament 2024",
-    "current_map": "sp_a3_crazy_box"
-}
->>>>>>> Stashed changes
