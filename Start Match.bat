@@ -10,7 +10,7 @@ set /p player2= Player 2
 cd maps
 start /MIN "WebServer000" cmd /c "python -m http.server 300"
 cd ..
-cd Archers-bot
+cd Discord-bot
 start /MIN "DiscordBot000" cmd /c "node src/index.js"
 cd ..
 start "" "steam://rungameid/620// -netconport 60 -novid"
