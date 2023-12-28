@@ -197,7 +197,26 @@ async function main() {
     if (event.key === " ") {
       toggle();
     }
+
+    if(event.key === "t") {
+      lightModeToggle();
+    }
   });
+}
+
+var lightModeToggled = false;
+async function lightModeToggle() {
+  if(!lightModeToggled) {
+    lightModeToggled = true;
+
+    LightMode()
+  }
+
+  else if(lightModeToggled) {
+    lightModeToggled = false;
+
+    DarkMode()
+  }
 }
 
 // switching from loading screen thing to players screen thing
