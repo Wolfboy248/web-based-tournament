@@ -251,10 +251,7 @@ async function toggle() {
 
     document.querySelector("#r3P1PB").innerText = info.round3P1PB;
     document.querySelector("#r3P2PB").innerText = info.round3P2PB;
-
-    // round pbs in player thingy playing thingy lmao
-    document.querySelector("#playing1Time").innerText = info.round1P1PB;
-    document.querySelector("#playing2Time").innerText = info.round1P2PB;
+    
     showLoading();
   }
 
