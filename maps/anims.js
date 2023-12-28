@@ -65,3 +65,30 @@ function showLoading() {
 function showRandomizer() {
   document.querySelector("#randomizer").style.left = "12%";
 }
+
+let lightBG = "rgba(166, 166, 166, 0.153)";
+let darkBG = "rgba(0, 0, 0, 0.5)";
+let darkBG2 = "rgba(0, 0, 0, 0.2)";
+let darkestShadow = "black";
+
+function LightMode() {
+  document.querySelector("#infoDiv").style.backgroundColor = lightBG;
+  document.querySelector("#vetoDiv").style.backgroundColor = lightBG;
+  document.querySelector("#borderbox").style.backgroundColor = "rgba(166, 166, 166, 0.353)";
+
+  document.querySelector("#infoDiv").style.boxShadow = "0px 0px 10px " + lightBG;
+  document.querySelector("#vetoDiv").style.boxShadow = "0px 0px 10px " + lightBG;
+  document.querySelector("#borderbox").style.boxShadow = "0px 0px 10px rgba(166, 166, 166, 0.253)";
+}
+
+function DarkMode() {
+  document.querySelector("#infoDiv").style.backgroundColor = darkBG;
+  document.querySelector("#vetoDiv").style.backgroundColor = darkBG;
+  document.querySelector("#borderbox").style.backgroundColor = darkBG2;
+
+  document.querySelector("#infoDiv").style.boxShadow = "0px 0px 10px " + darkestShadow;
+  document.querySelector("#vetoDiv").style.boxShadow = "0px 0px 10px " + darkestShadow;
+  document.querySelector("#borderbox").style.boxShadow = "0px 0px 10px " + darkestShadow;
+}
+
+DarkMode()

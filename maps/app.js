@@ -165,8 +165,8 @@ window.addEventListener("keypress", (event) => {
                 img.onload = function() {
                     const scores = document.getElementById('scores')
                     scores.classList.add('slide-animation')
-                    
-                    
+
+
                 }
                 console.log(spMaps.maps[finalrandMap].splitname);
             }
