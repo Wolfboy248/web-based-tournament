@@ -38,7 +38,7 @@ let p1vetos = [];
 let p2vetos = [];
 let veto = 5;
 let canVeto = false;
-let vetosId = "1169583219092488242";
+let vetosId = "1189995565333872691";
 
 client.on("ready", (c) => {
   console.log(`✅ ${c.user.tag} is ready`);
