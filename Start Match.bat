@@ -8,7 +8,7 @@ echo give player 2
 set /p player2= Player 2 
 
 cd maps
-start /MIN "WebServer000" cmd /c "python -m http.server 300"
+start /MIN "WebServer000" cmd /c "python webserver.py 300"
 cd ..
 cd Discord-bot
 start /MIN "DiscordBot000" cmd /c "node src/index.js"
