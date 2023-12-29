@@ -45,7 +45,7 @@ async def shell(reader: telnetlib3.TelnetReader, writer: telnetlib3.TelnetWriter
     writer.write('sar_alias advance \"echo advance round\"\n')
     writer.write('sar_function setmap echo "setmap $1"\n')
     writer.write('sar_function setpb echo "forcepb $1 $2 $3$4$5$6\n')
-    writer.write('ghost_disconnect; ghost_name SERVER; ghost_set_color FF0000; restart_level\n')
+    writer.write('ghost_disconnect; ghost_name pb_grabber; ghost_set_color FF0000; restart_level\n')
 
     while True:
         data = await reader.read(1024)

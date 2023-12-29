@@ -251,7 +251,7 @@ async function toggle() {
 
     document.querySelector("#r3P1PB").innerText = info.round3P1PB;
     document.querySelector("#r3P2PB").innerText = info.round3P2PB;
-    
+
     showLoading();
   }
 
@@ -285,6 +285,43 @@ async function vetos() {
     vetoDiv.innerHTML += `<span class="veto-map">${maplist[map][0]}</span>`;
   });
 }
+
+var timeleft = 1;
+let minutes = Math.floor(timeleft / 60)
+let extraSeconds = timeleft % 60;
+minutes = minutes < 10 ? "0" + minutes : minutes;
+extraSeconds = extraSeconds < 10 ? "0" + extraSeconds : extraSeconds;
+document.getElementById("countdown").innerText = minutes + ":" + extraSeconds;
+
+window.addEventListener("keydown", (event) => {
+  if(event.key === "y") {
+    var Timer = setInterval(function(){
+      if(timeleft <= 0){
+        clearInterval(Timer);
+      }
+      let minutes = Math.floor((timeleft - 1) / 60)
+      let extraSeconds = (timeleft - 1) % 60;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      extraSeconds = extraSeconds < 10 ? "0" + extraSeconds : extraSeconds;
+      document.getElementById("countdown").innerText = minutes + ":" + extraSeconds;
+      timeleft -= 1;
+      if(timeleft <= 0){
+        clearInterval(Timer);
+        var stupidpls2 = setInterval(function(){
+          document.getElementById("countdown").style.width = "350px";
+          document.getElementById("countdown").style.color = "rgba(255, 255, 255, 0)";
+          clearInterval(stupidpls2)
+        }, 400)
+        var stupidpls = setInterval(function(){
+          document.getElementById("countdown").innerText = "Times up!";
+          document.getElementById("countdown").style.color = "rgba(255, 255, 255, 1)";
+        }, 1000)
+
+      }
+    }, 1000);
+    document.querySelector("#countdown").style.top = "4%";
+  }
+})
 
 main();
 vetos();

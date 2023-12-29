@@ -225,6 +225,24 @@ h2 {
   transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
+#countdown {
+  font-size: 80px;
+  font-family: product-bold;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+  width: 200px;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: -6%;
+  transition: all 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
+  letter-spacing: 1.5px;
+}
+
 .playing1-div {
   width: 950px;
   height: 100px;
