@@ -198,7 +198,7 @@ async function main() {
       toggle();
     }
 
-    if(event.key === "t") {
+    if (event.key === "t") {
       lightModeToggle();
     }
   });
@@ -206,16 +206,14 @@ async function main() {
 
 var lightModeToggled = false;
 async function lightModeToggle() {
-  if(!lightModeToggled) {
+  if (!lightModeToggled) {
     lightModeToggled = true;
 
-    LightMode()
-  }
-
-  else if(lightModeToggled) {
+    LightMode();
+  } else if (lightModeToggled) {
     lightModeToggled = false;
 
-    DarkMode()
+    DarkMode();
   }
 }
 
@@ -273,13 +271,25 @@ async function toggle() {
 async function vetos() {
   const mapslistJSON = await fetch("./maplist.json");
   maplist = await mapslistJSON.json();
+  const infoJSON = await fetch("info.json");
+  const info = await infoJSON.json();
 
   const vetoDiv = document.querySelector("#vetoDiv");
   const vetosJSON = await fetch("vetos.json");
   const vetos = await vetosJSON.json();
+  if (vetos.p1vetos.length > 0) {
+    vetoDiv.innerHTML += `<span class="veto-player">${info.player1} vetoed:</span>`;
+  } else {
+    vetoDiv.innerHTML += `<span class="veto-player">${info.player2} didn't submit any vetos</span>`;
+  }
   vetos.p1vetos.forEach((map) => {
     vetoDiv.innerHTML += `<span class="veto-map">${maplist[map][0]}</span>`;
   });
+  if (vetos.p2vetos.length > 0) {
+    vetoDiv.innerHTML += `<span class="veto-player">${info.player2} vetoed:</span>`;
+  } else {
+    vetoDiv.innerHTML += `<span class="veto-player">${info.player2} didn't submit any vetos</span>`;
+  }
   vetos.p2vetos.forEach((map) => {
     console.log(map);
     vetoDiv.innerHTML += `<span class="veto-map">${maplist[map][0]}</span>`;
@@ -287,41 +297,43 @@ async function vetos() {
 }
 
 var timeleft = 1;
-let minutes = Math.floor(timeleft / 60)
+let minutes = Math.floor(timeleft / 60);
 let extraSeconds = timeleft % 60;
 minutes = minutes < 10 ? "0" + minutes : minutes;
 extraSeconds = extraSeconds < 10 ? "0" + extraSeconds : extraSeconds;
 document.getElementById("countdown").innerText = minutes + ":" + extraSeconds;
 
 window.addEventListener("keydown", (event) => {
-  if(event.key === "y") {
-    var Timer = setInterval(function(){
-      if(timeleft <= 0){
+  if (event.key === "y") {
+    var Timer = setInterval(function () {
+      if (timeleft <= 0) {
         clearInterval(Timer);
       }
-      let minutes = Math.floor((timeleft - 1) / 60)
+      let minutes = Math.floor((timeleft - 1) / 60);
       let extraSeconds = (timeleft - 1) % 60;
       minutes = minutes < 10 ? "0" + minutes : minutes;
       extraSeconds = extraSeconds < 10 ? "0" + extraSeconds : extraSeconds;
-      document.getElementById("countdown").innerText = minutes + ":" + extraSeconds;
+      document.getElementById("countdown").innerText =
+        minutes + ":" + extraSeconds;
       timeleft -= 1;
-      if(timeleft <= 0){
+      if (timeleft <= 0) {
         clearInterval(Timer);
-        var stupidpls2 = setInterval(function(){
+        var stupidpls2 = setInterval(function () {
           document.getElementById("countdown").style.width = "350px";
-          document.getElementById("countdown").style.color = "rgba(255, 255, 255, 0)";
-          clearInterval(stupidpls2)
-        }, 400)
-        var stupidpls = setInterval(function(){
+          document.getElementById("countdown").style.color =
+            "rgba(255, 255, 255, 0)";
+          clearInterval(stupidpls2);
+        }, 400);
+        var stupidpls = setInterval(function () {
           document.getElementById("countdown").innerText = "Times up!";
-          document.getElementById("countdown").style.color = "rgba(255, 255, 255, 1)";
-        }, 1000)
-
+          document.getElementById("countdown").style.color =
+            "rgba(255, 255, 255, 1)";
+        }, 1000);
       }
     }, 1000);
     document.querySelector("#countdown").style.top = "4%";
   }
-})
+});
 
 main();
 vetos();

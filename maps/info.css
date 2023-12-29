@@ -322,12 +322,9 @@ h2 {
 
 .veto-div {
   position: absolute;
-  transform: translate(-50%, -50%);
-  top: 20%;
-  left: 12%;
+  margin: 30px;
   background-color: rgba(0, 0, 0, 0.5);
   width: 440px;
-  height: 400px;
   color: white;
   font-family: product-bold;
   font-size: 30px;
@@ -341,13 +338,19 @@ h2 {
 .veto-title {
   font-size: 40px;
   text-align: center;
-  transform: translateY(-30px);
+  transform: translateY(-20px);
 }
 
 .veto-map {
   display: block;
+  margin-left: 50px;
+  transform: translateY(-40px);
+}
+
+.veto-player {
+  display: block;
   margin-left: 10px;
-  transform: translateY(-65px);
+  transform: translateY(-40px);
 }
 
 .playing-obs-anim {
