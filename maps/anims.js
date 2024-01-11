@@ -2,7 +2,7 @@ function showPlayers() {
   // loading screen stuff
   document.querySelector("#infoDiv").style.left = "115%";
   document.querySelector("#bg").style.opacity = "0";
-  document.querySelector("#vetoDiv").style.left = "-15%";
+  document.querySelector("#vetoDiv").style.left = "-30%";
 
   // playing screen stuff
   document.querySelector("#playingDiv").style.transitionDelay = "0.5s";
@@ -44,7 +44,7 @@ function showLoading() {
   // loading screen stuff
   document.querySelector("#infoDiv").style.left = "86%";
   document.querySelector("#bg").style.opacity = "1";
-  document.querySelector("#vetoDiv").style.left = "12%";
+  document.querySelector("#vetoDiv").style.left = "0%";
 
   // playing screen stuff
   document.querySelector("#playing1BG").style.width = "0%";
@@ -74,11 +74,15 @@ let darkestShadow = "black";
 function LightMode() {
   document.querySelector("#infoDiv").style.backgroundColor = lightBG;
   document.querySelector("#vetoDiv").style.backgroundColor = lightBG;
-  document.querySelector("#borderbox").style.backgroundColor = "rgba(166, 166, 166, 0.353)";
+  document.querySelector("#borderbox").style.backgroundColor =
+    "rgba(166, 166, 166, 0.353)";
 
-  document.querySelector("#infoDiv").style.boxShadow = "0px 0px 10px " + lightBG;
-  document.querySelector("#vetoDiv").style.boxShadow = "0px 0px 10px " + lightBG;
-  document.querySelector("#borderbox").style.boxShadow = "0px 0px 10px rgba(166, 166, 166, 0.253)";
+  document.querySelector("#infoDiv").style.boxShadow =
+    "0px 0px 10px " + lightBG;
+  document.querySelector("#vetoDiv").style.boxShadow =
+    "0px 0px 10px " + lightBG;
+  document.querySelector("#borderbox").style.boxShadow =
+    "0px 0px 10px rgba(166, 166, 166, 0.253)";
 }
 
 function DarkMode() {
@@ -86,9 +90,12 @@ function DarkMode() {
   document.querySelector("#vetoDiv").style.backgroundColor = darkBG;
   document.querySelector("#borderbox").style.backgroundColor = darkBG2;
 
-  document.querySelector("#infoDiv").style.boxShadow = "0px 0px 10px " + darkestShadow;
-  document.querySelector("#vetoDiv").style.boxShadow = "0px 0px 10px " + darkestShadow;
-  document.querySelector("#borderbox").style.boxShadow = "0px 0px 10px " + darkestShadow;
+  document.querySelector("#infoDiv").style.boxShadow =
+    "0px 0px 10px " + darkestShadow;
+  document.querySelector("#vetoDiv").style.boxShadow =
+    "0px 0px 10px " + darkestShadow;
+  document.querySelector("#borderbox").style.boxShadow =
+    "0px 0px 10px " + darkestShadow;
 }
 
-DarkMode()
+DarkMode();

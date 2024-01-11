@@ -333,6 +333,7 @@ h2 {
   z-index: 300;
   backdrop-filter: blur(8px);
   box-shadow: 0px 0px 10px black;
+  left: 0%;
 }
 
 .veto-title {

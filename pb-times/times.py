@@ -60,6 +60,7 @@ async def shell(reader: telnetlib3.TelnetReader, writer: telnetlib3.TelnetWriter
                 if 'has finished on' in line:
                     split = line.split(' has finished on ')
                     name, playerMap, time = split[0], split[1].split()[0], ''.join(split[1].split('in ')[1::])[:-1]
+                    print(f'name: {name} playerMap: {playerMap} time: {time}')
                     fTime = unformatTime(time)
 
                     if playerMap != currentMap:

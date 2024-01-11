@@ -1,11 +1,11 @@
 let maplist = {};
 async function grabTime(player, map) {
   const file = "https://board.portal2.sr/profile/" + player + "/json";
+  console.log(file);
   const response = await fetch(file);
   const data = await response.json();
   let time = 0.0;
   let s = "";
-  console.log(data);
   if (data.userData == null) {
     s = "Invalid Player";
     return s;
@@ -15,13 +15,9 @@ async function grabTime(player, map) {
     return s;
   }
   const maps = data.times.SP.chambers.chamberOrderedByDate;
-  console.log(maps);
-  console.log(maplist[map][2]);
-  console.log(maps[maplist[map][2]]);
   if (maps[maplist[map][2]].score != undefined) {
     time = maps[maplist[map][2]].score / 100;
   } else {
-    console.log("No time");
     s = "No time";
     return s;
   }
@@ -80,7 +76,6 @@ async function main() {
     "/" +
     info.current_map +
     ".jpg";
-  console.log(bgImage);
   bg.style.backgroundImage = "url(" + bgImage + ")";
 
   // document.querySelector("#playerNames").innerText = info.player1 + " & " + info.player2; // old thing
@@ -125,19 +120,17 @@ async function main() {
 
   //original pbs and wr
   document.querySelector("#P1pb").innerText = await grabTime(
-    info.player1,
+    info.player1.replaceAll(" ", ""),
     info.current_map
   );
   document.querySelector("#P2pb").innerText = await grabTime(
-    info.player2,
+    info.player2.replaceAll(" ", ""),
     info.current_map
   );
   document.querySelector("#wrTime").innerText = await grabWr(info.current_map);
   window.addEventListener("keydown", (event) => {
-    console.log(event);
     if (event.key === "ArrowLeft") {
       event.preventDefault();
-      console.log("YIPPEEEEEE!!!");
       window.open("/index.html", "_self");
     }
     if (event.key === "1") {
@@ -291,7 +284,6 @@ async function vetos() {
     vetoDiv.innerHTML += `<span class="veto-player">${info.player2} didn't submit any vetos</span>`;
   }
   vetos.p2vetos.forEach((map) => {
-    console.log(map);
     vetoDiv.innerHTML += `<span class="veto-map">${maplist[map][0]}</span>`;
   });
 }
