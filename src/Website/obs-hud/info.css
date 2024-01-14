@@ -365,7 +365,7 @@ h2 {
 
 @font-face {
   font-family: barlow;
-  src: url(/fonts/barlow/Barlow-Medium.ttf);
+  src: url(/fonts/barlow/Barlow-Medium.ttf); /* TODO: fix all fonts */
 }
 
 @font-face {
