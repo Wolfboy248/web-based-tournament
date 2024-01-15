@@ -1,0 +1,26 @@
+{
+  "name": "ffo-tournament",
+  "version": "1.0.0",
+  "description": "- Automatic score fetching for the two players competeting \r - Random map generation\r - Hopefully decent visuals compatible with [OBS  Studio](https://github.com/obsproject/obs-studio)\r - Automatic PB uploads with [Ghost Server](https://github.com/p2sr/GhostServer)\r - Support for vetoes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wolfboy248/web-based-tournament.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wolfboy248/web-based-tournament/issues"
+  },
+  "homepage": "https://github.com/Wolfboy248/web-based-tournament#readme",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "lodash": "^4.17.21",
+    "morgan": "^1.10.0"
+  }
+}

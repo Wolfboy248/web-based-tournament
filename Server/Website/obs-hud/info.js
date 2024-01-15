@@ -43,6 +43,7 @@ async function grabWr(map) {
   }
   return s;
 }
+
 async function main() {
   const mapslistJSON = await fetch("./maplist.json");
   maplist = await mapslistJSON.json();
@@ -71,7 +72,7 @@ async function main() {
   //background
   const bg = document.querySelector("#bg");
   const bgImage =
-    "./images/ch" +
+    "./maps/ch" +
     maplist[info.current_map][1] +
     "/" +
     info.current_map +
