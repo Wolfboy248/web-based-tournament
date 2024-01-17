@@ -365,17 +365,17 @@ h2 {
 
 @font-face {
   font-family: barlow;
-  src: url(/fonts/barlow/Barlow-Medium.ttf); /* TODO: fix all fonts */
+  src: url(barlow/Barlow-Medium.ttf); /* TODO: fix all fonts */
 }
 
 @font-face {
   font-family: barlow-bold;
-  src: url(/fonts/barlow/Barlow-Bold.ttf);
+  src: url(barlow/Barlow-Bold.ttf);
 }
 
 @font-face {
   font-family: barlow-thin;
-  src: url(/fonts/barlow/Barlow-Regular.ttf);
+  src: url(barlow/Barlow-Regular.ttf);
 }
 
 @font-face {

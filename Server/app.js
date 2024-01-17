@@ -25,6 +25,7 @@ app.use(express.static("Website/obs-hud"));
 app.use(express.static("Website/dashboard"));
 app.use(express.static("Main-Images"));
 app.use(express.static("Data/public"));
+app.use(express.static("Website/fonts"));
 app.use(morgan("dev"));
 app.use(express.json());
 

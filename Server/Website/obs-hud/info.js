@@ -1,3 +1,5 @@
+let maplist;
+
 async function grabTime(player, map) {
   let data = await fetchFile("./data.json");
   const file = "https://board.portal2.sr/profile/" + player + "/json";
@@ -9,13 +11,13 @@ async function grabTime(player, map) {
     s = "Invalid Player";
     return s;
   }
-  if (data.maplist[map] == undefined) {
+  if (maplist[map] == undefined) {
     s = "Invalid Map";
     return s;
   }
   const maps = fileData.times.SP.chambers.chamberOrderedByDate;
-  if (maps[data.maplist[map][2]].score != undefined) {
-    time = maps[data.maplist[map][2]].score / 100;
+  if (maps[maplist[map][2]].score != undefined) {
+    time = maps[maplist[map][2]].score / 100;
   } else {
     s = "No time";
     return s;
@@ -28,8 +30,7 @@ async function grabTime(player, map) {
 }
 async function grabWr(map) {
   let data = await fetchFile("./data.json");
-  const file =
-    "https://board.portal2.sr/chamber/" + data.maplist[map][2] + "/json";
+  const file = "https://board.portal2.sr/chamber/" + maplist[map][2] + "/json";
   const fileData = await fetchFile(file);
   let time = 0.0;
   Object.keys(fileData).forEach((key) => {
@@ -45,6 +46,7 @@ async function grabWr(map) {
 }
 
 async function main() {
+  maplist = await fetchFile("./maplist.json");
   //messages
   const socket = new WebSocket("ws://localhost:8080");
 
@@ -111,7 +113,7 @@ async function vetos() {
     vetoDiv.innerHTML += `<span class="veto-player">${data.match.player2} didn't submit any vetos</span>`;
   }
   data.vetos.p1vetos.forEach((map) => {
-    vetoDiv.innerHTML += `<span class="veto-map">${data.maplist[map][0]}</span>`;
+    vetoDiv.innerHTML += `<span class="veto-map">${maplist[map][0]}</span>`;
   });
   if (data.vetos.p2vetos.length > 0) {
     vetoDiv.innerHTML += `<span class="veto-player">${data.match.player2} vetoed:</span>`;
@@ -119,7 +121,7 @@ async function vetos() {
     vetoDiv.innerHTML += `<span class="veto-player">${data.match.player2} didn't submit any vetos</span>`;
   }
   data.vetos.p2vetos.forEach((map) => {
-    vetoDiv.innerHTML += `<span class="veto-map">${data.maplist[map][0]}</span>`;
+    vetoDiv.innerHTML += `<span class="veto-map">${maplist[map][0]}</span>`;
   });
 }
 
@@ -127,18 +129,18 @@ async function dataUpdate() {
   let data = await fetchFile("./data.json");
   //mapname and chapter
   document.querySelector("#mapname").innerText =
-    data.maplist[data.match.current_map][0];
+    maplist[data.match.current_map][0];
   document.querySelector("#chaptername").innerText =
     "Chapter " +
-    data.maplist[data.match.current_map][1] +
+    maplist[data.match.current_map][1] +
     " - " +
-    data.maplist.sp[data.maplist[data.match.current_map][1] - 1];
+    maplist.sp[maplist[data.match.current_map][1] - 1];
 
   //background
   const bg = document.querySelector("#bg");
   const bgImage =
     "./maps/ch" +
-    data.maplist[data.match.current_map][1] +
+    maplist[data.match.current_map][1] +
     "/" +
     data.match.current_map +
     ".jpg";
@@ -198,7 +200,7 @@ async function dataUpdate() {
 async function stateUpdate() {
   let data = await fetchFile("./data.json");
   // reset all things
-  console.log("round: "+data.settings.round);
+  console.log("round: " + data.settings.round);
   document.querySelector("#r1Div").style.opacity = "0";
   document.querySelector("#r2Div").style.opacity = "0";
   document.querySelector("#r3Div").style.opacity = "0";
