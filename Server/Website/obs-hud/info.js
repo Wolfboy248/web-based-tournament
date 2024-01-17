@@ -76,7 +76,7 @@ async function main() {
       window.open(
         "http://localhost:3000/dashboard",
         "Popup Window",
-        "height=600,width=800"
+        "height=450,width=600"
       );
     }
 
@@ -198,7 +198,7 @@ async function dataUpdate() {
 async function stateUpdate() {
   let data = await fetchFile("./data.json");
   // reset all things
-  console.log(data.settings.round);
+  console.log("round: "+data.settings.round);
   document.querySelector("#r1Div").style.opacity = "0";
   document.querySelector("#r2Div").style.opacity = "0";
   document.querySelector("#r3Div").style.opacity = "0";

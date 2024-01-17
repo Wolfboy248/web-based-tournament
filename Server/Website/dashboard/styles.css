@@ -1,0 +1,134 @@
+html, body {
+    margin: 0;
+    background-image: url(sp_a1_intro4.jpg);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -101;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.463) rgba(0, 255, 0, 0.583);
+}
+
+.main-div {
+    overflow-y: scroll;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.bg {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 110, 146, 0.5), rgba(0, 255, 98, 0.5));
+    position: fixed;
+    z-index: -1;
+}
+
+span {
+    color: white;
+    font-family: ddin-bold;
+    font-size: 30px;
+}
+
+button, input {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    font-family: ddin;
+    font-size: 30px;
+    backdrop-filter: blur(4px);
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1.5px;
+    box-shadow: 0px 0px 10px black;
+    margin-top: 5px;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.507);
+    min-width: 40px;
+    transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+    border-color: rgb(29, 29, 29, 0.5);
+}
+
+button:hover {
+    background-color: rgba(48, 48, 48, 0.5);
+}
+
+input {
+    text-transform: lowercase;
+}
+
+h1 {
+    font-family: ddin-bold;
+    color: white;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+/* change map div */
+.change-map-div {
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 140px;
+    position: absolute;
+}
+
+#change-map {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* round selector */
+.round-selector-div {
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 270px;
+    position: absolute;
+}
+
+/* switch modes */
+.switch-modes-div {
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 370px;
+    position: absolute;
+}
+
+#timer {
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 440px;
+    position: absolute;
+}
+
+#randomizer {
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 510px;
+    position: absolute;
+}
+
+.bottom-sperator {
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 420px;
+    position: relative;
+    width: 100%;
+    height: 10px;
+}
+
+@font-face {
+    font-family: ddin;
+    src: url(fonts/d-din/D-DIN.otf);
+}
+
+@font-face {
+    font-family: ddin-bold;
+    src: url(fonts/d-din/D-DIN-Bold.otf);
+}

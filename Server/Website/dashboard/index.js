@@ -8,6 +8,7 @@ const match = document.querySelector("#match");
 const info = document.querySelector("#info");
 const timer = document.querySelector("#timer");
 const randomizer = document.querySelector("#randomizer");
+const hi = document.querySelector("#hi");
 
 async function send(msg) {
   fetch("/send-msg", {
@@ -63,3 +64,7 @@ randomizer.addEventListener("click", async () => {
     body: JSON.stringify("randomizer"),
   });
 });
+
+hi.addEventListener("click", () => {
+  send("reload");
+})

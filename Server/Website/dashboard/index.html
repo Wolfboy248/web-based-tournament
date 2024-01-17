@@ -3,22 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Maps - Controller</title>
+
+    <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
-    <input type="text" id="map" />
-    <button id="change-map">change map</button>
-    <br />
-    <button id="no-round">no round</button>
-    <button id="round1">round 1</button>
-    <button id="round2">round 2</button>
-    <button id="round3">round 3</button>
-    <br />
-    <button id="info">Info</button>
-    <button id="match">Match</button>
-    <br />
-    <button id="timer">Timer</button>
-    <button id="randomizer">Randomizer</button>
+  <body onload="window.resizeTo(615,465)">
+    <div class="bg"></div>
+
+    <div class="main-div">
+      <h1>Controller</h1>
+
+      <div class="change-map-div">
+        <input placeholder="map" type="text" id="map"/><br>
+        <button id="change-map">change map</button>
+      </div>
+      <br/>
+      <div class="round-selector-div">
+        <span style="display: block; text-align: center;">select round</span>
+        <button id="no-round">0</button>
+        <button id="round1">1</button>
+        <button id="round2">2</button>
+        <button id="round3">3</button>
+      </div>
+      <br/>
+      <div class="switch-modes-div">
+        <button id="info">Info</button>
+        <button id="match">Match</button>
+      </div>
+      <br/>
+      <button id="timer">start timer</button>
+      <button id="randomizer">Pick random map</button>
+
+      <div class="bottom-sperator"></div>
+
+      <button style="top: 0; position: absolute;" id="hi"><img src="refresh_icon.svg" alt=""></button>
+    </div>
+
   </body>
 
   <script src="index.js"></script>

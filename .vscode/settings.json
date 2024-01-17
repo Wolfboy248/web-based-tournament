@@ -1,0 +1,5 @@
+{
+    "github.gitAuthentication": false,
+    "github.branchProtection": false,
+    "git.enabled": false
+}
