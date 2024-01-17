@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const fs = require("fs");
 const ws = require("ws");
+const telnet = require("./Telnet-client/telnet.js");
 
 const app = express();
 
@@ -14,6 +15,11 @@ wss.on("connection", (ws) => {
   ws.on("close", () => {
     clients = clients.filter((client) => client !== ws);
   });
+
+  //for dashboard refresh
+
+  if (telnetConnected) ws.send("telnet-connect");
+  else ws.send("telnet-close");
 });
 
 app.listen(3000, () => {
@@ -80,6 +86,19 @@ app.post("/trigger-action", (req, res) => {
   res.end();
 });
 
+let telnetConnected = false;
+app.post("/telnet", (req, res) => {
+  res.end();
+  if (telnetConnected) return;
+  telnet.connectToGame();
+});
+
+app.delete("/telnet", async (req, res) => {
+  res.end();
+  if (!telnetConnected) return;
+  telnet.destory();
+});
+
 app.use((req, res) => {
   res.status(404).sendFile("./Website/404/index.html", { root: __dirname });
 });
@@ -89,3 +108,26 @@ function sendMsg(msg) {
     client.send(msg);
   });
 }
+
+//telnet stuff
+telnet.events.on("connect", () => {
+  console.log("succesfully connected");
+  telnetConnected = true;
+  sendMsg("telnet-connect");
+});
+telnet.events.on("close", () => {
+  telnetConnected = false;
+  sendMsg("telnet-close");
+});
+telnet.events.on("error", () => {
+  telnetConnected = false;
+  sendMsg("telnet-error");
+});
+telnet.events.on("timeout", () => {
+  telnetConnected = false;
+  sendMsg("telnet-timeout");
+});
+telnet.events.on("update", () => {
+  console.log("update");
+  sendMsg("datachange");
+});

@@ -129,6 +129,12 @@ h1 {
   height: 10px;
 }
 
+#telnet-status {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+
 @font-face {
   font-family: ddin;
   src: url(d-din/D-DIN.otf);

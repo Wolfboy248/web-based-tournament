@@ -178,8 +178,10 @@ async function dataUpdate() {
   document.querySelector("#r3P2PB").innerText = data.match.round3P2PB;
 
   //live pb
-  document.querySelector("#playing1Time").innerText = data.match.round1P1PB;
-  document.querySelector("#playing2Time").innerText = data.match.round1P2PB;
+  document.querySelector("#playing1Time").innerText =
+    data.match["round" + data.settings.round + "P1PB"];
+  document.querySelector("#playing2Time").innerText =
+    data.match["round" + data.settings.round + "P2PB"];
 
   //original pbs and wr
   grabTime(data.match.player1.replaceAll(" ", ""), data.match.current_map).then(
@@ -207,11 +209,11 @@ async function stateUpdate() {
   document.querySelector("#sep4").style.opacity = "0";
   document.querySelector("#sep5").style.opacity = "0";
 
-  if (data.settings.round >= 1) {
+  if (data.settings.round >= 2) {
     document.querySelector("#r1Div").style.opacity = "1";
   }
 
-  if (data.settings.round >= 2) {
+  if (data.settings.round >= 3) {
     // reset all things
     document.querySelector("#r1Div").style.opacity = "0";
     document.querySelector("#r2Div").style.opacity = "0";
@@ -225,7 +227,7 @@ async function stateUpdate() {
     document.querySelector("#r2Div").style.opacity = "1";
   }
 
-  if (data.settings.round >= 3) {
+  if (data.settings.round >= 4) {
     // reset all things
     document.querySelector("#r1Div").style.opacity = "0";
     document.querySelector("#r2Div").style.opacity = "0";

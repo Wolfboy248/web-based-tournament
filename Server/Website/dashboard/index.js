@@ -1,14 +1,18 @@
 const map = document.querySelector("#map");
 const changemap = document.querySelector("#change-map");
-const noround = document.querySelector("#no-round");
 const round1 = document.querySelector("#round1");
 const round2 = document.querySelector("#round2");
 const round3 = document.querySelector("#round3");
+const rounddone = document.querySelector("#rounddone");
 const match = document.querySelector("#match");
 const info = document.querySelector("#info");
 const timer = document.querySelector("#timer");
 const randomizer = document.querySelector("#randomizer");
-const hi = document.querySelector("#hi");
+const reload = document.querySelector("#reload");
+const telnetON = document.querySelector("#telnet-on");
+const telnetOFF = document.querySelector("#telnet-off");
+const telnetRESTART = document.querySelector("#telnet-restart");
+const telnetSTATUS = document.querySelector("#telnet-status");
 
 async function send(msg) {
   fetch("/send-msg", {
@@ -27,9 +31,6 @@ changemap.addEventListener("click", async () => {
   });
 });
 
-noround.addEventListener("click", async () => {
-  fetch("set-round/0", { method: "POST" });
-});
 round1.addEventListener("click", async () => {
   fetch("set-round/1", { method: "POST" });
 });
@@ -38,6 +39,9 @@ round2.addEventListener("click", async () => {
 });
 round3.addEventListener("click", async () => {
   fetch("set-round/3", { method: "POST" });
+});
+rounddone.addEventListener("click", async () => {
+  fetch("set-round/4", { method: "POST" });
 });
 info.addEventListener("click", async () => {
   fetch("set-mode/1", { method: "POST" });
@@ -65,6 +69,39 @@ randomizer.addEventListener("click", async () => {
   });
 });
 
-hi.addEventListener("click", () => {
+reload.addEventListener("click", () => {
   send("reload");
-})
+});
+
+telnetON.addEventListener("click", () => {
+  fetch("/telnet", { method: "POST" });
+});
+telnetOFF.addEventListener("click", () => {
+  fetch("/telnet", { method: "DELETE" });
+});
+telnetRESTART.addEventListener("click", async () => {
+  fetch("/telnet", { method: "DELETE" });
+  setTimeout(() => {
+    fetch("/telnet", { method: "POST" });
+  }, 500);
+});
+
+const socket = new WebSocket("ws://localhost:8080");
+
+socket.onmessage = function (event) {
+  console.log(event.data);
+  switch (event.data) {
+    case "telnet-connect":
+      telnetSTATUS.style.backgroundColor = "green";
+      break;
+    case "telnet-close":
+      telnetSTATUS.style.backgroundColor = "red";
+      break;
+    case "telnet-error":
+      telnetSTATUS.style.backgroundColor = "red";
+      break;
+    case "telnet-timeout":
+      telnetSTATUS.style.backgroundColor = "red";
+      break;
+  }
+};
