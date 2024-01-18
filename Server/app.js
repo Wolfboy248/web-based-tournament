@@ -93,11 +93,11 @@ app.post("/telnet", (req, res) => {
   telnet.connectToGame();
 });
 
-app.delete("/telnet", async (req, res) => {
-  res.end();
-  if (!telnetConnected) return;
-  telnet.destory();
-});
+// app.delete("/telnet", async (req, res) => {
+//   res.end();
+//   if (!telnetConnected) return;
+//   telnet.destory();
+// });
 
 app.use((req, res) => {
   res.status(404).sendFile("./Website/404/index.html", { root: __dirname });

@@ -13,6 +13,7 @@ module.exports = {
 
 const options = {
   port: 60,
+  host: '127.0.0.1',
 };
 
 function unformatTime(text) {
@@ -27,6 +28,7 @@ function sendCommand(command) {
   clientPub.write(command + "\r\n");
 }
 function connectToGame() {
+  console.log("AKLJFDKGLDGJ")
   client = net.createConnection(options);
   client.on("connect", () => {
     events.emit("connect");
@@ -35,8 +37,9 @@ function connectToGame() {
   client.on("close", () => {
     events.emit("close");
   });
-  client.on("error", () => {
-    events.emit("close");
+  client.on("error", (wasd) => {
+    events.emit("error");
+    console.log(wasd)
   });
   client.on("timeout", () => {
     events.emit("timeout");
@@ -44,6 +47,7 @@ function connectToGame() {
   clientPub = client;
   client.on("data", (data) => {
     data = data.toString();
+    console.log(data)
     if (data.includes("has finished on")) {
       let split = data.split("has finished on");
       let [name, playerMap, time] = [
