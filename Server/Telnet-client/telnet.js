@@ -30,7 +30,6 @@ function connectToGame() {
   client = net.createConnection(options);
   client.on("connect", () => {
     events.emit("connect");
-    sendCommand("terst");
   });
   client.on("close", () => {
     events.emit("close");
