@@ -153,10 +153,10 @@ h1 {
 
 @font-face {
   font-family: ddin;
-  src: url(fonts/D-DIN.otf);
+  src: url(D-DIN.otf);
 }
 
 @font-face {
   font-family: ddin-bold;
-  src: url(fonts/D-DIN-Bold.otf);
+  src: url(D-DIN-Bold.otf);
 }
