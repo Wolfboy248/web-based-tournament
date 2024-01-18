@@ -92,18 +92,13 @@ function updateFile(p1pb, p2pb) {
 
 function reset() {
   let data = JSON.parse(fs.readFileSync("Data/public/data.json"));
-  data.match = {
-    player1: data.match.player1,
-    player2: data.match.player2,
-    round1P1PB: 9999,
-    round1P2PB: 9999,
-    round2P1PB: 9999,
-    round2P2PB: 9999,
-    round3P1PB: 9999,
-    round3P2PB: 9999,
-    name: data.match.name,
-    current_map: data.match.current_map,
-  };
+  data.match.round1P1PB = 9999;
+  data.match.round1P2PB = 9999;
+  data.match.round2P1PB = 9999;
+  data.match.round2P2PB = 9999;
+  data.match.round3P1PB = 9999;
+  data.match.round3P2PB = 9999;
+
   fs.writeFileSync("Data/public/data.json", JSON.stringify(data));
   events.emit("update");
 }

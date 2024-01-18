@@ -69,7 +69,7 @@ randomizer.addEventListener("click", async () => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify("randomizer"),
+    body: JSON.stringify({ action: "randomizer" }),
   });
 });
 

@@ -75,12 +75,13 @@ app.post("/set-mode/:mode", (req, res) => {
 });
 
 app.post("/trigger-action", (req, res) => {
+  console.log(req.body.action);
   switch (req.body["action"]) {
     case "timer":
       sendMsg("showtimer");
       break;
     case "randomizer":
-      sendMsg("showrandomizer");
+      sendMsg("randomizer");
       break;
   }
   res.end();

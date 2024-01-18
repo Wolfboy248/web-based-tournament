@@ -38,11 +38,8 @@ async function grabWr(map) {
       time = fileData[key].scoreData.score / 100;
     }
   });
-  s = time;
-  if (time / 60 >= 1) {
-    s = Math.floor(time / 60) + ":" + Math.round((time % 60) * 100) / 100;
-  }
-  return s;
+
+  return convertToTime(time);
 }
 
 async function main() {
@@ -65,6 +62,9 @@ async function main() {
         break;
       case "showtimer":
         timer();
+        break;
+      case "randomizer":
+        randomize();
         break;
     }
   };
@@ -159,48 +159,38 @@ async function dataUpdate() {
   document.querySelector("#playing1Name").innerText = data.match.player1;
   document.querySelector("#playing2Name").innerText = data.match.player2;
 
-  //change format
-  Object.keys(data.match).forEach((element) => {
-    if (typeof data.match[element] !== "string") {
-      if (data.match[element] == 9999) {
-        data.match[element] = "DNF";
-      } else {
-        let temp = "";
-        temp += Math.floor(data.match[element] / 60).toString() + ":";
-        data.match[element] -= Math.floor(data.match[element] / 60) * 60;
-        if (temp == "0:") temp = "";
-        temp += Math.floor(data.match[element]).toString() + ".";
-        data.match[element] -= Math.floor(data.match[element]);
-        let temp2;
-        console.log(data.match[element]);
-        temp2 = data.match[element].toFixed(2).toString().split(".")[1];
-        if (temp2 == undefined) temp2 = "00";
-        /*while (temp2.length < 2) {
-          temp2 += "0";
-        }*/
-        temp += temp2;
-        data.match[element] = temp;
-      }
-    }
-  });
   // name of the thing
   document.querySelector("#logoText").innerText = data.match.name;
 
   //round pbs
-  document.querySelector("#r1P1PB").innerText = data.match.round1P1PB;
-  document.querySelector("#r1P2PB").innerText = data.match.round1P2PB;
+  document.querySelector("#r1P1PB").innerText = convertToTime(
+    data.match.round1P1PB
+  );
+  document.querySelector("#r1P2PB").innerText = convertToTime(
+    data.match.round1P2PB
+  );
 
-  document.querySelector("#r2P1PB").innerText = data.match.round2P1PB;
-  document.querySelector("#r2P2PB").innerText = data.match.round2P2PB;
+  document.querySelector("#r2P1PB").innerText = convertToTime(
+    data.match.round2P1PB
+  );
+  document.querySelector("#r2P2PB").innerText = convertToTime(
+    data.match.round2P2PB
+  );
 
-  document.querySelector("#r3P1PB").innerText = data.match.round3P1PB;
-  document.querySelector("#r3P2PB").innerText = data.match.round3P2PB;
+  document.querySelector("#r3P1PB").innerText = convertToTime(
+    data.match.round3P1PB
+  );
+  document.querySelector("#r3P2PB").innerText = convertToTime(
+    data.match.round3P2PB
+  );
 
   //live pb
-  document.querySelector("#playing1Time").innerText =
-    data.match["round" + data.settings.round + "P1PB"];
-  document.querySelector("#playing2Time").innerText =
-    data.match["round" + data.settings.round + "P2PB"];
+  document.querySelector("#playing1Time").innerText = convertToTime(
+    data.match["round" + data.settings.round + "P1PB"]
+  );
+  document.querySelector("#playing2Time").innerText = convertToTime(
+    data.match["round" + data.settings.round + "P2PB"]
+  );
 
   //original pbs and wr
   grabTime(data.match.player1.replaceAll(" ", ""), data.match.current_map).then(
@@ -274,6 +264,26 @@ async function fetchFile(file) {
   const JSON = await fetch(file);
   const json = await JSON.json();
   return json;
+}
+
+function convertToTime(time) {
+  if (time == 9999) return "DNF";
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  const milliseconds = (time % 1).toFixed(2);
+
+  if (minutes == 0) {
+    console.log("test");
+    return `${seconds.toString().padStart(1, "0")}.${milliseconds
+      .toString()
+      .slice(2)
+      .padStart(2, "0")}`;
+  }
+
+  return `${minutes}:${seconds.toString().padStart(1, "0")}.${milliseconds
+    .toString()
+    .slice(2)
+    .padStart(2, "0")}`;
 }
 
 async function timer() {
