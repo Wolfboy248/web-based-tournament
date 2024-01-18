@@ -10,7 +10,7 @@ const app = express();
 let clients = [];
 const wss = new ws.Server({ port: 8080 });
 wss.on("connection", (ws) => {
-  console.log("New client connected!");
+  console.log("NEW WEBSOCKET CONNECTION");
   clients.push(ws);
   ws.on("close", () => {
     clients = clients.filter((client) => client !== ws);
@@ -93,11 +93,25 @@ app.post("/telnet", (req, res) => {
   telnet.connectToGame();
 });
 
-// app.delete("/telnet", async (req, res) => {
-//   res.end();
-//   if (!telnetConnected) return;
-//   telnet.destory();
-// });
+app.delete("/telnet", async (req, res) => {
+  res.end();
+  if (!telnetConnected) return;
+  telnet.destory();
+});
+
+app.post("/change-player", (req, res) => {
+  let info = JSON.parse(fs.readFileSync("Data/public/data.json"));
+  info.match.player1 = req.body.player1;
+  info.match.player2 = req.body.player2;
+  fs.writeFileSync("Data/public/data.json", JSON.stringify(info));
+  sendMsg("datachange");
+  res.end();
+});
+
+app.delete("/data", (req, res) => {
+  res.end();
+  telnet.reset();
+});
 
 app.use((req, res) => {
   res.status(404).sendFile("./Website/404/index.html", { root: __dirname });
@@ -111,7 +125,7 @@ function sendMsg(msg) {
 
 //telnet stuff
 telnet.events.on("connect", () => {
-  console.log("succesfully connected");
+  console.log("NEW TELNET CONNECTION");
   telnetConnected = true;
   sendMsg("telnet-connect");
 });

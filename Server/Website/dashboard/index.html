@@ -13,10 +13,6 @@
     <div class="main-div">
       <h1>Controller</h1>
 
-      <div class="change-map-div">
-        <input placeholder="map" type="text" id="map" /><br />
-        <button id="change-map">change map</button>
-      </div>
       <br />
       <div class="round-selector-div">
         <span style="display: block; text-align: center">select round</span>
@@ -30,12 +26,21 @@
         <button id="info">Info</button>
         <button id="match">Match</button>
       </div>
-      <br/>
+      <br />
       <button id="timer">start timer</button>
       <button id="randomizer">Pick random map</button>
 
       <div class="telnet-status-div">
-        <span style="font-size: 13px; position: absolute; padding: 0; text-align: center; width: 100%;">telnet status</span>
+        <span
+          style="
+            font-size: 13px;
+            position: absolute;
+            padding: 0;
+            text-align: center;
+            width: 100%;
+          "
+          >telnet status</span
+        >
         <div id="telnet-status"></div>
       </div>
 
@@ -45,15 +50,51 @@
         <button id="telnet-restart">RESTART</button>
       </div>
 
+      <div class="match-data-controls-div">
+        <input placeholder="map" type="text" id="map" /><br />
+        <button id="change-map">change map</button>
+        <input placeholder="player 1" type="text" id="player1NAME" /><br />
+        <input placeholder="player 2" type="text" id="player2NAME" /><br />
+        <button id="change-player">CHANGE PLAYER</button>
+        <button id="resetData">RESET</button>
+      </div>
       <div class="bottom-sperator"></div>
 
-      <button style="top: 0; position: absolute; height: 40px; padding: 0px; margin: 10px;" id="reload">
+      <button
+        style="
+          top: 0;
+          position: absolute;
+          height: 40px;
+          padding: 0px;
+          margin: 10px;
+        "
+        id="reload"
+      >
         <img src="refresh_icon.svg" alt="" />
       </button>
 
-      <button id="telnetBtn" onclick="switchTab(telnet)" style="top: 0; position: absolute; height: 40px; padding: 0px; margin: 10px; right: 0; text-transform: none; padding-left: 5px; padding-right: 5px;">
+      <button
+        id="telnetBtn"
+        onclick="switchTab(telnet)"
+        style="
+          top: 0;
+          position: absolute;
+          height: 40px;
+          padding: 0px;
+          margin: 10px;
+          right: 0;
+          text-transform: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        "
+      >
         Telnet
-        <img id="telnetImg" style="position: absolute; opacity: 0;" src="forward_icon.svg" alt="">
+        <img
+          id="telnetImg"
+          style="position: absolute; opacity: 0"
+          src="forward_icon.svg"
+          alt=""
+        />
       </button>
     </div>
     <script src="tabs.js"></script>

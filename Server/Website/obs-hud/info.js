@@ -72,6 +72,7 @@ async function main() {
   //mapname and chapter
   dataUpdate();
   stateUpdate();
+  vetos();
   let data = await fetchFile("./data.json");
   window.addEventListener("keydown", (event) => {
     if (event.key === " ") {
@@ -160,8 +161,26 @@ async function dataUpdate() {
 
   //change format
   Object.keys(data.match).forEach((element) => {
-    if (data.match[element] == 9999) {
-      data.match[element] = "N/A";
+    if (typeof data.match[element] !== "string") {
+      if (data.match[element] == 9999) {
+        data.match[element] = "DNF";
+      } else {
+        let temp = "";
+        temp += Math.floor(data.match[element] / 60).toString() + ":";
+        data.match[element] -= Math.floor(data.match[element] / 60) * 60;
+        if (temp == "0:") temp = "";
+        temp += Math.floor(data.match[element]).toString() + ".";
+        data.match[element] -= Math.floor(data.match[element]);
+        let temp2;
+        console.log(data.match[element]);
+        temp2 = data.match[element].toFixed(2).toString().split(".")[1];
+        if (temp2 == undefined) temp2 = "00";
+        /*while (temp2.length < 2) {
+          temp2 += "0";
+        }*/
+        temp += temp2;
+        data.match[element] = temp;
+      }
     }
   });
   // name of the thing
@@ -297,4 +316,3 @@ async function timer() {
 }
 
 main();
-vetos();

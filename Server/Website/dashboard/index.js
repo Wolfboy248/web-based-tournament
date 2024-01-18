@@ -13,6 +13,10 @@ const telnetON = document.querySelector("#telnet-on");
 const telnetOFF = document.querySelector("#telnet-off");
 const telnetRESTART = document.querySelector("#telnet-restart");
 const telnetSTATUS = document.querySelector("#telnet-status");
+const player1NAME = document.querySelector("#player1NAME");
+const player2NAME = document.querySelector("#player2NAME");
+const changePlayer = document.querySelector("#change-player");
+const resetData = document.querySelector("#resetData");
 
 async function send(msg) {
   fetch("/send-msg", {
@@ -84,6 +88,23 @@ telnetRESTART.addEventListener("click", async () => {
   setTimeout(() => {
     fetch("/telnet", { method: "POST" });
   }, 500);
+});
+
+changePlayer.addEventListener("click", () => {
+  fetch("/change-player", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      player1: player1NAME.value,
+      player2: player2NAME.value,
+    }),
+  });
+});
+
+resetData.addEventListener("click", () => {
+  fetch("/data", { method: "DELETE" });
 });
 
 const socket = new WebSocket("ws://localhost:8080");
