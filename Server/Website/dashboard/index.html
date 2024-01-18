@@ -23,29 +23,40 @@
         <button id="round1">1</button>
         <button id="round2">2</button>
         <button id="round3">3</button>
-        <button id="rounddone">Done</button>
+        <button id="rounddone">end</button>
       </div>
       <br />
       <div class="switch-modes-div">
         <button id="info">Info</button>
         <button id="match">Match</button>
       </div>
-      <br />
+      <br/>
       <button id="timer">start timer</button>
       <button id="randomizer">Pick random map</button>
 
-      <p style="font-size: larger">Telnet</p>
-      <div id="telnet-status"></div>
-      <button id="telnet-on">ON</button>
-      <button id="telnet-off">OFF</button>
-      <button id="telnet-restart">RESTART</button>
+      <div class="telnet-status-div">
+        <span style="font-size: 13px; position: absolute; padding: 0; text-align: center; width: 100%;">telnet status</span>
+        <div id="telnet-status"></div>
+      </div>
+
+      <div class="telnet-controls-div">
+        <button id="telnet-on">ON</button>
+        <button id="telnet-off">OFF</button>
+        <button id="telnet-restart">RESTART</button>
+      </div>
 
       <div class="bottom-sperator"></div>
 
-      <button style="top: 0; position: absolute" id="reload">
+      <button style="top: 0; position: absolute; height: 40px; padding: 0px; margin: 10px;" id="reload">
         <img src="refresh_icon.svg" alt="" />
       </button>
+
+      <button id="telnetBtn" onclick="switchTab(telnet)" style="top: 0; position: absolute; height: 40px; padding: 0px; margin: 10px; right: 0; text-transform: none; padding-left: 5px; padding-right: 5px;">
+        Telnet
+        <img id="telnetImg" style="position: absolute; opacity: 0;" src="forward_icon.svg" alt="">
+      </button>
     </div>
+    <script src="tabs.js"></script>
   </body>
 
   <script src="index.js"></script>

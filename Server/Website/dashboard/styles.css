@@ -15,6 +15,7 @@ body {
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.463) rgba(0, 255, 0, 0.583);
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .main-div {
@@ -131,16 +132,31 @@ h1 {
 
 #telnet-status {
   width: 100px;
-  height: 100px;
+  height: 15px;
   background-color: red;
+}
+
+.telnet-status-div {
+  position: fixed;
+  bottom: 0;
+  color: white;
+  font-family: ddin;
+  letter-spacing: 2px;
+}
+
+.telnet-controls-div {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: -50%;
+  top: 50%;
 }
 
 @font-face {
   font-family: ddin;
-  src: url(d-din/D-DIN.otf);
+  src: url(fonts/D-DIN.otf);
 }
 
 @font-face {
   font-family: ddin-bold;
-  src: url(d-din/D-DIN-Bold.otf);
+  src: url(fonts/D-DIN-Bold.otf);
 }
