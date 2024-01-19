@@ -299,6 +299,11 @@ async function timer() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ msg: "ghost_message Time Starts now" }),
   });
+  fetch("/data", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ settings: { active: true } }),
+  });
 
   //actual timer
   var Timer = setInterval(function () {
@@ -318,6 +323,11 @@ async function timer() {
         body: JSON.stringify({
           msg: "ghost_message Time is up! Finish last run",
         }),
+      });
+      fetch("/data", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ settings: { active: false } }),
       });
 
       setTimeout(function () {

@@ -149,5 +149,5 @@ telnet.events.on("timeout", () => {
 });
 telnet.events.on("update", () => {
   console.log("update");
-  sendMsg("datachange");
+  sendMsg("change");
 });
