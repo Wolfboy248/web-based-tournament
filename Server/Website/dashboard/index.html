@@ -18,12 +18,12 @@
           <button id="info">Info</button>
           <button id="match">Match</button>
         </div>
-  
+
         <div id="mapInput" class="match-data-controls-div">
-          <input placeholder="map" type="text" id="map"/>
+          <input placeholder="map" type="text" id="map" />
           <button id="change-map">change map</button>
         </div>
-  
+
         <div class="round-selector-div">
           <span style="display: block; text-align: center">select round</span>
           <button id="round1">1</button>
@@ -31,9 +31,8 @@
           <button id="round3">3</button>
           <button id="rounddone">end</button>
         </div>
-  
-        <button id="randomizer">Pick random map</button>
 
+        <button id="randomizer">Pick random map</button>
       </div>
 
       <button id="timer">start timer</button>
@@ -44,20 +43,46 @@
         <button id="telnet-restart">RESTART</button>
       </div>
 
-
       <div id="settingsTab" class="settings-tab-div">
-        <input placeholder="player 1" type="text" id="player1NAME"/>
-        <input placeholder="player 2" type="text" id="player2NAME"/><br/>
-        <button id="change-player" style="width: 100%;">CHANGE PLAYER</button>
-        <button id="resetData" style="transform: translateX(-50%); left: 50%; position: relative;">RESET</button>
+        <input placeholder="player 1" type="text" id="player1NAME" />
+        <input placeholder="player 2" type="text" id="player2NAME" /><br />
+        <button id="change-player" style="width: 100%">CHANGE PLAYER</button>
+        <button
+          id="resetData"
+          style="transform: translateX(-50%); left: 50%; position: relative"
+        >
+          RESET
+        </button>
+        <input placeholder="300" , type="number" id="timerInput" min="0" />
+        <button id="changeTimer">CHANGE TIMER</button>
       </div>
 
       <div class="bottom-sperator"></div>
 
-      <button style="top: 0; position: absolute; height: 40px; padding: 0px; margin: 10px;" id="reload">
+      <button
+        style="
+          top: 0;
+          position: absolute;
+          height: 40px;
+          padding: 0px;
+          margin: 10px;
+        "
+        id="reload"
+      >
         <img src="refresh_icon.svg" alt="" />
       </button>
-      <button onclick="switchTab(settings)" style="top: 0; position: absolute; height: 40px; padding: 0px; margin: 10px; left: 50px;" id="settings">
+      <button
+        onclick="switchTab(settings)"
+        style="
+          top: 0;
+          position: absolute;
+          height: 40px;
+          padding: 0px;
+          margin: 10px;
+          left: 50px;
+        "
+        id="settings"
+      >
         <img src="settings_icon.svg" alt="" />
       </button>
 
@@ -75,8 +100,7 @@
           padding-left: 5px;
           padding-right: 5px;
         "
-      >
-      </button>
+      ></button>
     </div>
 
     <div class="telnet-status-div">

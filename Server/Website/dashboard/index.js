@@ -17,6 +17,8 @@ const player1NAME = document.querySelector("#player1NAME");
 const player2NAME = document.querySelector("#player2NAME");
 const changePlayer = document.querySelector("#change-player");
 const resetData = document.querySelector("#resetData");
+const timerInput = document.querySelector("#timerInput");
+const changeTimer = document.querySelector("#changeTimer");
 
 async function send(msg) {
   fetch("/send-msg", {
@@ -158,6 +160,27 @@ changePlayer.addEventListener("click", () => {
       },
     }),
   });
+});
+
+changeTimer.addEventListener("click", () => {
+  if (
+    timerInput.value != null &&
+    timerInput.value != undefined &&
+    timerInput.value > 0 &&
+    parseInt(timerInput.value) != NaN
+  ) {
+    fetch("/data", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        settings: {
+          "timer-duration": parseInt(timerInput.value),
+        },
+      }),
+    });
+  }
 });
 
 resetData.addEventListener("click", () => {

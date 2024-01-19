@@ -25,10 +25,11 @@ function unformatTime(text) {
   }
   return parseFloat(text);
 }
-let client;
+let clientPub;
 let allowp1 = false;
 let allowp2 = false;
 function sendCommand(command) {
+  if (clientPub == undefined) return;
   console.log("Sending command: " + command);
   clientPub.write(command + "\r\n");
 }
