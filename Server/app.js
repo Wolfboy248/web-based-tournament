@@ -81,7 +81,7 @@ app.post("/trigger-action", (req, res) => {
       sendMsg("showtimer");
       break;
     case "randomizer":
-      sendMsg("randomizer");
+      randomizer();
       break;
   }
   res.end();
@@ -122,6 +122,26 @@ function sendMsg(msg) {
   clients.forEach((client) => {
     client.send(msg);
   });
+}
+
+function randomizer() {
+  let info = JSON.parse(fs.readFileSync("./Data/public/data.json"));
+  let maplist = JSON.parse(fs.readFileSync("./Data/public/maplist.json"));
+
+  let mapKeys = Object.keys(maplist);
+  let map;
+  do {
+    map = mapKeys[Math.floor(Math.random() * mapKeys.length)];
+  } while (
+    info.vetos.p1vetos.includes(map) ||
+    info.vetos.p2vetos.includes(map) ||
+    map == "sp" ||
+    map == info.match.current_map
+  );
+  console.log("Random map:", map);
+  info.match.random_map = map;
+  fs.writeFileSync("./Data/public/data.json", JSON.stringify(info));
+  sendMsg("randomizer");
 }
 
 //telnet stuff
