@@ -66,6 +66,10 @@ function showRandomizer() {
   document.querySelector("#randomizer").style.left = "12%";
 }
 
+function hideRandomizer() {
+  document.querySelector("#randomizer").style.left = "-12%";
+}
+
 let lightBG = "rgba(166, 166, 166, 0.153)";
 let darkBG = "rgba(0, 0, 0, 0.5)";
 let darkBG2 = "rgba(0, 0, 0, 0.2)";

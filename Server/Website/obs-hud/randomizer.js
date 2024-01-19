@@ -408,36 +408,12 @@ async function randomize() {
       };
       setTimeout(() => {
         fetch("/set-map/" + finalrandMap, { method: "POST" });
+        setTimeout(() => {
+          hideRandomizer();
+        }, 2000);
       }, 1000);
       return;
     }
   }, 20);
   showRandomizer();
-}
-//GET PLAYER SCORES
-async function getPlayerScores(player = "", chamber = "") {
-  try {
-    const response = await fetch(
-      `https://board.portal2.sr/profile/${player}/json`
-    );
-    const data = await response.json();
-
-    // Use the 'data' here
-    console.log(data);
-    const filtered = data.times.SP.chambers.chamber;
-    let final;
-    for (let i = 7; i < 16; i++) {
-      const filtered2 = filtered[i];
-      if (filtered2 && filtered2[chamber] !== undefined) {
-        final = filtered2[chamber];
-      }
-    }
-
-    console.log(final);
-
-    // Return 'final' or any other data if needed
-    return final;
-  } catch (error) {
-    console.error("Error:", error);
-  }
 }
