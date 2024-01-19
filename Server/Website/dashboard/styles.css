@@ -55,6 +55,7 @@ input {
   border-radius: 5px;
   border-width: 1.5px;
   box-shadow: 0px 0px 10px black;
+  margin-bottom: 5px;
   margin-top: 5px;
   text-transform: uppercase;
   text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.507);
@@ -68,7 +69,7 @@ button:hover {
 }
 
 input {
-  text-transform: lowercase;
+  text-transform: none;
 }
 
 h1 {
@@ -79,10 +80,17 @@ h1 {
 }
 
 /* change map div */
-.change-map-div {
+.match-data-controls-div {
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 140px;
+  top: 230px;
+  position: absolute;
+}
+
+.settings-tab-div {
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: -50%;
   position: absolute;
 }
 
@@ -95,7 +103,7 @@ h1 {
 .round-selector-div {
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 270px;
+  top: 350px;
   position: absolute;
 }
 
@@ -103,7 +111,7 @@ h1 {
 .switch-modes-div {
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 370px;
+  top: 120px;
   position: absolute;
 }
 
@@ -117,7 +125,7 @@ h1 {
 #randomizer {
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 510px;
+  top: 440px;
   position: absolute;
 }
 
@@ -149,6 +157,10 @@ h1 {
   position: absolute;
   left: -50%;
   top: 50%;
+}
+
+#resetData:hover {
+  background-color: rgba(255, 0, 0, 0.5);
 }
 
 @font-face {
