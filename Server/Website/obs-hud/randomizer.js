@@ -407,7 +407,17 @@ async function randomize() {
         scores.classList.add("slide-animation");
       };
       setTimeout(() => {
-        fetch("/set-map/" + finalrandMap, { method: "POST" });
+        fetch("/data", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            match: {
+              current_map: finalrandMap,
+            },
+          }),
+        });
         setTimeout(() => {
           hideRandomizer();
         }, 2000);

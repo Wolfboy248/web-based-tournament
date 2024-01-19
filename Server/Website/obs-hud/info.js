@@ -23,9 +23,6 @@ async function grabTime(player, map) {
     return s;
   }
   s = time;
-  if (time / 60 >= 1) {
-    s = Math.floor(time / 60) + ":" + Math.round((time % 60) * 100) / 100;
-  }
   return s;
 }
 async function grabWr(map) {
@@ -39,7 +36,7 @@ async function grabWr(map) {
     }
   });
 
-  return convertToTime(time);
+  return time;
 }
 
 async function main() {
@@ -53,11 +50,8 @@ async function main() {
       case "reload":
         location.reload();
         break;
-      case "datachange":
-        console.log("change");
+      case "change":
         dataUpdate();
-        break;
-      case "statechange":
         stateUpdate();
         break;
       case "showtimer":
@@ -271,6 +265,7 @@ async function fetchFile(file) {
 }
 
 function convertToTime(time) {
+  console.log(time);
   if (time == 9999 || time == undefined) return "DNF";
   const minutes = Math.floor(time / 60);
   const seconds = Math.floor(time % 60);

@@ -30,28 +30,83 @@ async function send(msg) {
 
 changemap.addEventListener("click", async () => {
   console.log(map.value);
-  fetch("/set-map/" + map.value, {
+  fetch("/data", {
     method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      match: {
+        current_map: map.value,
+      },
+    }),
   });
 });
 
 round1.addEventListener("click", async () => {
-  fetch("set-round/1", { method: "POST" });
+  fetch("/data", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      settings: {
+        round: 1,
+      },
+    }),
+  });
 });
 round2.addEventListener("click", async () => {
-  fetch("set-round/2", { method: "POST" });
+  fetch("/data", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      settings: {
+        round: 2,
+      },
+    }),
+  });
 });
 round3.addEventListener("click", async () => {
-  fetch("set-round/3", { method: "POST" });
+  fetch("/data", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      settings: {
+        round: 3,
+      },
+    }),
+  });
 });
 rounddone.addEventListener("click", async () => {
-  fetch("set-round/4", { method: "POST" });
+  fetch("/data", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      settings: {
+        round: 4,
+      },
+    }),
+  });
 });
+
 info.addEventListener("click", async () => {
-  fetch("set-mode/1", { method: "POST" });
+  fetch("/data", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      settings: {
+        mode: 1,
+      },
+    }),
+  });
 });
 match.addEventListener("click", async () => {
-  fetch("set-mode/2", { method: "POST" });
+  fetch("/data", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      settings: {
+        mode: 2,
+      },
+    }),
+  });
 });
 
 timer.addEventListener("click", async () => {
@@ -91,14 +146,16 @@ telnetRESTART.addEventListener("click", async () => {
 });
 
 changePlayer.addEventListener("click", () => {
-  fetch("/change-player", {
+  fetch("/data", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      player1: player1NAME.value,
-      player2: player2NAME.value,
+      match: {
+        player1: player1NAME.value,
+        player2: player2NAME.value,
+      },
     }),
   });
 });

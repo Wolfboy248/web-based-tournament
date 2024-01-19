@@ -50,30 +50,6 @@ app.post("/send-msg", (req, res) => {
   sendMsg(msg);
 });
 
-app.post("/set-map/:mapname", (req, res) => {
-  let info = JSON.parse(fs.readFileSync("./Data/public/data.json"));
-  info["match"]["current_map"] = req.params["mapname"];
-  fs.writeFileSync("./Data/public/data.json", JSON.stringify(info));
-  sendMsg("datachange");
-  res.end();
-});
-
-app.post("/set-round/:round", (req, res) => {
-  let info = JSON.parse(fs.readFileSync("./Data/public/data.json"));
-  info["settings"]["round"] = parseInt(req.params["round"]);
-  fs.writeFileSync("./Data/public/data.json", JSON.stringify(info));
-  sendMsg("statechange");
-  res.end();
-});
-
-app.post("/set-mode/:mode", (req, res) => {
-  let info = JSON.parse(fs.readFileSync("./Data/public/data.json"));
-  info["settings"]["mode"] = parseInt(req.params["mode"]);
-  fs.writeFileSync("./Data/public/data.json", JSON.stringify(info));
-  sendMsg("statechange");
-  res.end();
-});
-
 app.post("/trigger-action", (req, res) => {
   console.log(req.body.action);
   switch (req.body["action"]) {
@@ -106,18 +82,21 @@ app.post("/telnet-send", (req, res) => {
   res.end();
 });
 
-app.post("/change-player", (req, res) => {
-  let info = JSON.parse(fs.readFileSync("Data/public/data.json"));
-  info.match.player1 = req.body.player1;
-  info.match.player2 = req.body.player2;
-  fs.writeFileSync("Data/public/data.json", JSON.stringify(info));
-  sendMsg("datachange");
-  res.end();
-});
-
 app.delete("/data", (req, res) => {
   res.end();
   telnet.reset();
+});
+
+app.post("/data", (req, res) => {
+  let info = JSON.parse(fs.readFileSync("Data/public/data.json"));
+  for (let cat in req.body) {
+    for (let key in req.body[cat]) {
+      info[cat][key] = req.body[cat][key];
+    }
+  }
+  fs.writeFileSync("Data/public/data.json", JSON.stringify(info));
+  res.end();
+  sendMsg("change");
 });
 
 app.use((req, res) => {

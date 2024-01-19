@@ -1,7 +1,7 @@
 {
   "match": {
-    "player1": "Wolfboy248",
-    "player2": "BLAZEICN",
+    "player1": "Archer the real",
+    "player2": "Wolfboy248",
     "round1P1PB": 9999,
     "round1P2PB": 9999,
     "round2P1PB": 9999,
@@ -9,7 +9,7 @@
     "round3P1PB": 9999,
     "round3P2PB": 9999,
     "name": "FFO Tournament 2024",
-    "current_map": "sp_a1_intro1",
+    "current_map": "sp_a4_finale4",
     "random_map": "sp_a2_bridge_intro"
   },
   "vetos": {
@@ -28,5 +28,5 @@
       "sp_a1_intro3"
     ]
   },
-  "settings": { "round": 1, "mode": 2, "timer-duration": 10, "active": true }
+  "settings": { "round": 1, "mode": 1, "timer-duration": 10, "active": true }
 }
