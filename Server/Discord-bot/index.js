@@ -1,7 +1,6 @@
-require("dotenv").config();
 require("path");
 var fs = require("fs");
-const maplist = require("../../maps/maplist.json");
+const maplist = require("../Data/public/maplist.json");
 const {
   Client,
   GatewayIntentBits,
@@ -9,6 +8,10 @@ const {
   EmbedBuilder,
   Embed,
 } = require("discord.js");
+
+module.exports = {
+  login: loginToCLient,
+};
 
 const client = new Client({
   intents: [
@@ -101,7 +104,7 @@ client.on("interactionCreate", async (interaction) => {
         .setColor(0xff00ff)
         .setTitle(maplist[map][0])
         .setImage(
-          `https://raw.githubusercontent.com/Wolfboy248/web-based-tournament/main/maps/images/ch${maplist[map][1]}/${map}.jpg`
+          `https://raw.githubusercontent.com/Wolfboy248/web-based-tournament/main/Server/Main-Images/maps/ch${maplist[map][1]}/${map}.jpg`
         )
         .setAuthor({
           name: `Chapter ${maplist[map][1]} - ${
@@ -131,11 +134,10 @@ client.on("interactionCreate", async (interaction) => {
     //console.log(p1.member.guild.roles);
   } else if (interaction.commandName === "end_vetos") {
     canVeto = false;
-    const vetos = {
-      p1vetos: p1vetos,
-      p2vetos: p2vetos,
-    };
-    fs.writeFileSync("../maps/vetos.json", JSON.stringify(vetos));
+    let data = JSON.parse(fs.readFileSync("Data/public/data.json"));
+    data.vetos.p1vetos = p1vetos;
+    data.vetos.p2vetos = p2vetos;
+    fs.writeFileSync("Data/public/data.json", JSON.stringify(data));
     interaction.reply({
       content: "Submitting vetos have ended",
       ephemeral: true,
@@ -147,4 +149,10 @@ client.on("interactionCreate", async (interaction) => {
   }
 });
 
-client.login(process.env.TOKEN);
+function loginToCLient() {
+  client.login(process.env.TOKEN);
+}
+
+function destory() {
+  client.destroy();
+}
