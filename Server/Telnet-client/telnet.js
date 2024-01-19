@@ -26,6 +26,8 @@ function unformatTime(text) {
   return parseFloat(text);
 }
 let client;
+let allowp1 = false;
+let allowp2 = false;
 function sendCommand(command) {
   console.log("Sending command: " + command);
   clientPub.write(command + "\r\n");
@@ -59,31 +61,43 @@ function connectToGame() {
       ];
       let fTime = parseFloat(unformatTime(time).toFixed(2));
       let info = JSON.parse(fs.readFileSync("Data/public/data.json"));
-      if (info.settings.active == false) return;
+      if (info.settings.active == true) {
+        allowp1 = true;
+        allowp2 = true;
+      }
       if (playerMap != info.match.current_map) return;
       let update = false;
       if (
         name == info.match.player1 &&
-        fTime < info.match["round" + info.settings.round + "P1PB"]
+        fTime < info.match["round" + info.settings.round + "P1PB"] &&
+        allowp1
       ) {
         console.log(`New pb for ${name}: ${time}`);
         p1pb = fTime;
         update = true;
       } else if (
         name == info.match.player2 &&
-        fTime < info.match["round" + info.settings.round + "P2PB"]
+        fTime < info.match["round" + info.settings.round + "P2PB"] &&
+        allowp2
       ) {
         console.log(`New pb for ${name}: ${time}`);
         p2pb = fTime;
         uppdate = true;
       }
       if (update) updateFile(p1pb, p2pb);
+    } else if (data.includes("is now on")) {
+      let info = JSON.parse(fs.readFileSync("Data/public/data.json"));
+      let split = data.split("is now on");
+      let name = split[0].slice(0, -1);
+      if (info.settings.active == false) {
+        if (name == info.match.player1) allowp1 = false;
+        else if (name == info.match.player2) allowp2 = false;
+      }
     }
   });
 }
 
 function updateFile(p1pb, p2pb) {
-  console.log(p1pb, typeof p1pb, p2pb, typeof p2pb);
   let data = JSON.parse(fs.readFileSync("Data/public/data.json"));
   data.match["round" + data.settings.round + "P1PB"] = parseFloat(p1pb);
   data.match["round" + data.settings.round + "P2PB"] = parseFloat(p2pb);
