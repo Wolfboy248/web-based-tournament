@@ -27,6 +27,7 @@ function unformatTime(text) {
 }
 let client;
 function sendCommand(command) {
+  console.log("Sending command: " + command);
   clientPub.write(command + "\r\n");
 }
 function connectToGame() {

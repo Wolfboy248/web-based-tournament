@@ -299,6 +299,11 @@ async function timer() {
   minutes = minutes < 10 ? "0" + minutes : minutes;
   extraSeconds = extraSeconds < 10 ? "0" + extraSeconds : extraSeconds;
   document.getElementById("countdown").innerText = minutes + ":" + extraSeconds;
+  fetch("telnet-send", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ msg: "ghost_message Time Starts now" }),
+  });
 
   //actual timer
   var Timer = setInterval(function () {
@@ -311,6 +316,15 @@ async function timer() {
     timeleft -= 1;
     if (timeleft <= 0) {
       clearInterval(Timer);
+
+      fetch("telnet-send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          msg: "ghost_message Time is up! Finish last run",
+        }),
+      });
+
       setTimeout(function () {
         document.getElementById("countdown").style.width = "350px";
         document.getElementById("countdown").style.color =

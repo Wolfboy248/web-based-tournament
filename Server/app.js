@@ -100,6 +100,12 @@ app.delete("/telnet", async (req, res) => {
   telnet.destory();
 });
 
+app.post("/telnet-send", (req, res) => {
+  telnet.send(req.body.msg);
+  console.log(req.body);
+  res.end();
+});
+
 app.post("/change-player", (req, res) => {
   let info = JSON.parse(fs.readFileSync("Data/public/data.json"));
   info.match.player1 = req.body.player1;
