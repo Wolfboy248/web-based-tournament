@@ -188,6 +188,10 @@ async function dataUpdate() {
   document.querySelector("#playing1Time").innerText = convertToTime(
     data.match["round" + data.settings.round + "P1PB"]
   );
+  console.log(
+    data.match["round" + data.settings.round + "P1PB"],
+    "round" + data.settings.round + "P1PB"
+  );
   document.querySelector("#playing2Time").innerText = convertToTime(
     data.match["round" + data.settings.round + "P2PB"]
   );
@@ -195,16 +199,16 @@ async function dataUpdate() {
   //original pbs and wr
   grabTime(data.match.player1.replaceAll(" ", ""), data.match.current_map).then(
     (time) => {
-      document.querySelector("#P1pb").innerText = time;
+      document.querySelector("#P1pb").innerText = convertToTime(time);
     }
   );
   grabTime(data.match.player2.replaceAll(" ", ""), data.match.current_map).then(
     (time) => {
-      document.querySelector("#P2pb").innerText = time;
+      document.querySelector("#P2pb").innerText = convertToTime(time);
     }
   );
   grabWr(data.match.current_map).then((time) => {
-    document.querySelector("#wrTime").innerText = time;
+    document.querySelector("#wrTime").innerText = convertToTime(time);
   });
 }
 
@@ -267,7 +271,7 @@ async function fetchFile(file) {
 }
 
 function convertToTime(time) {
-  if (time == 9999) return "DNF";
+  if (time == 9999 || time == undefined) return "DNF";
   const minutes = Math.floor(time / 60);
   const seconds = Math.floor(time % 60);
   const milliseconds = (time % 1).toFixed(2);
@@ -288,7 +292,8 @@ function convertToTime(time) {
 
 async function timer() {
   //setup
-  var timeleft = 10;
+  let info = await fetchFile("./data.json");
+  var timeleft = info.settings["timer-duration"];
   let minutes = Math.floor(timeleft / 60);
   let extraSeconds = timeleft % 60;
   minutes = minutes < 10 ? "0" + minutes : minutes;
@@ -297,9 +302,6 @@ async function timer() {
 
   //actual timer
   var Timer = setInterval(function () {
-    if (timeleft <= 0) {
-      clearInterval(Timer);
-    }
     let minutes = Math.floor((timeleft - 1) / 60);
     let extraSeconds = (timeleft - 1) % 60;
     minutes = minutes < 10 ? "0" + minutes : minutes;
@@ -309,16 +311,18 @@ async function timer() {
     timeleft -= 1;
     if (timeleft <= 0) {
       clearInterval(Timer);
-      var stupidpls2 = setInterval(function () {
+      setTimeout(function () {
         document.getElementById("countdown").style.width = "350px";
         document.getElementById("countdown").style.color =
           "rgba(255, 255, 255, 0)";
-        clearInterval(stupidpls2);
       }, 400);
-      var stupidpls = setInterval(function () {
+      setTimeout(function () {
         document.getElementById("countdown").innerText = "Times up!";
         document.getElementById("countdown").style.color =
           "rgba(255, 255, 255, 1)";
+        setTimeout(() => {
+          document.querySelector("#countdown").style.top = "-6%";
+        }, 10000);
       }, 1000);
     }
   }, 1000);
