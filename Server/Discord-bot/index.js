@@ -8,6 +8,7 @@ const {
   EmbedBuilder,
   Embed,
 } = require("discord.js");
+const _ = require("lodash");
 
 module.exports = {
   login: loginToCLient,
@@ -41,7 +42,7 @@ let p1vetos = [];
 let p2vetos = [];
 let veto = 5;
 let canVeto = false;
-let vetosId = "1189995565333872691";
+let vetosId = "1169583219092488242";
 
 client.on("ready", (c) => {
   console.log(`✅ ${c.user.tag} is ready`);
@@ -54,8 +55,10 @@ client.on("messageReactionAdd", (react, user) => {
     react.message.reactions.resolve(react).users.remove(user);
     return;
   }
-  const url = react.message.embeds[0].image.url;
-  const mapname = url.substring(87, url.length - 4);
+  const mapname = _.findKey(
+    maplist,
+    (map) => map[0] === react.message.embeds[0].title
+  );
   if (user.id === p1.value) {
     if (p1vetos.length == veto) {
       react.message.reactions.resolve(react).users.remove(user);
