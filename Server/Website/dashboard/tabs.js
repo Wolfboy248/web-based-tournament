@@ -11,10 +11,7 @@ function switchTab(tab, tabBtn) {
     telnet.classList.add("hidden");
     settings.classList.add("hidden");
 
-    let timeout = setTimeout(stupid, 250);
-    function stupid() {
-        tab.classList.remove("hidden");
-    }
+    tab.classList.remove("hidden");
 
     mainBtn.classList.remove("selected");
     telnetBtn.classList.remove("selected");
