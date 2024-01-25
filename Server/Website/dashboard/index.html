@@ -8,18 +8,18 @@
     <link rel="stylesheet" href="styles.css" />
     <script defer src="tabs.js"></script>
   </head>
-  <body onload="window.resizeTo(615,465)">
+  <!-- <body onload="window.resizeTo(615,465)"> -->
     <div class="bg"></div>
 
     <div class="main-div">
       <h1>Controller</h1>
 
       <div class="switch-pages-div">
-        <a onmousedown="switchTab(main, mainBtn)" id="mainBtn" class="selected" href="#">Main</a>
+        <a onmousedown="switchTab(main, mainBtn)" id="mainBtn" class="selected" href="#"><div class="button-cool"></div>Main</a>
         <div style="left: 59px;" class="seperator"></div>
-        <a onmousedown="switchTab(telnet, telnetBtn)" id="telnetBtn" href="#">Telnet</a>
+        <a onmousedown="switchTab(telnet, telnetBtn)" id="telnetBtn" href="#"><div class="button-cool"></div>Telnet</a>
         <div style="left: 133px;" class="seperator"></div>
-        <a onmousedown="switchTab(settings, settingsBtn)" id="settingsBtn" href="#">Settings</a>
+        <a onmousedown="switchTab(settings, settingsBtn)" id="settingsBtn" href="#"><div class="button-cool"></div>Settings</a>
       </div>
 
       <div id="mainControls" class="main-page-div nav main">
@@ -69,7 +69,7 @@
       <button
         style="
           top: 0;
-          position: absolute;
+          position: fixed;
           height: 40px;
           padding: 0px;
           margin: 10px;

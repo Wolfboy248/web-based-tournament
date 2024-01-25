@@ -8,7 +8,7 @@ body {
   z-index: -101;
   background-size: cover;
   background-position: center;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 * {
@@ -82,14 +82,14 @@ h1 {
 .match-data-controls-div {
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 230px;
+  top: 250px;
   position: absolute;
 }
 
 .settings-tab-div {
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 280px;
+  top: 310px;
   position: absolute;
   transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
@@ -103,7 +103,7 @@ h1 {
 .round-selector-div {
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 350px;
+  top: 370px;
   position: absolute;
 }
 
@@ -111,21 +111,21 @@ h1 {
 .switch-modes-div {
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 120px;
+  top: 140px;
   position: absolute;
 }
 
 #timer {
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 520px;
+  top: 450px;
   position: absolute;
 }
 
 #randomizer {
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 440px;
+  top: 520px;
   position: absolute;
 }
 
@@ -149,24 +149,25 @@ h1 {
   transform: translate(-50%, -50%);
   position: absolute;
   left: 50%;
-  top: 120px;
+  top: 50%;
   transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 #resetData:hover {
-  background-color: rgba(255, 0, 0, 0.5);
+  background-color: rgba(255, 41, 41, 0.664);
 }
 
 .switch-pages-div {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.479);
   transform: translate(-50%, -50%);
-  top: 70px;
+  top: 82px;
   left: 50%;
   display: inline-flex;
   border-radius: 5px;
   overflow: hidden;
   backdrop-filter: blur(4px);
+  box-shadow: 0px 0px 10px black;
 }
 
 .switch-pages-div a {
@@ -176,10 +177,60 @@ h1 {
   font-size: 25px;
   padding-left: 5px;
   padding-right: 5px;
+  cursor: pointer;
 }
 
-.switch-pages-div a:hover, .selected {
-  background-color: rgb(119, 119, 119);
+.selected {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.selected .button-cool::after {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+#mainBtn {
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+#telnetBtn {
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+#settingsBtn {
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.button-cool::after {
+  content: '';
+  width: 130%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: skew(-33deg) translate(-110%);
+  position: absolute;
+  z-index: 1;
+  display: block;
+  top: 0;
+  left: 0;
+  transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  cursor: pointer;
+}
+
+#mainBtn:hover .button-cool::after {
+  transform: skew(-33deg) translate(-8%);
+}
+
+#telnetBtn:hover .button-cool::after {
+  transform: skew(-33deg) translate(-8%);
+}
+
+#settingsBtn:hover .button-cool::after {
+  transform: skew(-33deg) translate(-8%);
 }
 
 .seperator {
@@ -192,6 +243,10 @@ h1 {
 
 .hidden {
   display: none;
+}
+
+#changeTimer {
+  width: 100%;
 }
 
 @font-face {
