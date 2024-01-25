@@ -1,56 +1,24 @@
-// main
-const mapInp = document.querySelector("#mapInput")
+const main = document.querySelector("#mainControls");
+const telnet = document.querySelector("#telnetControls");
+const settings = document.querySelector("#settingsControls");
 
-// setings
-const settingsBtn = document.querySelector("#settings");
-const settingsDiv = document.querySelector("#settingsTab");
+const mainBtn = document.querySelector("#mainBtn");
+const telnetBtn = document.querySelector("#telnetBtn");
+const settingsBtn = document.querySelector("#settingsBtn");
 
-// telnet
-const telnetTabElem = document.querySelector(".telnet-controls-div");
-const telnetTabBtn = document.querySelector("#telnetBtn");
-const telnetTabImg = document.querySelector("#telnetImg");
+function switchTab(tab, tabBtn) {
+    main.classList.add("hidden");
+    telnet.classList.add("hidden");
+    settings.classList.add("hidden");
 
-telnetTabBtn.innerText = "Telnet"
+    let timeout = setTimeout(stupid, 250);
+    function stupid() {
+        tab.classList.remove("hidden");
+    }
 
-function switchTab(tabname) {
-    tabname()
-}
+    mainBtn.classList.remove("selected");
+    telnetBtn.classList.remove("selected");
+    settingsBtn.classList.remove("selected");
 
-let telnetTimeoutDelay = 200
-
-function telnet() {
-    telnetTabBtn.setAttribute("onclick", "switchTab(main)")
-
-    // tab elem styling
-    showTelnetTab()
-
-    hideSettingsTab()
-    settingsBtn.setAttribute("onclick", "switchTab(settings)")
-
-    // tab btn styling
-    telnetTabBtn.style.opacity = "0";
-    
-    console.log("gaming")
-}
-
-function main() {
-    telnetTabBtn.setAttribute("onclick", "switchTab(telnet)")
-
-    // tab elem styling
-    hideTelnetTab()
-    settingsBtn.setAttribute("onclick", "switchTab(settings)")
-    hideSettingsTab()
-
-    // tab btn styling
-    telnetTabBtn.style.opacity = "0";
-}
-
-function settings() {
-    telnetTabBtn.setAttribute("onclick", "switchTab(telnet)")
-    settingsBtn.setAttribute("onclick", "switchTab(main)")
-
-    showSettingsTab()
-
-    hideTelnetTab()
-    hideMainTabBottom()
+    tabBtn.classList.add("selected");
 }

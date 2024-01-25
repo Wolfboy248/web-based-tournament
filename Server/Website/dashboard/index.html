@@ -6,6 +6,7 @@
     <title>Maps - Controller</title>
 
     <link rel="stylesheet" href="styles.css" />
+    <script defer src="tabs.js"></script>
   </head>
   <body onload="window.resizeTo(615,465)">
     <div class="bg"></div>
@@ -13,7 +14,15 @@
     <div class="main-div">
       <h1>Controller</h1>
 
-      <div class="main-page-div">
+      <div class="switch-pages-div">
+        <a onmousedown="switchTab(main, mainBtn)" id="mainBtn" class="selected" href="#">Main</a>
+        <div style="left: 59px;" class="seperator"></div>
+        <a onmousedown="switchTab(telnet, telnetBtn)" id="telnetBtn" href="#">Telnet</a>
+        <div style="left: 133px;" class="seperator"></div>
+        <a onmousedown="switchTab(settings, settingsBtn)" id="settingsBtn" href="#">Settings</a>
+      </div>
+
+      <div id="mainControls" class="main-page-div nav main">
         <div class="switch-modes-div">
           <button id="info">Info</button>
           <button id="match">Match</button>
@@ -33,17 +42,17 @@
         </div>
 
         <button id="randomizer">Pick random map</button>
+
+        <button id="timer">start timer</button>
       </div>
 
-      <button id="timer">start timer</button>
-
-      <div class="telnet-controls-div">
+      <div id="telnetControls" class="telnet-controls-div hidden">
         <button id="telnet-on">ON</button>
         <button id="telnet-off">OFF</button>
         <button id="telnet-restart">RESTART</button>
       </div>
 
-      <div id="settingsTab" class="settings-tab-div">
+      <div id="settingsControls" class="settings-tab-div hidden">
         <input placeholder="player 1" type="text" id="player1NAME" />
         <input placeholder="player 2" type="text" id="player2NAME" /><br />
         <button id="change-player" style="width: 100%">CHANGE PLAYER</button>
@@ -53,11 +62,9 @@
         >
           RESET
         </button>
-        <input placeholder="300" , type="number" id="timerInput" min="0" />
+        <input placeholder="600" , type="number" id="timerInput" min="0" />
         <button id="changeTimer">CHANGE TIMER</button>
       </div>
-
-      <div class="bottom-sperator"></div>
 
       <button
         style="
@@ -71,36 +78,6 @@
       >
         <img src="refresh_icon.svg" alt="" />
       </button>
-      <button
-        onclick="switchTab(settings)"
-        style="
-          top: 0;
-          position: absolute;
-          height: 40px;
-          padding: 0px;
-          margin: 10px;
-          left: 50px;
-        "
-        id="settings"
-      >
-        <img src="settings_icon.svg" alt="" />
-      </button>
-
-      <button
-        id="telnetBtn"
-        onclick="switchTab(telnet)"
-        style="
-          top: 0;
-          position: absolute;
-          height: 40px;
-          padding: 0px;
-          margin: 10px;
-          right: 0;
-          text-transform: none;
-          padding-left: 5px;
-          padding-right: 5px;
-        "
-      ></button>
     </div>
 
     <div class="telnet-status-div">
@@ -116,8 +93,6 @@
       >
       <div id="telnet-status"></div>
     </div>
-    <script src="tabs.js"></script>
-    <script src="anims_dashboard.js"></script>
   </body>
 
   <script src="index.js"></script>
