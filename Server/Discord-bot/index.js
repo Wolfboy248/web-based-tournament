@@ -42,7 +42,6 @@ let p1vetos = [];
 let p2vetos = [];
 let veto = 5;
 let canVeto = false;
-let vetosId = "1169583219092488242";
 
 client.on("ready", (c) => {
   console.log(`✅ ${c.user.tag} is ready`);
@@ -121,7 +120,9 @@ client.on("interactionCreate", async (interaction) => {
       msgsId.push(msg.id);
       await msg.react("❌");
       if (msgs.length == maps.length) {
-        const vetorole = await p1.member.guild.roles.fetch(vetosId);
+        const vetorole = await p1.member.guild.roles.fetch(
+          process.env.VETO_ROLE_ID
+        );
         p1.member.roles.add(vetorole);
         p2.member.roles.add(vetorole);
         canVeto = true;
@@ -146,7 +147,9 @@ client.on("interactionCreate", async (interaction) => {
       ephemeral: true,
     });
     msgs[0].channel.bulkDelete(msgs);
-    const vetorole = await p1.member.guild.roles.fetch(vetosId);
+    const vetorole = await p1.member.guild.roles.fetch(
+      process.env.VETO_ROLE_ID
+    );
     p1.member.roles.remove(vetorole);
     p2.member.roles.remove(vetorole);
   }
