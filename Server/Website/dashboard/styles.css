@@ -154,6 +154,14 @@ h1 {
   width: 100%;
 }
 
+.controls {
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  width: 280px;
+}
+
 #resetData:hover {
   background-color: rgba(255, 41, 41, 0.664);
 }
@@ -182,7 +190,7 @@ h1 {
 }
 
 .selected {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(131, 131, 131, 0.5);
 }
 
 .selected .button-cool::after {
