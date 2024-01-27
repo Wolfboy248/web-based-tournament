@@ -3,7 +3,6 @@ const morgan = require("morgan");
 const fs = require("fs");
 const ws = require("ws");
 const telnet = require("./Telnet-client/telnet.js");
-const discord = require("./Discord-bot/index.js");
 require("dotenv").config({ path: "Data/.env" });
 
 const app = express();
@@ -152,5 +151,3 @@ telnet.events.on("update", () => {
   console.log("update");
   sendMsg("change");
 });
-
-discord.login();
