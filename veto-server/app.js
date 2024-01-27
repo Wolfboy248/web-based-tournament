@@ -2,16 +2,35 @@ const express = require("express");
 const fs = require("fs");
 const morgan = require("morgan");
 const ws = require("ws");
-const authRoutes = require("./routes/auth-routes.js");
+require("dotenv").config();
+const passport = require("passport");
+const session = require("express-session");
+const e = require("express");
 
 const app = express();
 
-//set up routes
-app.use("/auth", authRoutes);
+app.use(morgan("dev"));
+app.use(
+  session({
+    saveUninitialized: true,
+    secret: process.env.COOKIE_KEY,
+    resave: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  })
+);
 
-//home route
-app.get("/", (req, res) => {
-  res.sendFile("./Website/home.html", { root: __dirname });
+app.use(passport.initialize());
+app.use(passport.session());
+
+const test = fs.readdirSync("./routes");
+test.forEach((file) => {
+  const route = require(`./routes/${file}`);
+  if (route.path && route.router) {
+    console.log("Added router on: " + route.path);
+    app.use(route.path, route.router);
+  }
 });
 
 app.listen(3000, () => {
