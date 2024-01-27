@@ -1,5 +1,15 @@
 {
   "github.gitAuthentication": true,
   "github.branchProtection": true,
-  "git.enabled": true
+  "git.enabled": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true
+  },
+  "explorerExclude.backup": {}
 }
