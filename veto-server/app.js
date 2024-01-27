@@ -20,9 +20,11 @@ app.use(
     },
   })
 );
-
+//steam oauth and cookies
 app.use(passport.initialize());
 app.use(passport.session());
+
+//routes
 
 const test = fs.readdirSync("./routes");
 test.forEach((file) => {
@@ -31,6 +33,21 @@ test.forEach((file) => {
     console.log("Added router on: " + route.path);
     app.use(route.path, route.router);
   }
+});
+
+//statics
+app.use(express.static("Website"));
+
+app.get("/getuser", (req, res) => {
+  if (req.user) {
+    res.send(req.user.steamUserData);
+  } else {
+    res.send({ error: "Not logged in" });
+  }
+});
+
+app.get("/", (req, res) => {
+  res.sendFile("./Website/home.html", { root: __dirname });
 });
 
 app.listen(3000, () => {
