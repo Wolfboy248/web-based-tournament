@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 //auth login
 router.get("/login", (req, res) => {
-  res.sendFile("./Website/login.html", { root: __dirname });
+  res.sendFile("./login.html", { root: __dirname });
 });
 
 //auth logout

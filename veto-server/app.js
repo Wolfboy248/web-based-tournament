@@ -11,7 +11,7 @@ app.use("/auth", authRoutes);
 
 //home route
 app.get("/", (req, res) => {
-  res.sendFile("./Website/index.html", { root: __dirname });
+  res.sendFile("./Website/home.html", { root: __dirname });
 });
 
 app.listen(3000, () => {
