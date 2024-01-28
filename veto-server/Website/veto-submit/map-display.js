@@ -12,14 +12,31 @@ async function main() {
   mapKeys.forEach((key) => {
     if (key == "sp") return;
     const map = maplist[key];
+
+    //mapdiv
     const mapDiv = document.createElement("div");
     mapDiv.classList.add("map");
     mapDiv.id = key;
-    mapDiv.innerHTML = `
-        <img src="./maps/ch${map[1]}/${key}.jpg" alt="${map[0]}" />
-        <p>${map[0]}</p>
-        `;
-    mapDiv.addEventListener("click", async () => {
+
+    //mapdiv img
+    const mapDivImg = document.createElement("img");
+    mapDivImg.src = `./maps/ch${map[1]}/${key}.jpg`;
+    mapDivImg.alt = map[0];
+
+    //mapdiv img container
+    const mapDivImgContainer = document.createElement("div");
+
+    mapDivImgContainer.appendChild(mapDivImg);
+
+    //mapdiv p
+    const mapDivP = document.createElement("p");
+    mapDivP.innerHTML = map[0];
+
+    //append all to mapdiv
+    mapDiv.appendChild(mapDivImgContainer);
+    mapDiv.appendChild(mapDivP);
+    mapDivImg.style.position = "relative";
+    mapDivImgContainer.addEventListener("click", async () => {
       if (!canVeto) return;
       var vetostate = await (await fetch("/vetostate.json")).json();
       var settings = await (await fetch("/settings.json")).json();
@@ -110,7 +127,28 @@ async function main() {
     });
     mapDisplay.appendChild(mapDiv);
   });
+  const maps = document.getElementsByClassName("map");
+  crossout();
   canVeto = true;
+}
+
+async function crossout() {
+  const vetostate = await (await fetch("/vetostate.json")).json();
+  const settings = await (await fetch("/settings.json")).json();
+  const user = await (await fetch("/getuser")).json();
+  const maps = document.getElementsByClassName("map");
+  const usernumber = user.personaname == settings.player1 ? 1 : 2;
+  console.log(usernumber);
+  for (let i = 0; i < maps.length; i++) {
+    const element = maps[i];
+    const div = element.children[0];
+    if (vetostate[element.id] != 0) {
+      div.classList.add("crossed");
+    }
+    if (vetostate[element.id] != usernumber) {
+      div.classList.add("other");
+    }
+  }
 }
 
 main();

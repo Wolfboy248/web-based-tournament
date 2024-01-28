@@ -86,7 +86,7 @@ app.post("/veto", (req, res) => {
       res.send({ result: "SUCCESS" });
       return;
     }
-    vetostate[veto] = 1;
+    vetostate[veto] = 2;
     vetos_out.player2.push(veto);
     fs.writeFileSync("./settings/vetostate.json", JSON.stringify(vetostate));
     fs.writeFileSync("./settings/vetos-out.json", JSON.stringify(vetos_out));
