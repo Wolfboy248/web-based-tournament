@@ -3,6 +3,7 @@ const steamLogin = document.getElementById("steam-login");
 const steamPFP = document.getElementById("steam-pfp");
 const steamName = document.getElementById("steam-profile-name");
 const adminPanel = document.getElementById("admin-panel");
+const steamLogout = document.getElementById("steam-logout");
 
 async function main() {
   const user = await (await fetch("/getuser")).json();
@@ -11,11 +12,13 @@ async function main() {
     steamPFP.style.display = "none";
     adminPanel.style.display = "none";
     steamName.style.display = "none";
+    steamLogout.style.display = "none";
   } else {
     steamLogin.style.display = "none";
     steamPFP.style.display = "block";
     adminPanel.style.display = "none";
     steamName.style.display = "block";
+    steamLogout.style.display = "block";
 
     //data
     steamName.innerHTML = user.personaname;

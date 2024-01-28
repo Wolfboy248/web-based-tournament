@@ -41,8 +41,4 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-router.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Website/login.html"));
-});
-
 module.exports = { router, path: "/auth" };
