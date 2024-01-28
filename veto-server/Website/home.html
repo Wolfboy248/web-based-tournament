@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
   </head>
-  <body>
-    <p id="username">Not logged in</p>
-    <img src="" id="steam-image" />
+  <body style="display: none">
+    <div id="steam-profile-div">
+      <a href="/auth/steam" id="steam-login">Log in to steam</a>
+      <img src="" alt="" id="steam-pfp" />
+      <p id="steam-profile-name"></p>
+      <a style="display: none" href="/admin" id="admin-panel">Admin Panel</a>
+    </div>
   </body>
 </html>
-<script src="test.js"></script>
+<script src="steamDisplay.js"></script>
