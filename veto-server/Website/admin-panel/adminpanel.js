@@ -36,8 +36,8 @@ fetch("settings.json")
   });
 
 //remove admin
-function removeAdmin(admin) {
-  fetch("/admin/adminchange", {
+async function removeAdmin(admin) {
+  await fetch("/admin/adminchange", {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
