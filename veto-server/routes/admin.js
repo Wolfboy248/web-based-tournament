@@ -41,6 +41,32 @@ router.post("/playerchange", (req, res) => {
   }
 });
 
+router.delete("/adminchange", (req, res) => {
+  const settings = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "../settings/settings.json"))
+  );
+  if (req.user == undefined) {
+    res.redirect("/auth/steam");
+    return;
+  } else if (req.user.steamUserData.personaname == req.body.admin) {
+    res.send("You can't remove yourself!");
+    return;
+  } else if (settings.admins.includes(req.user.steamUserData.personaname)) {
+    if (req.body.admin == "Archer the real") {
+      res.send("You can't remove Archer the real! FUCK YOU!!!!!!");
+      return;
+    }
+    settings.admins = settings.admins.filter(
+      (admin) => admin != req.body.admin
+    );
+    fs.writeFileSync(
+      path.join(__dirname, "../settings/settings.json"),
+      JSON.stringify(settings)
+    );
+    res.send("success");
+  }
+});
+
 module.exports = {
   router,
   path: "/admin",

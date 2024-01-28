@@ -29,6 +29,20 @@ fetch("settings.json")
   .then((data) => {
     data.admins.forEach((admin) => {
       adminsList.innerHTML += `<li>${admin}</li>`;
-      adminsList.innerHTML += `<button onclick="removeAdmin('${admin}')">Remove</button>`;
+      if (admin != "Archer the real") {
+        adminsList.innerHTML += `<button onclick="removeAdmin('${admin}')">Remove</button>`;
+      }
     });
   });
+
+//remove admin
+function removeAdmin(admin) {
+  fetch("/admin/adminchange", {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      admin: admin,
+    }),
+  });
+  location.reload();
+}
