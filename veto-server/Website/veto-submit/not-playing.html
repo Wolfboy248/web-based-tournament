@@ -4,14 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Not Playing</title>
+
+    <link rel="stylesheet" href="/styles.header.css">
+    <link rel="stylesheet" href="/global.styles.css">
+    <link rel="stylesheet" href="/veto-submit/styles.css">
   </head>
   <body>
-    <h1>Hello, you dont have a match atm</h1>
-    <h2>If you believe this to be an error:</h2>
-    <h3>
-      Check if you are on your correct steam account, and then contact the
-      administrators
-    </h3>
-    <h4>(probably Archer or Wolfboy)</h4>
+    <div class="bg"></div>
+    <div class="bgblur"></div>
+
+    <div class="header">
+      <div id="steam-profile-div">
+        <a href="/auth/steam" id="steam-login" class="steam-login">Log in to steam</a>
+        <img src="" alt="" id="steam-pfp" class="steam-pfp"/>
+        <p id="steam-profile-name" class="steam-name"></p>
+      </div>
+    </div>
+    <div class="links">
+      <a href="/auth/logout" id="steam-logout">Logout</a>
+      <div class="line"></div>
+      <a style="display: block" href="/">Home</a>
+      <div class="line" id="seperator"></div>
+      <a style="display: block" href="/admin" id="admin-panel">Admin Panel</a>
+    </div>
+
+    <div class="main-div" style="margin-top: 75px;">
+      <h1>Hello, you dont have a match atm</h1>
+      <h2>If you believe this to be an error:</h2>
+      <h3>
+        Check if you are on your correct steam account, and then contact the
+        administrators
+      </h3>
+      <h4>(probably Archer or Wolfboy)</h4>
+    </div>
   </body>
 </html>
+<script src="../steamDisplay.js"></script>

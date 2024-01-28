@@ -1,0 +1,7 @@
+.main-div {
+    margin-top: 80px;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    margin-left: 10px;
+}

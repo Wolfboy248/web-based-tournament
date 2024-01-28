@@ -4,15 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin panel</title>
+
+    <link rel="stylesheet" href="/styles.header.css">
+    <link rel="stylesheet" href="/global.styles.css">
+    <link rel="stylesheet" href="/admin-panel/styles.css">
   </head>
   <body>
-    <h1>Admin Panel</h1>
-    <h2>Players</h2>
-    <input type="text" , placeholder="Player 1" id="player1Name" />
-    <input type="text" , placeholder="Player 2" id="player2Name" />
-    <button id="playerchangeSubmit">Change</button>
-    <h2>Admins</h2>
-    <div id="adminsList"></div>
+    <div class="bg"></div>
+    <div class="bgblur"></div>
+
+    <div class="header">
+      <div id="steam-profile-div">
+        <a href="/auth/steam" id="steam-login" class="steam-login">Log in to steam</a>
+        <img src="" alt="" id="steam-pfp" class="steam-pfp"/>
+        <p id="steam-profile-name" class="steam-name"></p>
+      </div>
+    </div>
+    <div class="links">
+      <a href="/auth/logout" id="steam-logout">Logout</a>
+      <div class="line" id="seperator"></div>
+      <a style="display: none" href="/" id="admin-panel">Home</a>
+    </div>
+
+    <div class="main-div">
+      <h1>Admin Panel</h1>
+      <h2>Players</h2>
+      <input type="text" , placeholder="Player 1" id="player1Name" />
+      <input type="text" , placeholder="Player 2" id="player2Name" />
+      <button id="playerchangeSubmit">Change</button>
+      <h2>Admins</h2>
+      <div id="adminsList"></div>
+    </div>
   </body>
 </html>
 <script src="/admin-panel/adminpanel.js"></script>
+<script src="../steamDisplay.js"></script>
