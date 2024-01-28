@@ -148,7 +148,23 @@ async function crossout() {
     if (vetostate[element.id] != usernumber) {
       div.classList.add("other");
     }
+    if (vetostate[element.id] == 0) {
+      div.classList.remove("crossed");
+      div.classList.remove("other");
+    }
   }
 }
 
 main();
+
+//websocket
+const thingy = "ws://" + window.location.host + "/";
+console.log(thingy);
+const socket = new WebSocket(thingy);
+
+socket.addEventListener("message", async (event) => {
+  if (event.data == "change") {
+    console.log("change");
+    crossout();
+  }
+});

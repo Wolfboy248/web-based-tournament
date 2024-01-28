@@ -6,6 +6,7 @@ require("dotenv").config();
 const passport = require("passport");
 const session = require("express-session");
 const e = require("express");
+const http = require("http");
 
 const app = express();
 
@@ -66,10 +67,12 @@ app.post("/veto", (req, res) => {
   } else if (req.user.steamUserData.personaname == settings.player1) {
     if (vetostate[veto] != 0) {
       res.send({ result: "SUCCESS" });
+      sendMsg("change");
       return;
     }
     if (vetos_out.player1.length >= settings.vetoLimit) {
       res.send({ result: "SUCCESS" });
+      sendMsg("change");
       return;
     }
     vetostate[veto] = 1;
@@ -77,13 +80,16 @@ app.post("/veto", (req, res) => {
     fs.writeFileSync("./settings/vetostate.json", JSON.stringify(vetostate));
     fs.writeFileSync("./settings/vetos-out.json", JSON.stringify(vetos_out));
     res.send({ result: "SUCCESS" });
+    sendMsg("change");
   } else if (req.user.steamUserData.personaname == settings.player2) {
     if (vetostate[veto] != 0) {
       res.send({ result: "SUCCESS" });
+      sendMsg("change");
       return;
     }
     if (vetos_out.player2.length >= settings.vetoLimit) {
       res.send({ result: "SUCCESS" });
+      sendMsg("change");
       return;
     }
     vetostate[veto] = 2;
@@ -91,6 +97,7 @@ app.post("/veto", (req, res) => {
     fs.writeFileSync("./settings/vetostate.json", JSON.stringify(vetostate));
     fs.writeFileSync("./settings/vetos-out.json", JSON.stringify(vetos_out));
     res.send({ result: "SUCCESS" });
+    sendMsg("change");
   } else {
     res.send({ result: "NOTPLAYING" });
   }
@@ -107,6 +114,7 @@ app.delete("/veto", (req, res) => {
   } else if (req.user.steamUserData.personaname == settings.player1) {
     if (vetostate[veto] != 1) {
       res.send({ result: "SUCCESS" });
+      sendMsg("change");
       return;
     }
     vetostate[veto] = 0;
@@ -114,9 +122,11 @@ app.delete("/veto", (req, res) => {
     fs.writeFileSync("./settings/vetostate.json", JSON.stringify(vetostate));
     fs.writeFileSync("./settings/vetos-out.json", JSON.stringify(vetos_out));
     res.send({ result: "SUCCESS" });
+    sendMsg("change");
   } else if (req.user.steamUserData.personaname == settings.player2) {
     if (vetostate[veto] != 2) {
       res.send({ result: "SUCCESS" });
+      sendMsg("change");
       return;
     }
     vetostate[veto] = 0;
@@ -124,6 +134,7 @@ app.delete("/veto", (req, res) => {
     fs.writeFileSync("./settings/vetostate.json", JSON.stringify(vetostate));
     fs.writeFileSync("./settings/vetos-out.json", JSON.stringify(vetos_out));
     res.send({ result: "SUCCESS" });
+    sendMsg("change");
   } else {
     res.send({ result: "NOTPLAYING" });
   }
@@ -147,6 +158,24 @@ app.get("/player", (req, res) => {
   }
 });
 
-app.listen(3000, () => {
+function sendMsg(msg) {
+  console.log("test");
+  wss.clients.forEach((client) => {
+    if (client.readyState === ws.OPEN) {
+      client.send(msg);
+    }
+  });
+}
+
+//websocket and server startup
+
+const server = http.createServer(app);
+
+const wss = new ws.Server({ server });
+wss.on("connection", (ws) => {
+  console.log("New connection");
+});
+
+server.listen(3000, () => {
   console.log("Server listening on port 3000");
 });

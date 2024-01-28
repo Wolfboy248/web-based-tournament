@@ -20,11 +20,18 @@
   border-color: black;
   border-width: 3px;
   position: relative;
+  transition: 0.5s;
 }
 
 .map div {
   position: relative;
   cursor: pointer;
+}
+
+.map div::before,
+.map div::after {
+  transition: 0.5s;
+  opacity: 0;
 }
 
 .crossed img {
@@ -41,6 +48,7 @@
   height: 100%;
   background-color: red;
   z-index: 1;
+  opacity: 1;
 }
 
 .crossed::before {
