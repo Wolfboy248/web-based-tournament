@@ -141,14 +141,20 @@ body, html {
 }
 
 /* links */
-.links a {
-    color: white;
-    text-decoration: none;
-    width:auto;
+.links {
     float: right;
     position: relative;
     top: 40px;
-    left: 210px;
+    justify-content: flex-end;
+    right: 80px;
+}
+
+.links a {
+    color: white;
+    text-decoration: none;
+    width: auto;
+    text-align: right;
+    float: right;
 }
 
 .links a:hover {
@@ -161,8 +167,8 @@ body, html {
     float: right;
     background-color: white;
     margin-right: 10px;
-    top: 40px;
-    left: 215px;
+    top: 0px;
+    left: 5px;
     position: relative;
 }
 
