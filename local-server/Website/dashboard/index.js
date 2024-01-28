@@ -30,6 +30,15 @@ async function send(msg) {
   });
 }
 
+async function setPlayerNames() {
+  const data = await (await fetch("/data.json")).json();
+  player1NAME.placeholder = data.match.player1;
+  player2NAME.placeholder = data.match.player2;
+  player1NAME.value = "";
+  player2NAME.value = "";
+}
+setPlayerNames();
+
 changemap.addEventListener("click", async () => {
   console.log(map.value);
   fetch("/data", {
@@ -147,8 +156,8 @@ telnetRESTART.addEventListener("click", async () => {
   }, 500);
 });
 
-changePlayer.addEventListener("click", () => {
-  fetch("/data", {
+changePlayer.addEventListener("click", async () => {
+  await fetch("/data", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -160,6 +169,7 @@ changePlayer.addEventListener("click", () => {
       },
     }),
   });
+  setPlayerNames();
 });
 
 changeTimer.addEventListener("click", () => {

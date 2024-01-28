@@ -7,15 +7,15 @@ const telnetBtn = document.querySelector("#telnetBtn");
 const settingsBtn = document.querySelector("#settingsBtn");
 
 function switchTab(tab, tabBtn) {
-    main.classList.add("hidden");
-    telnet.classList.add("hidden");
-    settings.classList.add("hidden");
+  main.classList.add("hidden");
+  telnet.classList.add("hidden");
+  settings.classList.add("hidden");
 
-    tab.classList.remove("hidden");
+  tab.classList.remove("hidden");
 
-    mainBtn.classList.remove("selected");
-    telnetBtn.classList.remove("selected");
-    settingsBtn.classList.remove("selected");
+  mainBtn.classList.remove("selected");
+  telnetBtn.classList.remove("selected");
+  settingsBtn.classList.remove("selected");
 
-    tabBtn.classList.add("selected");
+  tabBtn.classList.add("selected");
 }

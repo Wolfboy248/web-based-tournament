@@ -270,7 +270,7 @@ function convertToTime(time) {
   const minutes = Math.floor(time / 60);
   const seconds = Math.floor(time % 60);
   const milliseconds = (time % 1).toFixed(2);
-
+  console.log(time, minutes, seconds, milliseconds);
   if (minutes == 0) {
     console.log("test");
     return `${seconds.toString().padStart(1, "0")}.${milliseconds
@@ -278,8 +278,7 @@ function convertToTime(time) {
       .slice(2)
       .padStart(2, "0")}`;
   }
-
-  return `${minutes}:${seconds.toString().padStart(1, "0")}.${milliseconds
+  return `${minutes}:${seconds.toString().padStart(2, "0")}.${milliseconds
     .toString()
     .slice(2)
     .padStart(2, "0")}`;
