@@ -102,20 +102,21 @@ async function vetos() {
   let data = await fetchFile("./data.json");
 
   const vetoDiv = document.querySelector("#vetoDiv");
-  if (data.vetos.p1vetos.length > 0) {
+  let vetos = await fetchFile(vetos + "/vetos.json");
+  if (vetos.player1.length > 0) {
     vetoDiv.innerHTML += `<span class="veto-player">${data.match.player1} vetoed:</span>`;
   } else {
     vetoDiv.innerHTML += `<span class="veto-player">${data.match.player2} didn't submit any vetos</span>`;
   }
-  data.vetos.p1vetos.forEach((map) => {
+  vetos.player1.forEach((map) => {
     vetoDiv.innerHTML += `<span class="veto-map">${maplist[map][0]}</span>`;
   });
-  if (data.vetos.p2vetos.length > 0) {
+  if (vetos.player2.length > 0) {
     vetoDiv.innerHTML += `<span class="veto-player">${data.match.player2} vetoed:</span>`;
   } else {
     vetoDiv.innerHTML += `<span class="veto-player">${data.match.player2} didn't submit any vetos</span>`;
   }
-  data.vetos.p2vetos.forEach((map) => {
+  vetos.player2.forEach((map) => {
     vetoDiv.innerHTML += `<span class="veto-map">${maplist[map][0]}</span>`;
   });
 }

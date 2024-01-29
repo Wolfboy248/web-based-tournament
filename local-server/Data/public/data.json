@@ -1,1 +1,17 @@
-{"match":{"player1":"Archer the real","player2":"Wolfboy248","round1P1PB":9999,"round1P2PB":9999,"round2P1PB":9999,"round2P2PB":9999,"round3P1PB":9999,"round3P2PB":9999,"name":"FFO Tournament 2024","current_map":"sp_a2_bts3","random_map":"sp_a2_bts3"},"vetos":{"p1vetos":["sp_a4_jump_polarity","sp_a4_speed_tb_catch","sp_a4_laser_catapult","sp_a4_laser_platform","sp_a4_stop_the_box"],"p2vetos":["sp_a4_finale4","sp_a4_jump_polarity","sp_a4_finale3","sp_a4_tb_catch"]},"settings":{"round":1,"mode":1,"timer-duration":600,"active":true}}
+{
+  "match": {
+    "player1": "Archer the real",
+    "player2": "Wolfboy248",
+    "round1P1PB": 9999,
+    "round1P2PB": 9999,
+    "round2P1PB": 9999,
+    "round2P2PB": 9999,
+    "round3P1PB": 9999,
+    "round3P2PB": 9999,
+    "name": "FFO Tournament 2024",
+    "current_map": "sp_a2_bts3",
+    "random_map": "sp_a2_bts3"
+  },
+  "vetos": "http://78.139.26.91:3000",
+  "settings": { "round": 1, "mode": 1, "timer-duration": 600, "active": true }
+}

@@ -109,17 +109,17 @@ function sendMsg(msg) {
   });
 }
 
-function randomizer() {
+async function randomizer() {
   let info = JSON.parse(fs.readFileSync("./Data/public/data.json"));
   let maplist = JSON.parse(fs.readFileSync("./Data/public/maplist.json"));
-
+  let vetos = await (await fetch(info.vetos + "/vetos.json")).json();
   let mapKeys = Object.keys(maplist);
   let map;
   do {
     map = mapKeys[Math.floor(Math.random() * mapKeys.length)];
   } while (
-    info.vetos.p1vetos.includes(map) ||
-    info.vetos.p2vetos.includes(map) ||
+    vetos.player1.includes(map) ||
+    vetos.player2.includes(map) ||
     map == "sp" ||
     map == info.match.current_map
   );
