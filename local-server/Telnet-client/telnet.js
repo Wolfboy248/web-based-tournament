@@ -83,7 +83,7 @@ function connectToGame() {
       ) {
         console.log(`New pb for ${name}: ${time}`);
         p2pb = fTime;
-        uppdate = true;
+        update = true;
       }
       if (update) updateFile(p1pb, p2pb);
     } else if (data.includes("is now on")) {
