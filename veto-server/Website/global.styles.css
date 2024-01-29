@@ -1,6 +1,6 @@
 :root {
     --background-blur: 12px;
-    --background-opacity: 0.8; /* this changes how dark the the bg image is */
+    --background-opacity: 1; /* dont change this */
     --color-primary: rgb(51, 255, 51);
     --color-secondary: rgb(255, 0, 212);
 
@@ -15,10 +15,12 @@
     /* scrollbar */
     scrollbar-color: var(--color-primary) var(--bg);
     scrollbar-width: thin;
+
+    /* slideshow transition length */
+    --slideshow-animation-length: 1s;
 }
 
 .bg {
-    background-image: url(/maps/ch3/sp_a2_bridge_the_gap.jpg);
     width: 100%;
     height: 100%;
     position: fixed;
@@ -28,6 +30,19 @@
     background-size: cover;
     z-index: -2;
     opacity: var(--background-opacity);
+    display: none;
+}
+
+.pleasework {
+    animation-name: fadeoutBG;
+    animation-duration: var(--slideshow-animation-length);
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.fadeBG {
+    animation-name: fadeBG;
+    animation-duration: var(--slideshow-animation-length);
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .bgblur {
@@ -56,4 +71,24 @@ body, html {
 @font-face {
     font-family: ddin-bold;
     src: url(fonts/D-DIN-Bold.otf);
+}
+
+@keyframes fadeBG {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: var(--background-opacity);
+    }
+}
+
+@keyframes fadeoutBG {
+    0% {
+        opacity: var(--background-opacity);
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
