@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin panel</title>
 
-    <link rel="stylesheet" href="/styles.header.css">
-    <link rel="stylesheet" href="/global.styles.css">
-    <link rel="stylesheet" href="/admin-panel/styles.css">
+    <link rel="stylesheet" href="/styles.header.css" />
+    <link rel="stylesheet" href="/global.styles.css" />
+    <link rel="stylesheet" href="/admin-panel/styles.css" />
   </head>
   <body>
     <div class="bg"></div>
@@ -15,8 +15,10 @@
 
     <div class="header">
       <div id="steam-profile-div">
-        <a href="/auth/steam" id="steam-login" class="steam-login">Log in to steam</a>
-        <img src="" alt="" id="steam-pfp" class="steam-pfp"/>
+        <a href="/auth/steam" id="steam-login" class="steam-login"
+          >Log in to steam</a
+        >
+        <img src="" alt="" id="steam-pfp" class="steam-pfp" />
         <p id="steam-profile-name" class="steam-name"></p>
       </div>
     </div>
@@ -34,6 +36,8 @@
       <button id="playerchangeSubmit">Change</button>
       <h2>Admins</h2>
       <div id="adminsList"></div>
+      <input type="text" , placeholder="Steam name" id="adminSteamName" />
+      <button id="adminAdd">Add</button>
     </div>
   </body>
 </html>

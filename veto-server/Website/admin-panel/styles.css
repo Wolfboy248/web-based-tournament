@@ -1,7 +1,16 @@
 .main-div {
-    margin-top: 80px;
-    width: 100%;
-    position: absolute;
-    z-index: -1;
-    margin-left: 10px;
+  margin-top: 80px;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  margin-left: 30px;
+}
+
+.main-div li {
+  margin-left: 25px;
+  display: list-item;
+}
+
+#adminsList button {
+  display: block;
 }

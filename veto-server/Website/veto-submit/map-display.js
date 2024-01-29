@@ -158,7 +158,7 @@ async function crossout() {
 main();
 
 //websocket
-const thingy = "wss://" + window.location.host + "/";
+const thingy = "ws://" + window.location.host + "/";
 console.log(thingy);
 const socket = new WebSocket(thingy);
 
