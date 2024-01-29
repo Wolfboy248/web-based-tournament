@@ -67,6 +67,25 @@ router.delete("/adminchange", (req, res) => {
   }
 });
 
+router.post("/adminchange", (req, res) => {
+  const settings = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "../settings/settings.json"))
+  );
+  if (req.user == undefined) {
+    res.redirect("/auth/steam");
+    return;
+  } else if (settings.admins.includes(req.body.admin)) {
+    res.send("Admin already added!!!!!");
+  } else if (settings.admins.includes(req.user.steamUserData.personaname)) {
+    settings.admins.push(req.body.admin);
+    fs.writeFileSync(
+      path.join(__dirname, "../settings/settings.json"),
+      JSON.stringify(settings)
+    );
+    res.send("success");
+  }
+});
+
 module.exports = {
   router,
   path: "/admin",
