@@ -58,44 +58,39 @@ app.get("/", (req, res) => {
 
 app.post("/veto", (req, res) => {
   const settings = JSON.parse(fs.readFileSync("./settings/settings.json"));
-  const vetostate = JSON.parse(fs.readFileSync("./settings/vetostate.json"));
-  const vetos_out = JSON.parse(fs.readFileSync("./settings/vetos-out.json"));
+  const vetos = JSON.parse(fs.readFileSync("./settings/vetos.json"));
   const veto = req.body.map;
 
   if (req.user == undefined) {
     res.send({ result: "NOLOGIN" });
   } else if (req.user.steamUserData.personaname == settings.player1) {
-    if (vetostate[veto] != 0) {
+    if (vetos.player1.includes(veto) || vetos.player2.includes(veto)) {
       res.send({ result: "SUCCESS" });
       sendMsg("change");
       return;
     }
-    if (vetos_out.player1.length >= settings.vetoLimit) {
+    if (vetos.player1.length >= settings.vetoLimit) {
       res.send({ result: "SUCCESS" });
       sendMsg("change");
       return;
     }
-    vetostate[veto] = 1;
-    vetos_out.player1.push(veto);
-    fs.writeFileSync("./settings/vetostate.json", JSON.stringify(vetostate));
-    fs.writeFileSync("./settings/vetos-out.json", JSON.stringify(vetos_out));
+    vetos.player1.push(veto);
+    fs.writeFileSync("./settings/vetos.json", JSON.stringify(vetos));
     res.send({ result: "SUCCESS" });
     sendMsg("change");
   } else if (req.user.steamUserData.personaname == settings.player2) {
-    if (vetostate[veto] != 0) {
+    if (vetos.player1.includes(veto) || vetos.player2.includes(veto)) {
       res.send({ result: "SUCCESS" });
       sendMsg("change");
       return;
     }
-    if (vetos_out.player2.length >= settings.vetoLimit) {
+    if (vetos.player2.length >= settings.vetoLimit) {
       res.send({ result: "SUCCESS" });
       sendMsg("change");
       return;
     }
-    vetostate[veto] = 2;
-    vetos_out.player2.push(veto);
-    fs.writeFileSync("./settings/vetostate.json", JSON.stringify(vetostate));
-    fs.writeFileSync("./settings/vetos-out.json", JSON.stringify(vetos_out));
+    vetos.player2.push(veto);
+    fs.writeFileSync("./settings/vetos.json", JSON.stringify(vetos));
     res.send({ result: "SUCCESS" });
     sendMsg("change");
   } else {
@@ -105,34 +100,29 @@ app.post("/veto", (req, res) => {
 
 app.delete("/veto", (req, res) => {
   const settings = JSON.parse(fs.readFileSync("./settings/settings.json"));
-  const vetostate = JSON.parse(fs.readFileSync("./settings/vetostate.json"));
-  const vetos_out = JSON.parse(fs.readFileSync("./settings/vetos-out.json"));
+  const vetos = JSON.parse(fs.readFileSync("./settings/vetos.json"));
   const veto = req.body.map;
 
   if (req.user == undefined) {
     res.send({ result: "NOLOGIN" });
   } else if (req.user.steamUserData.personaname == settings.player1) {
-    if (vetostate[veto] != 1) {
+    if (!vetos.player1.includes(veto)) {
       res.send({ result: "SUCCESS" });
       sendMsg("change");
       return;
     }
-    vetostate[veto] = 0;
-    vetos_out.player1.splice(vetos_out.player1.indexOf(veto), 1);
-    fs.writeFileSync("./settings/vetostate.json", JSON.stringify(vetostate));
-    fs.writeFileSync("./settings/vetos-out.json", JSON.stringify(vetos_out));
+    vetos.player1.splice(vetos.player1.indexOf(veto), 1);
+    fs.writeFileSync("./settings/vetos.json", JSON.stringify(vetos));
     res.send({ result: "SUCCESS" });
     sendMsg("change");
   } else if (req.user.steamUserData.personaname == settings.player2) {
-    if (vetostate[veto] != 2) {
+    if (!vetos.player2.includes(veto)) {
       res.send({ result: "SUCCESS" });
       sendMsg("change");
       return;
     }
-    vetostate[veto] = 0;
-    vetos_out.player2.splice(vetos_out.player2.indexOf(veto), 1);
-    fs.writeFileSync("./settings/vetostate.json", JSON.stringify(vetostate));
-    fs.writeFileSync("./settings/vetos-out.json", JSON.stringify(vetos_out));
+    vetos.player2.splice(vetos.player2.indexOf(veto), 1);
+    fs.writeFileSync("./settings/vetos.json", JSON.stringify(vetos));
     res.send({ result: "SUCCESS" });
     sendMsg("change");
   } else {
