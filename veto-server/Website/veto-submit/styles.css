@@ -3,8 +3,7 @@
   width: 100%;
   position: absolute;
   z-index: -1;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 0px;
 }
 
 .map {
@@ -40,6 +39,7 @@
   z-index: 1;
   opacity: 0;
   transition: opacity 0.25s ease-in-out;
+  border-radius: 100px;
 }
 
 .map div::before {
