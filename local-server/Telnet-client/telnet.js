@@ -100,8 +100,14 @@ function connectToGame() {
 
 function updateFile(p1pb, p2pb) {
   let data = JSON.parse(fs.readFileSync("Data/public/data.json"));
-  data.match["round" + data.settings.round + "P1PB"] = parseFloat(p1pb);
-  data.match["round" + data.settings.round + "P2PB"] = parseFloat(p2pb);
+  data.match["round" + data.settings.round + "P1PB"] = min(
+    parseFloat(p1pb),
+    data.match["round" + data.settings.round + "P1PB"]
+  );
+  data.match["round" + data.settings.round + "P2PB"] = min(
+    parseFloat(p2pb),
+    data.match["round" + data.settings.round + "P2PB"]
+  );
   fs.writeFileSync("Data/public/data.json", JSON.stringify(data));
   events.emit("update");
 }
