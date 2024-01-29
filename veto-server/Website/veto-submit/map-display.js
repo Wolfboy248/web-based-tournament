@@ -37,13 +37,21 @@ async function main() {
     mapDiv.appendChild(mapDivP);
     mapDivImg.style.position = "relative";
     mapDivImgContainer.addEventListener("click", async () => {
+      console.log("test1");
       if (!canVeto) return;
-      var vetostate = await (await fetch("/vetostate.json")).json();
+      var vetos = await (await fetch("/vetos.json")).json();
       var settings = await (await fetch("/settings.json")).json();
       var user = await (await fetch("/getuser")).json();
+      console.log("test2");
       if (user.personaname == settings.player1) {
-        if (vetostate[key] == 0) {
+        if (
+          !vetos.player1.includes(key) &&
+          !vetos.player2.includes(key) &&
+          vetos.player1.length < settings.vetoLimit
+        ) {
           console.log("Veto submitted:", map[0], key);
+          const crossDiv = document.getElementById(key);
+          crossDiv.children[0].classList.add("crossed");
           canVeto = false;
           var re = await fetch("/veto", {
             method: "POST",
@@ -61,8 +69,10 @@ async function main() {
               window.href = "/player";
               break;
           }
-        } else if (vetostate[key] == 1) {
+        } else if (vetos.player1.includes(key)) {
           console.log("Veto removed:", map[0], key);
+          const crossDiv = document.getElementById(key);
+          crossDiv.children[0].classList.remove("crossed");
           canVeto = false;
           var re = await fetch("/veto", {
             method: "DELETE",
@@ -82,8 +92,14 @@ async function main() {
           }
         }
       } else if (user.personaname == settings.player2) {
-        if (vetostate[key] == 0) {
+        if (
+          vetos.player2.length < settings.vetoLimit &&
+          !vetos.player1.includes(key) &&
+          !vetos.player2.includes(key)
+        ) {
           console.log("Veto submitted:", map[0], key);
+          const crossDiv = document.getElementById(key);
+          crossDiv.children[0].classList.add("crossed");
           canVeto = false;
           var re = await fetch("/veto", {
             method: "POST",
@@ -101,8 +117,10 @@ async function main() {
               window.href = "/player";
               break;
           }
-        } else if (vetostate[key] == 2) {
+        } else if (vetos.player2.includes(key)) {
           console.log("Veto removed:", map[0], key);
+          const crossDiv = document.getElementById(key);
+          crossDiv.children[0].classList.remove("crossed");
           canVeto = false;
           var re = await fetch("/veto", {
             method: "DELETE",
@@ -127,13 +145,12 @@ async function main() {
     });
     mapDisplay.appendChild(mapDiv);
   });
-  const maps = document.getElementsByClassName("map");
   crossout();
   canVeto = true;
 }
 
 async function crossout() {
-  const vetostate = await (await fetch("/vetostate.json")).json();
+  const vetos = await (await fetch("/vetos.json")).json();
   const settings = await (await fetch("/settings.json")).json();
   const user = await (await fetch("/getuser")).json();
   const maps = document.getElementsByClassName("map");
@@ -142,15 +159,24 @@ async function crossout() {
   for (let i = 0; i < maps.length; i++) {
     const element = maps[i];
     const div = element.children[0];
-    if (vetostate[element.id] != 0) {
+    if (
+      vetos.player1.includes(element.id) ||
+      vetos.player2.includes(element.id)
+    ) {
+      console.log(element.id, "crossed");
       div.classList.add("crossed");
     }
-    if (vetostate[element.id] != usernumber) {
+    if (vetos["player" + (3 - usernumber)].includes(element.id)) {
       div.classList.add("other");
     }
-    if (vetostate[element.id] == 0) {
+    if (
+      !vetos.player1.includes(element.id) &&
+      !vetos.player2.includes(element.id)
+    ) {
       div.classList.remove("crossed");
-      div.classList.remove("other");
+      setTimeout(() => {
+        div.classList.remove("other");
+      }, 10);
     }
   }
 }
