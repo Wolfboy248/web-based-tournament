@@ -1,15 +1,15 @@
 :root {
     --background-blur: 12px;
     --background-opacity: 1; /* dont change this */
-    --color-primary: rgb(51, 255, 51);
-    --color-secondary: rgb(255, 0, 212);
+    --color-primary: rgb(255, 255, 255);
+    --color-secondary: rgb(182, 182, 182);
 
     --bg: rgba(31, 31, 31, 0.5);
 
     /* button */
     --button-fg-color: var(--color-primary);
     --button-bg-color: rgba(255, 255, 255, 0.1);
-    --button-selected-fg-color: white;
+    --button-selected-fg-color: rgb(0, 0, 0);
     --button-selected-bg-color: var(--color-primary);
 
     /* scrollbar */
@@ -37,6 +37,13 @@
     animation-name: fadeoutBG;
     animation-duration: var(--slideshow-animation-length);
     animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.pleasework2 {
+    animation-name: fadeBG;
+    animation-duration: var(--slideshow-animation-length);
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    display: block;
 }
 
 .fadeBG {

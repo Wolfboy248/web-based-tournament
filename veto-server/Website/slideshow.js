@@ -21,6 +21,8 @@ async function createImgs() {
         mapDiv.id = key;
         mapDisplay.appendChild(mapDiv);
     })
+
+    stupidThing();
 }
 
 createImgs();
@@ -34,6 +36,13 @@ function showSlides() {
 
     for (i = 0; i < slides.length; i++) {
         slides[i].classList.add("pleasework");
+        slides[i].classList.remove("pleasework2");
+    }
+
+    if (slideIndex > 1) {
+        slides[slideIndex - 2].style.display = "none";
+
+        // slides[slideIndex - 61].style.display = "none";
     }
 
     slideIndex++;
@@ -44,5 +53,19 @@ function showSlides() {
 
     slides[slideIndex - 1].style.display = "block";
     slides[slideIndex - 1].classList.remove("pleasework");
-    setTimeout(showSlides, 8000);
+    slides[slideIndex - 1].classList.add("pleasework2");
+
+    console.log(slideIndex);
+
+    setTimeout(showSlides, 2000);
+}
+
+function stupidThing() {
+    const stupid = document.querySelector("#sp_a4_finale4");
+    if (stupid == "null") return;
+
+    console.log(stupid);
+    stupid.style.display = "none";
+
+    setTimeout(stupidThing, 2000)
 }
