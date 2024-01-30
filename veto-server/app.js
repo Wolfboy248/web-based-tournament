@@ -41,6 +41,15 @@ test.forEach((file) => {
     console.log("Added router on: " + route.path);
     app.use(route.path, route.router);
   }
+  if (route.events) {
+    route.events.on("change", () => {
+      wss.clients.forEach((client) => {
+        if (client.readyState === ws.OPEN) {
+          client.send("change");
+        }
+      });
+    });
+  }
 });
 
 //json

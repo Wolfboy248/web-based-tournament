@@ -15,7 +15,8 @@ fetch("/settings.json")
     player1Name.placeholder = data.player1;
     player2Name.placeholder = data.player2;
     vetoAmount.placeholder = data.vetoLimit;
-    document.getElementById("p1Name").inn;
+    document.getElementById("p1Name").innerHTML = data.player1;
+    document.getElementById("p2Name").innerHTML = data.player2;
   });
 
 //change player names
@@ -84,10 +85,22 @@ fetch("vetos.json")
   .then((data) => {
     data.player1.forEach((veto) => {
       vetoList.children[1].innerHTML += `<li>${veto}</li>`;
-      vetoList.childer[1].innerHTML += `<button onclick="removeVeto('${veto}')">Remove</button>`;
+      vetoList.children[1].innerHTML += `<button onclick="removeVeto('${veto}')">Remove</button>`;
     });
     data.player2.forEach((veto) => {
       vetoList.children[3].innerHTML += `<li>${veto}</li>`;
-      vetoList.childer[3].innerHTML += `<button onclick="removeVeto('${veto}')">Remove</button>`;
+      vetoList.children[3].innerHTML += `<button onclick="removeVeto('${veto}')">Remove</button>`;
     });
   });
+
+//remove veto
+async function removeVeto(veto) {
+  await fetch("/admin/vetochange", {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      veto: veto,
+    }),
+  });
+  location.reload();
+}
