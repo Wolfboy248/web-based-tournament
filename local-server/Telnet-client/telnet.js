@@ -83,7 +83,7 @@ function connectToGame() {
       ) {
         console.log(`New pb for ${name}: ${time}`);
         p2pb = fTime;
-        uppdate = true;
+        update = true;
       }
       if (update) updateFile(p1pb, p2pb);
     } else if (data.includes("is now on")) {
@@ -100,8 +100,14 @@ function connectToGame() {
 
 function updateFile(p1pb, p2pb) {
   let data = JSON.parse(fs.readFileSync("Data/public/data.json"));
-  data.match["round" + data.settings.round + "P1PB"] = parseFloat(p1pb);
-  data.match["round" + data.settings.round + "P2PB"] = parseFloat(p2pb);
+  data.match["round" + data.settings.round + "P1PB"] = Math.min(
+    parseFloat(p1pb),
+    data.match["round" + data.settings.round + "P1PB"]
+  );
+  data.match["round" + data.settings.round + "P2PB"] = Math.min(
+    parseFloat(p2pb),
+    data.match["round" + data.settings.round + "P2PB"]
+  );
   fs.writeFileSync("Data/public/data.json", JSON.stringify(data));
   events.emit("update");
 }

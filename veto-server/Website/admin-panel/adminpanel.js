@@ -2,6 +2,8 @@ const player1Name = document.getElementById("player1Name");
 const player2Name = document.getElementById("player2Name");
 const playerchangeSubmit = document.getElementById("playerchangeSubmit");
 const adminsList = document.getElementById("adminsList");
+const adminSteamName = document.getElementById("adminSteamName");
+const adminAdd = document.getElementById("adminAdd");
 
 //set player names on load
 fetch("/settings.json")
@@ -46,3 +48,15 @@ async function removeAdmin(admin) {
   });
   location.reload();
 }
+
+//add admin
+adminAdd.addEventListener("click", async () => {
+  await fetch("/admin/adminchange", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      admin: adminSteamName.value,
+    }),
+  });
+  location.reload();
+});

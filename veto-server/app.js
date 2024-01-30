@@ -21,6 +21,13 @@ app.use(
     },
   })
 );
+
+//api
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 //steam oauth and cookies
 app.use(passport.initialize());
 app.use(passport.session());
