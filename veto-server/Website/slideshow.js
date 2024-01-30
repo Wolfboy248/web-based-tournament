@@ -3,6 +3,9 @@ async function createImgs() {
     const maplist = await maplistfile.json();
 
     const mapKeys = Object.keys(maplist);
+
+    shuffleArray(mapKeys);
+
     console.log(mapKeys);
 
     const mapDisplay = document.getElementById("bgImgsAuto");
@@ -20,10 +23,16 @@ async function createImgs() {
         mapDiv.style.backgroundImage = "url(" + `/maps/ch${map[1]}/${key}.jpg` + ")";
         mapDiv.id = key;
         mapDisplay.appendChild(mapDiv);
-    })
-
-    stupidThing();
+    });
 }
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 
 createImgs();
 
@@ -58,15 +67,4 @@ function showSlides() {
     console.log(slideIndex);
 
     setTimeout(showSlides, 8000);
-}
-
-// bruh
-function stupidThing() {
-    const stupid = document.querySelector("#sp_a4_finale4");
-    if (stupid == "null") return;
-
-    console.log(stupid);
-    stupid.style.display = "none";
-
-    setTimeout(stupidThing, 8000)
 }
