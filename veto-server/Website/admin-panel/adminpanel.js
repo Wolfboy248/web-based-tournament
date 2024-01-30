@@ -4,13 +4,18 @@ const playerchangeSubmit = document.getElementById("playerchangeSubmit");
 const adminsList = document.getElementById("adminsList");
 const adminSteamName = document.getElementById("adminSteamName");
 const adminAdd = document.getElementById("adminAdd");
+const vetoAmount = document.getElementById("vetoAmount");
+const vetoAmountSubmit = document.getElementById("vetoAmountSubmit");
+const vetoList = document.getElementById("vetoList");
 
-//set player names on load
+//set data on load
 fetch("/settings.json")
   .then((res) => res.json())
   .then((data) => {
     player1Name.placeholder = data.player1;
     player2Name.placeholder = data.player2;
+    vetoAmount.placeholder = data.vetoLimit;
+    document.getElementById("p1Name").inn;
   });
 
 //change player names
@@ -60,3 +65,29 @@ adminAdd.addEventListener("click", async () => {
   });
   location.reload();
 });
+
+//vetos
+vetoAmountSubmit.addEventListener("click", async () => {
+  await fetch("/admin/vetochange", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      amount: vetoAmount.value,
+    }),
+  });
+  location.reload();
+});
+
+//list vetos
+fetch("vetos.json")
+  .then((res) => res.json())
+  .then((data) => {
+    data.player1.forEach((veto) => {
+      vetoList.children[1].innerHTML += `<li>${veto}</li>`;
+      vetoList.childer[1].innerHTML += `<button onclick="removeVeto('${veto}')">Remove</button>`;
+    });
+    data.player2.forEach((veto) => {
+      vetoList.children[3].innerHTML += `<li>${veto}</li>`;
+      vetoList.childer[3].innerHTML += `<button onclick="removeVeto('${veto}')">Remove</button>`;
+    });
+  });
