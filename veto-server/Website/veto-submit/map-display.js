@@ -16,7 +16,7 @@ async function main() {
     //mapdiv
     const mapDiv = document.createElement("div");
     mapDiv.classList.add("map");
-    mapDiv.id = key;
+    mapDiv.id = key + "-veto";
 
     //mapdiv img
     const mapDivImg = document.createElement("img");
@@ -37,12 +37,10 @@ async function main() {
     mapDiv.appendChild(mapDivP);
     mapDivImg.style.position = "relative";
     mapDivImgContainer.addEventListener("click", async () => {
-      console.log("test1");
       if (!canVeto) return;
       var vetos = await (await fetch("/vetos.json")).json();
       var settings = await (await fetch("/settings.json")).json();
       var user = await (await fetch("/getuser")).json();
-      console.log("test2");
       if (user.personaname == settings.player1) {
         if (
           !vetos.player1.includes(key) &&
@@ -50,7 +48,7 @@ async function main() {
           vetos.player1.length < settings.vetoLimit
         ) {
           console.log("Veto submitted:", map[0], key);
-          const crossDiv = document.getElementById(key);
+          const crossDiv = document.getElementById(key + "-veto");
           crossDiv.children[0].classList.add("crossed");
           canVeto = false;
           var re = await fetch("/veto", {
@@ -71,7 +69,7 @@ async function main() {
           }
         } else if (vetos.player1.includes(key)) {
           console.log("Veto removed:", map[0], key);
-          const crossDiv = document.getElementById(key);
+          const crossDiv = document.getElementById(key + "-veto");
           crossDiv.children[0].classList.remove("crossed");
           canVeto = false;
           var re = await fetch("/veto", {
@@ -98,7 +96,7 @@ async function main() {
           !vetos.player2.includes(key)
         ) {
           console.log("Veto submitted:", map[0], key);
-          const crossDiv = document.getElementById(key);
+          const crossDiv = document.getElementById(key + "-veto");
           crossDiv.children[0].classList.add("crossed");
           canVeto = false;
           var re = await fetch("/veto", {
@@ -119,7 +117,7 @@ async function main() {
           }
         } else if (vetos.player2.includes(key)) {
           console.log("Veto removed:", map[0], key);
-          const crossDiv = document.getElementById(key);
+          const crossDiv = document.getElementById(key + "-veto");
           crossDiv.children[0].classList.remove("crossed");
           canVeto = false;
           var re = await fetch("/veto", {
@@ -159,20 +157,16 @@ async function crossout() {
   for (let i = 0; i < maps.length; i++) {
     const element = maps[i];
     const div = element.children[0];
-    if (
-      vetos.player1.includes(element.id) ||
-      vetos.player2.includes(element.id)
-    ) {
-      console.log(element.id, "crossed");
+    const veto = element.id.split("-veto")[0];
+    console.log(veto);
+    if (vetos.player1.includes(veto) || vetos.player2.includes(veto)) {
+      console.log(veto, "crossed");
       div.classList.add("crossed");
     }
-    if (vetos["player" + (3 - usernumber)].includes(element.id)) {
+    if (vetos["player" + (3 - usernumber)].includes(veto)) {
       div.classList.add("other");
     }
-    if (
-      !vetos.player1.includes(element.id) &&
-      !vetos.player2.includes(element.id)
-    ) {
+    if (!vetos.player1.includes(veto) && !vetos.player2.includes(veto)) {
       div.classList.remove("crossed");
       setTimeout(() => {
         div.classList.remove("other");
