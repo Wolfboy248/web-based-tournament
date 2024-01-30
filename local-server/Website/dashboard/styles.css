@@ -82,7 +82,7 @@ h1 {
 .match-data-controls-div {
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 250px;
+  top: 420px;
   position: absolute;
 }
 
@@ -103,7 +103,7 @@ h1 {
 .round-selector-div {
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 370px;
+  top: 290px;
   position: absolute;
 }
 
@@ -118,7 +118,7 @@ h1 {
 #timer {
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 450px;
+  top: 200px;
   position: absolute;
 }
 

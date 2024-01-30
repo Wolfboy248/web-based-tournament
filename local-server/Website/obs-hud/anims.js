@@ -1,7 +1,8 @@
 function showPlayers() {
   // loading screen stuff
   document.querySelector("#infoDiv").style.left = "115%";
-  document.querySelector("#bg").style.opacity = "0";
+  // document.querySelector("#bg").style.opacity = "0";
+  document.querySelector("#bg").style.width = "0";
   document.querySelector("#vetoDiv").style.left = "-30%";
 
   // playing screen stuff
@@ -50,6 +51,7 @@ function showLoading() {
   // loading screen stuff
   document.querySelector("#infoDiv").style.left = "86%";
   document.querySelector("#bg").style.opacity = "1";
+  document.querySelector("#bg").style.width = "100%";
   document.querySelector("#vetoDiv").style.left = "0%";
 
   // playing screen stuff
