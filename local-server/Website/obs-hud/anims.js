@@ -35,6 +35,12 @@ function showPlayers() {
   // randomizer
   document.querySelector("#randomizer").style.left = "-20%";
 
+  // povs
+  document.querySelector("#playing1Pov").style.transform = "translateY(-192px)";
+  document.querySelector("#playing1Pov").style.opacity = "1";
+  document.querySelector("#playing2Pov").style.transform = "translateY(-192px)";
+  document.querySelector("#playing2Pov").style.opacity = "1";
+
   // obs animations
   document.querySelector("#obs-anim").style.opacity = "0";
   document.querySelector("#obs-anim").style.transitionDelay = "0.8s";
@@ -60,6 +66,12 @@ function showLoading() {
   document.querySelector("#playing2Name").style.opacity = "0";
   document.querySelector("#playing2Time").style.opacity = "0";
   document.querySelector("#obs-anim").style.opacity = "1";
+
+  // povs
+  document.querySelector("#playing1Pov").style.transform = "translateY(-142px)";
+  document.querySelector("#playing1Pov").style.opacity = "0";
+  document.querySelector("#playing2Pov").style.transform = "translateY(-142px)";
+  document.querySelector("#playing2Pov").style.opacity = "0";
 }
 
 function showRandomizer() {
