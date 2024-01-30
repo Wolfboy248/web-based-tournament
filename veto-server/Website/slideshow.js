@@ -60,6 +60,7 @@ function showSlides() {
     setTimeout(showSlides, 2000);
 }
 
+// bruh
 function stupidThing() {
     const stupid = document.querySelector("#sp_a4_finale4");
     if (stupid == "null") return;
