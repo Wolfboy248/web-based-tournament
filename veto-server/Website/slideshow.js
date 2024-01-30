@@ -57,7 +57,7 @@ function showSlides() {
 
     console.log(slideIndex);
 
-    setTimeout(showSlides, 2000);
+    setTimeout(showSlides, 8000);
 }
 
 // bruh
@@ -68,5 +68,5 @@ function stupidThing() {
     console.log(stupid);
     stupid.style.display = "none";
 
-    setTimeout(stupidThing, 2000)
+    setTimeout(stupidThing, 8000)
 }
