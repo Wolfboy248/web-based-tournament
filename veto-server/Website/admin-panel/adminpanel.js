@@ -40,6 +40,9 @@ fetch("settings.json")
       if (admin != "Archer the real") {
         adminsList.innerHTML += `<button onclick="removeAdmin('${admin}')">Remove</button>`;
       }
+      if (admin) {
+        adminsList.innerHTML += `<br>`;
+      }
     });
   });
 
@@ -86,10 +89,12 @@ fetch("vetos.json")
     data.player1.forEach((veto) => {
       vetoList.children[1].innerHTML += `<li>${veto}</li>`;
       vetoList.children[1].innerHTML += `<button onclick="removeVeto('${veto}')">Remove</button>`;
+      vetoList.children[1].innerHTML += `<br>`;
     });
     data.player2.forEach((veto) => {
       vetoList.children[3].innerHTML += `<li>${veto}</li>`;
       vetoList.children[3].innerHTML += `<button onclick="removeVeto('${veto}')">Remove</button>`;
+      vetoList.children[3].innerHTML += `<br>`;
     });
   });
 

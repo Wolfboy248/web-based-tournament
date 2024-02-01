@@ -3,14 +3,50 @@
   width: 100%;
   position: absolute;
   z-index: -1;
-  margin-left: 30px;
+  margin-left: 20px;
 }
 
 .main-div li {
   margin-left: 25px;
-  display: list-item;
+  display: inline-block;
 }
 
 #adminsList button {
-  display: block;
+  display: inline-block;
+}
+
+#adminsList button:hover {
+  background-color: rgba(255, 0, 0, 0.5);
+  color: white;
+}
+
+button, input {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  color: white;
+  border-style: solid;
+  padding: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-color: rgb(26, 26, 26);
+  border-width: 2px;
+  font-family: ddin;
+  transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+}
+
+#p2 button, #p1 button, #adminsList button {
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 6px;
+}
+
+.add-admin-div {
+  display: inline-block;
+  position: absolute;
+  transform: translate(90px, -45px);
 }
