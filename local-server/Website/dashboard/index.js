@@ -19,6 +19,9 @@ const changePlayer = document.querySelector("#change-player");
 const resetData = document.querySelector("#resetData");
 const timerInput = document.querySelector("#timerInput");
 const changeTimer = document.querySelector("#changeTimer");
+const commandTest = document.querySelector("#commandTest");
+const commandInput = document.querySelector("#commandInput");
+const commandDiv = document.querySelector("#commandDiv");
 
 async function send(msg) {
   fetch("/send-msg", {
@@ -193,6 +196,20 @@ changeTimer.addEventListener("click", () => {
   }
 });
 
+commandTest.addEventListener("click", () => {
+  console.log(commandInput.value);
+  fetch("/telnet-send", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      msg: commandInput.value,
+    }),
+  });
+  commandInput.value = "";
+});
+
 resetData.addEventListener("click", () => {
   fetch("/data", { method: "DELETE" });
 });
@@ -204,15 +221,19 @@ socket.onmessage = function (event) {
   switch (event.data) {
     case "telnet-connect":
       telnetSTATUS.style.backgroundColor = "green";
+      commandDiv.style.display = "block";
       break;
     case "telnet-close":
       telnetSTATUS.style.backgroundColor = "red";
+      commandDiv.style.display = "none";
       break;
     case "telnet-error":
       telnetSTATUS.style.backgroundColor = "red";
+      commandDiv.style.display = "none";
       break;
     case "telnet-timeout":
       telnetSTATUS.style.backgroundColor = "red";
+      commandDiv.style.display = "none";
       break;
   }
 };

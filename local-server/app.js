@@ -59,9 +59,18 @@ app.post("/trigger-action", (req, res) => {
     case "randomizer":
       randomizer();
       break;
+    case "please":
+      console.log("you had better fucking work you dumb bitch fick you")
+      sendCommand("echo AAAAAAA");
+      break
   }
   res.end();
 });
+
+function sendCommand(cmd) {
+  sendMsg(cmd);
+  telnet.send(cmd);
+}
 
 let telnetConnected = false;
 app.post("/telnet", (req, res) => {
