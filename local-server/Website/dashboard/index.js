@@ -210,6 +210,12 @@ commandTest.addEventListener("click", () => {
   commandInput.value = "";
 });
 
+commandInput.addEventListener("keyup", event => {
+  if(event.key !== "Enter") return;
+  commandTest.click();
+  event.preventDefault();
+});
+
 resetData.addEventListener("click", () => {
   fetch("/data", { method: "DELETE" });
 });
