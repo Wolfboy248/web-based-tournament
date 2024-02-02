@@ -22,6 +22,8 @@ const changeTimer = document.querySelector("#changeTimer");
 const commandTest = document.querySelector("#commandTest");
 const commandInput = document.querySelector("#commandInput");
 const commandDiv = document.querySelector("#commandDiv");
+const msgInput = document.querySelector("#msgInput");
+const ghostMsg = document.querySelector("#ghostMsg");
 
 async function send(msg) {
   fetch("/send-msg", {
@@ -210,9 +212,29 @@ commandTest.addEventListener("click", () => {
   commandInput.value = "";
 });
 
+ghostMsg.addEventListener("click", () => {
+  console.log(msgInput.value);
+  fetch("/telnet-send", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      msg: "ghost_message " + msgInput.value,
+    }),
+  });
+  msgInput.value = "";
+});
+
 commandInput.addEventListener("keyup", event => {
   if(event.key !== "Enter") return;
   commandTest.click();
+  event.preventDefault();
+});
+
+msgInput.addEventListener("keyup", event => {
+  if(event.key !== "Enter") return;
+  ghostMsg.click();
   event.preventDefault();
 });
 
