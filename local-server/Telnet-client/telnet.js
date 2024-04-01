@@ -53,6 +53,7 @@ function connectToGame() {
     let p1pb = 9999;
     let p2pb = 9999;
     data = data.toString();
+    // set times
     if (data.includes("has finished on")) {
       let split = data.split("has finished on");
       let [name, playerMap, time] = [
@@ -95,6 +96,18 @@ function connectToGame() {
         else if (name == info.match.player2) allowp2 = false;
       }
     }
+
+    // start race
+    if (data.includes("ffo_tourneyStart")) {
+      console.log("Tournament started!");
+      fetch("http://localhost:3000/tourneystart", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          msg: "Started",
+        }),
+      });
+    };
   });
 }
 

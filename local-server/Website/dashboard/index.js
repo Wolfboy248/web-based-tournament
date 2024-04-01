@@ -24,6 +24,12 @@ const commandInput = document.querySelector("#commandInput");
 const commandDiv = document.querySelector("#commandDiv");
 const msgInput = document.querySelector("#msgInput");
 const ghostMsg = document.querySelector("#ghostMsg");
+const eventSource = new EventSource("/events");
+
+eventSource.addEventListener("tournamentStarted", (event) => {
+  const eventData = JSON.parse(event.data);
+  console.log("tournament started: ", eventData);
+})
 
 async function send(msg) {
   fetch("/send-msg", {

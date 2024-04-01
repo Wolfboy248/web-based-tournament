@@ -96,6 +96,24 @@ app.delete("/data", (req, res) => {
   telnet.reset();
 });
 
+app.post("/tourneystart", (req, res) => {
+  broadcastEvent('tournamentStarted', 'Tournament started');
+});
+
+app.get("/events", (req, res) => {
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+
+  res.write('data: Connected');
+})
+
+function broadcastEvent(event, data) {
+  clients.forEach(client => {
+    client.send(`event: ${event}\ndata: ${JSON.stringify(data)}`)
+  })
+}
+
 app.post("/data", (req, res) => {
   let info = JSON.parse(fs.readFileSync("Data/public/data.json"));
   for (let cat in req.body) {
