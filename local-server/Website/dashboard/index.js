@@ -24,12 +24,35 @@ const commandInput = document.querySelector("#commandInput");
 const commandDiv = document.querySelector("#commandDiv");
 const msgInput = document.querySelector("#msgInput");
 const ghostMsg = document.querySelector("#ghostMsg");
-const eventSource = new EventSource("/events");
+// const eventSource = new EventSource("/events");
 
-eventSource.addEventListener("tournamentStarted", (event) => {
-  const eventData = JSON.parse(event.data);
-  console.log("tournament started: ", eventData);
-})
+// eventSource.addEventListener("tournamentStarted", (event) => {
+//   console.log(event);
+//   const eventData = JSON.parse(event.data);
+//   console.log("tournament started: ", eventData);
+// })
+
+// eventSource.addEventListener("tournamentTimeSubmit", (e) => {
+//   console.log("received")
+//   const data = JSON.parse(e.data);
+//   console.log(eventData + "HELLOOOOOOOOOOO");
+//   data = data.replace(/[\r\n]/g, '');
+
+//   let name = "";
+//   let time = "";
+//   const pairs = data.split(' ').filter(pair => pair.includes("="));
+  
+//   pairs.forEach(pair => {
+//     const [key, value] = pair.split('=');
+//     if (key === 'name') {
+//       name = value;
+//     } else if (key === 'time') {
+//       time = value;
+//     }
+//   });
+//   console.log(name);
+//   console.log(time);
+// })
 
 async function send(msg) {
   fetch("/send-msg", {
@@ -251,7 +274,32 @@ resetData.addEventListener("click", () => {
 const socket = new WebSocket("ws://localhost:8080");
 
 socket.onmessage = function (event) {
-  console.log(event.data);
+  let data = event.data;
+  // console.log(event.data);
+
+  if (data.includes("ffo_tourneyStart")) {
+    console.log("tournament started!")
+  }
+
+  if (data.includes("ffo_newTime")) {
+    data = data.replace(/[\r\n]/g, '');
+
+    let name = "";
+    let time = "";
+    const pairs = data.split(' ').filter(pair => pair.includes("="));
+    
+    pairs.forEach(pair => {
+      const [key, value] = pair.split('=');
+      if (key === 'name') {
+        name = value;
+      } else if (key === 'time') {
+        time = value;
+      }
+    });
+    console.log(name);
+    console.log(time);
+  }
+
   switch (event.data) {
     case "telnet-connect":
       telnetSTATUS.style.backgroundColor = "green";

@@ -4,7 +4,8 @@
   "description": "- Automatic score fetching for the two players competeting \r - Random map generation\r - Hopefully decent visuals compatible with [OBS  Studio](https://github.com/obsproject/obs-studio)\r - Automatic PB uploads with [Ghost Server](https://github.com/p2sr/GhostServer)\r - Support for vetoes",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",

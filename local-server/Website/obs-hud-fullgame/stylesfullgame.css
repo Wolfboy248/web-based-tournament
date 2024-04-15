@@ -1,0 +1,100 @@
+body, html {
+    /* background-color: #1c1c1c; */
+    color: white;
+    font-family: product;
+    margin: 15px;
+}
+
+.current-map {
+    background-color: rgba(0, 0, 0, 0.5);
+    width:fit-content;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    font-size: 30px;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+h1 {
+    font-family: product-bold;
+    margin: 10px;
+}
+
+.dev-btns {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+}
+
+.scoreboard {
+    width: 350px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    border-radius: 10px;
+}
+
+.scoreboard span {
+    display: block;
+    font-size: 30px;
+}
+
+.positions-div {
+    margin-left: 10px;
+}
+
+.player {
+    position: absolute;
+    margin-left: 20px;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    width: 305px;
+}
+
+.placement {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-20px);
+    color: rgb(180, 180, 180);
+}
+
+.diff {
+    text-align: center;
+    top: 0;
+    position: absolute;
+    right: 0;
+    width: 120px;
+}
+
+.diffDiv {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    width: 100px;
+}
+
+@font-face {
+    font-family: barlow;
+    src: url(barlow/Barlow-Medium.ttf); /* TODO: fix all fonts */
+}
+  
+@font-face {
+    font-family: barlow-bold;
+    src: url(barlow/Barlow-Bold.ttf);
+}
+  
+@font-face {
+    font-family: barlow-thin;
+    src: url(barlow/Barlow-Regular.ttf);
+}
+  
+@font-face {
+    font-family: product;
+    src: url(D-DIN.otf);
+}
+  
+@font-face {
+    font-family: product-bold;
+    src: url(D-DIN-Bold.otf);
+}

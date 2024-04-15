@@ -2,6 +2,7 @@ const net = require("net");
 const fs = require("fs");
 const EventEmitter = require("events");
 const { type } = require("os");
+const { times, map } = require("lodash");
 class MyEmitter extends EventEmitter {}
 const events = new MyEmitter();
 
@@ -100,14 +101,97 @@ function connectToGame() {
     // start race
     if (data.includes("ffo_tourneyStart")) {
       console.log("Tournament started!");
-      fetch("http://localhost:3000/tourneystart", {
+
+  fetch("http://localhost:3000/tourneystart", {
+      method: "POST", 
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        msg: "Started" 
+      }),
+      timeout: 10000 // 10 seconds
+    })
+    .then(response => {
+      // handle response
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  };
+
+    // detect new time
+    if (data.includes("is now on")) {
+      if (!data.includes("(")) {
+        console.log("invalid time input")
+        return;
+      }
+      // data = data.replace(/[\r\n]/g, '');
+  
+      let name = "";
+      let time = "";
+      // const pairs = data.split(' ').filter(pair => pair.includes("="));
+  
+      // pairs.forEach(pair => {
+      //     const [key, value] = pair.split('=');
+      //     if (key === 'name') {
+      //         name = value;
+      //     } else if (key === 'time') {
+      //         time = value;
+      //     }
+      // });
+
+      let regex = /(\w+) is now on .*? \((\d+:\d+\.\d+) -> (\d+:\d+\.\d+)\)/;
+      if (data.includes("19884")) {
+        regex = /(\w+) is now on .*? \((\d+:\d+:\d+\.\d+) -> (\d+:\d+\.\d+)\)/;
+      }
+      let match = data.match(regex);
+
+      if (match == null) {
+        // regex = /.*\((.*) -> (\d+:(?:(\d+):)?(\d+(?:\.\d+)?))\)$/;
+        // match = data.match(regex);
+
+        let dataSplit = data.split(" -> ");
+        let nameSplit = data.split(" is now on ");
+        let name = nameSplit[0];
+        console.log(name);
+        let timeSplit = dataSplit[1].split(")");
+        console.log(timeSplit[0]);
+        match = timeSplit[0];
+      }
+
+      let dataSplit = data.split(" -> ");
+      let nameSplit = data.split(" is now on ");
+      let mapSplit = nameSplit[1].split(" (");
+      let map = mapSplit[0];
+      console.log(map);
+      let nameTHING = nameSplit[0];
+      let timeSplit = dataSplit[1].split(")");
+      console.log(nameTHING);
+      console.log(timeSplit[0])
+
+      // console.log(match);
+      name = match[1];
+      time = match[3];
+
+      fetch("http://localhost:3000/tourneytimesubmit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          msg: "Started",
+          name: nameTHING,
+          time: timeSplit[0],
+          map: map,
         }),
-      });
-    };
+        timeout: 10000 // 10 seconds
+        })
+        .then(response => {
+          // handle response
+        })
+        .catch(error => {
+          console.log(error);
+        });
+  
+      // console.log("Name:", name);
+      // console.log("Time:", time);
+    }
   });
 }
 

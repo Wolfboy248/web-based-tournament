@@ -9,6 +9,7 @@ const app = express();
 //websocket
 let clients = [];
 const wss = new ws.Server({ port: 8080 });
+const wss2 = new ws.Server({ port: 9090 });
 wss.on("connection", (ws) => {
   console.log("NEW WEBSOCKET CONNECTION");
   clients.push(ws);
@@ -22,6 +23,14 @@ wss.on("connection", (ws) => {
   else ws.send("telnet-close");
 });
 
+wss2.on("connection", (ws) => {
+  clients.push(ws);
+
+  ws.on("close", () => {
+    clients = clients.filter((client) => client !== ws);
+  });
+})
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000.");
 });
@@ -32,6 +41,7 @@ app.use(express.static("Website/dashboard"));
 app.use(express.static("Main-Images"));
 app.use(express.static("Data/public"));
 app.use(express.static("Website/fonts"));
+app.use(express.static("Website/obs-hud-fullgame"));
 app.use(morgan("dev"));
 app.use(express.json());
 
@@ -44,9 +54,13 @@ app.get("/hud", (req, res) => {
   res.sendFile("./Website/obs-hud/index.html", { root: __dirname });
 });
 
+app.get("/fullgame", (req, res) => {
+  res.sendFile("./Website/obs-hud-fullgame/index.html", { root: __dirname });
+})
+
 app.post("/send-msg", (req, res) => {
   let msg = req.body["message"];
-  console.log(msg);
+  console.log(msg) + "please";
   sendMsg(msg);
 });
 
@@ -62,7 +76,10 @@ app.post("/trigger-action", (req, res) => {
     case "please":
       console.log("you had better fucking work you dumb bitch fick you")
       sendCommand("echo AAAAAAA");
-      break
+      break;
+    case "advance":
+      let time = req.body.msg;
+      sendCommand("sar_toast_create speedrun " + time);
   }
   res.end();
 });
@@ -97,8 +114,17 @@ app.delete("/data", (req, res) => {
 });
 
 app.post("/tourneystart", (req, res) => {
-  broadcastEvent('tournamentStarted', 'Tournament started');
+  broadcastEvent('tournamentStarted', 'ffo_tourneyStart');
 });
+
+app.post("/tourneytimesubmit", (req, res) => {
+  let name = req.body.name;
+  let time = req.body.time;
+  let map = req.body.map;
+
+  broadcastEvent("tournamentTimeSubmit", `ffo_newTime name=${name} time=${time}`);
+  broadcastEvent("tournamentMapSubmit", `ffo_newMap ${map}`);
+})
 
 app.get("/events", (req, res) => {
   res.setHeader('Content-Type', 'text/event-stream');
@@ -110,7 +136,7 @@ app.get("/events", (req, res) => {
 
 function broadcastEvent(event, data) {
   clients.forEach(client => {
-    client.send(`event: ${event}\ndata: ${JSON.stringify(data)}`)
+    client.send(data);
   })
 }
 
