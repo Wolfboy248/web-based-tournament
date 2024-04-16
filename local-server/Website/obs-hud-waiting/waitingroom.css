@@ -1,0 +1,59 @@
+body, html {
+    margin: 0;
+    color: white;
+    font-family: product;
+}
+
+.center-div {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    padding: 20px 70px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    font-size: 100px;
+    text-align: center;
+    display: block;
+}
+
+.cycling-div {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 10px 10px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 30px;
+}
+
+.setup-names {
+    font-size: 40px;
+}
+
+
+@font-face {
+    font-family: barlow;
+    src: url(barlow/Barlow-Medium.ttf); /* TODO: fix all fonts */
+}
+  
+@font-face {
+    font-family: barlow-bold;
+    src: url(barlow/Barlow-Bold.ttf);
+}
+  
+@font-face {
+    font-family: barlow-thin;
+    src: url(barlow/Barlow-Regular.ttf);
+}
+  
+@font-face {
+    font-family: product;
+    src: url(D-DIN.otf);
+}
+  
+@font-face {
+    font-family: product-bold;
+    src: url(D-DIN-Bold.otf);
+}
+

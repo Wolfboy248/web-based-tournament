@@ -42,6 +42,7 @@ app.use(express.static("Main-Images"));
 app.use(express.static("Data/public"));
 app.use(express.static("Website/fonts"));
 app.use(express.static("Website/obs-hud-fullgame"));
+app.use(express.static("Website/obs-hud-waiting"));
 app.use(morgan("dev"));
 app.use(express.json());
 
@@ -56,6 +57,10 @@ app.get("/hud", (req, res) => {
 
 app.get("/fullgame", (req, res) => {
   res.sendFile("./Website/obs-hud-fullgame/index.html", { root: __dirname });
+})
+
+app.get("/waiting", (req, res) => {
+  res.sendFile("./Website/obs-hud-waiting/index.html", { root: __dirname });
 })
 
 app.post("/send-msg", (req, res) => {

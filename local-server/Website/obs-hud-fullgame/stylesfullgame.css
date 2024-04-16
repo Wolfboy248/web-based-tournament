@@ -6,7 +6,7 @@ body, html {
 }
 
 .current-map {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     width:fit-content;
     margin-right: auto;
     margin-left: auto;
@@ -30,9 +30,10 @@ h1 {
 
 .scoreboard {
     width: 350px;
-    background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
-    border-radius: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px black;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .scoreboard span {

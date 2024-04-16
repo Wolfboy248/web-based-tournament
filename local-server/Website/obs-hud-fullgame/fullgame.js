@@ -5,7 +5,7 @@ const devBtnsDiv = document.querySelector("#devBtns");
 const timeInp = document.querySelector("#timeInp");
 const currMap = document.querySelector("#currMap");
 
-const socket = new WebSocket("ws://localhost:8080");
+const socket = new WebSocket("ws://localhost:9090");
 
 function updateMap(map) {
     currMap.innerText = "Current map: " + map;
@@ -20,27 +20,27 @@ let arr = [
 ]
 
 // dev buttons
-arr.forEach((element) => {
-    const btn = document.createElement("button");
+// arr.forEach((element) => {
+//     const btn = document.createElement("button");
 
-    btn.innerText = "Advance " + element;
-    btn.addEventListener("click", () => {
-        let time = timeInp.value;
-        // console.log(element + ` is now on map (5:34.325 -> ${time})`);
-        fetch("/trigger-action", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                action: "advance",
-                msg: `${element} is now on map (5:34.325 -> ${time})`,
-            }),
-        });
-    });
+//     btn.innerText = "Advance " + element;
+//     btn.addEventListener("click", () => {
+//         let time = timeInp.value;
+//         // console.log(element + ` is now on map (5:34.325 -> ${time})`);
+//         fetch("/trigger-action", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({
+//                 action: "advance",
+//                 msg: `${element} is now on map (5:34.325 -> ${time})`,
+//             }),
+//         });
+//     });
 
-    devBtnsDiv.appendChild(btn);
-});
+//     devBtnsDiv.appendChild(btn);
+// });
 
 // console scoreboard test
 // show array in original thing
@@ -74,7 +74,7 @@ arr.forEach((e) => {
     if (arr[0] == e) {
         playerDifference.innerText = "Interval";
     } else {
-        playerDifference.innerText = "0.000";
+        playerDifference.innerText = "+0.000";
     }
     playerDifference.classList.add("diff");
 
@@ -161,14 +161,51 @@ function updateTime(name, newTime) {
             let pos = get(p, "position");
             p.style.marginTop = getPosHeight(pos);
             p.childNodes[1].innerText = pos;
+            if (p.getAttribute("position") == "1") {
+                p.childNodes[2].innerText = "Interval";
+                return;
+            }
         }
     });
 
-    // childNodes things
-    // 0 - name span
-    // 1 - placement span
-    // 2 - difference span
-    player.childNodes[2].innerText = newTime;
+    let abovePlayer = document.querySelector(
+        ".player[position='" + sortedTimeStrings.indexOf(newTime) + "']"
+    );
+    let abovePlayerTimeParts = abovePlayer.getAttribute("time").split(":");
+    let newTimeParts = newTime.split(":");
+
+    let abovePlayerSeconds = 0;
+    let abovePlayerMinutes = 1;
+    for (let i = abovePlayerTimeParts.length - 1; i >= 0; i--) {
+        abovePlayerSeconds += Number(abovePlayerTimeParts[i]) * abovePlayerMinutes;
+        abovePlayerMinutes *= 60;
+    }
+
+    let newTimeSeconds = 0;
+    let newTimeMinutes = 1;
+    for (let i = newTimeParts.length - 1; i >= 0; i--) {
+        newTimeSeconds += Number(newTimeParts[i]) * newTimeMinutes;
+        newTimeMinutes *= 60;
+    }
+
+    let timeDifference = newTimeSeconds - abovePlayerSeconds;
+    let decimals = 3;
+    if (newTimeSeconds - abovePlayerSeconds > 60) {
+        timeDifference = newTimeSeconds / 60 - abovePlayerSeconds / 60;
+        decimals = 2;
+    } else {
+        decimals = 3;
+    }
+    console.log(timeDifference);
+    if (player.getAttribute("position") == 1) {
+        player.childNodes[2].innerText = "Interval";
+    } else {
+        timeDifferenceFormatted = timeDifference.toFixed(decimals);
+        if (newTimeSeconds - abovePlayerSeconds > 60) {
+            timeDifferenceFormatted = timeDifferenceFormatted.replace(".", ":");
+        }
+        player.childNodes[2].innerText = "+" + timeDifferenceFormatted;
+    }
 };
   
 // Convert seconds to time string
@@ -184,6 +221,7 @@ function secondsToTimeString(seconds) {
 }
 
 function get(p, t) {
+    if (p == null) return;
     return p.getAttribute(t);
 }
 
