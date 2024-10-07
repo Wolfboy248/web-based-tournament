@@ -20,7 +20,7 @@
   "dependencies": {
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",
-    "express": "^4.18.2",
+    "express": "^4.21.0",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "ws": "^8.16.0"
